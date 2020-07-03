@@ -11,6 +11,8 @@ export default function SumCarbonFootprint({ totalFootprint }) {
 }
 
 const StyledSumCarbonFootprint = styled.div`
+  margin: 0 auto;
+  margin-top: 50px;
   align-items: center;
   background: var(--sunset);
   border: none;

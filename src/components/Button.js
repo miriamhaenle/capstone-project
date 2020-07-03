@@ -12,6 +12,7 @@ const StyledButton = styled.button`
   color: var(--sand);
   font-size: 18px;
   height: 36px;
+  align-self: center;
   text-align: center;
   width: 148px;
 

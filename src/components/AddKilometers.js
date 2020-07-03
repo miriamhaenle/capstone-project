@@ -19,8 +19,9 @@ export default function AddKilometers({ disabled }) {
 }
 
 const StyledAddKilometers = styled.form`
-  padding: 30px;
-  max-width: 315px;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
   color: var(--sand);
 
   h2 {

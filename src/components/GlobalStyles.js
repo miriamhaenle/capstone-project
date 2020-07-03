@@ -17,9 +17,10 @@ export default createGlobalStyle`
 
 
 body {
-  background: var(---woodland);
+  background: var(--woodland);
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  max-width: 500px;
+  max-width: 375px;
+
 }
 `

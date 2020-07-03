@@ -1,9 +1,11 @@
 import React from 'react'
-
+import SumCarbonFootPrint from './components/SumCarbonFootprint'
+import AddKilometers from './components/AddKilometers'
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <SumCarbonFootPrint totalFootprint="1234"></SumCarbonFootPrint>
+      <AddKilometers disabled></AddKilometers>
     </div>
   )
 }
