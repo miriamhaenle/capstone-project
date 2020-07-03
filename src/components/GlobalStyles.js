@@ -1,0 +1,24 @@
+import { createGlobalStyle } from 'styled-components'
+
+export default createGlobalStyle`
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+--woodland: #2e8b57;
+--seafoam: #A2D5D8;
+--dusk: #091A1A;
+--sunset: #FF8C66;
+--sand: #F7EEDF;
+--headline-font: 'PT Serif', serif;;
+}
+
+body {
+  background: var(---woodland);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  max-width: 500px;
+}
+`
