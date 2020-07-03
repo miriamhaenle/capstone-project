@@ -1,5 +1,4 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
 import Button from '../components/Button'
 import GlobalStyles from '../components/GlobalStyles'
 import { addDecorator } from '@storybook/react'
@@ -19,5 +18,5 @@ export default {
 export const buttonWithText = () => <Button text="Add new trip" />
 
 export const disabledButtonWithText = () => (
-  <Button disabled text="I'm disabled" />
+  <Button disabled text="Disabled button" />
 )
