@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from '../components/Button'
 
-export default function AddKilometers() {
+export default function AddKilometers({ disabled }) {
   return (
     <StyledAddKilometers>
       <h2>Add new trip</h2>
@@ -13,7 +13,7 @@ export default function AddKilometers() {
       <label>
         Kilometers<input type="number"></input>
       </label>
-      <Button disabled text="Add"></Button>
+      <Button disabled={disabled} text="Add"></Button>
     </StyledAddKilometers>
   )
 }
@@ -28,6 +28,9 @@ const StyledAddKilometers = styled.form`
     font-family: var(--headlineFont);
     font-size: 32px;
     padding: 30px 0;
+  }
+  p {
+    width: 315px;
   }
 
   input {

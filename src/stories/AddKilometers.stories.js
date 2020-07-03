@@ -15,4 +15,4 @@ export default {
   component: AddKilometers,
 }
 
-export const addKilometersForm = () => <AddKilometers></AddKilometers>
+export const addKilometersForm = () => <AddKilometers disabled></AddKilometers>
