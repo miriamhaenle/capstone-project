@@ -7,16 +7,16 @@ export default function Button({ text, disabled }) {
 
 const StyledButton = styled.button`
   background: var(--sunset);
-  color: var(--sand);
-  text-align: center;
-  height: 36px;
-  width: 148px;
-  font-size: 18px;
   border: none;
   border-radius: 3px;
+  color: var(--sand);
+  font-size: 18px;
+  height: 36px;
+  text-align: center;
+  width: 148px;
 
   &:disabled {
-    opacity: 50%;
     cursor: not-allowed;
+    opacity: 50%;
   }
 `

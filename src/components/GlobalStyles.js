@@ -11,7 +11,6 @@ export default createGlobalStyle`
 --seafoam: #A2D5D8;
 --dusk: #091A1A;
 --sunset: #FF8C66;
---transparentSunset: #FF8C6680;
 --sand: #F7EEDF;
 --headline-font: 'PT Serif', serif;
 }
