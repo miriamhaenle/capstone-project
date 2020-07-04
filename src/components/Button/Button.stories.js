@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from '../components/Button'
-import GlobalStyles from '../components/GlobalStyles'
+import Button from './Button'
+import GlobalStyles from '../GlobalStyles'
 import { addDecorator } from '@storybook/react'
 
 addDecorator((s) => (

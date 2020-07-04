@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import SumCarbonFootPrint from './components/SumCarbonFootprint'
-import AddKilometers from './components/AddKilometers'
+import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
+import AddKilometers from './components/AddKilometers/AddKilometers'
 
 function App() {
   const [totalFootprint, setTotalFootprint] = useState(0)

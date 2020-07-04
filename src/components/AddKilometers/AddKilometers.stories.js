@@ -1,6 +1,6 @@
 import React from 'react'
-import AddKilometers from '../components/AddKilometers'
-import GlobalStyles from '../components/GlobalStyles'
+import AddKilometers from './AddKilometers'
+import GlobalStyles from '../GlobalStyles'
 import { addDecorator } from '@storybook/react'
 
 addDecorator((s) => (

@@ -1,6 +1,6 @@
 import React from 'react'
-import SumCarbonFootprint from '../components/SumCarbonFootprint'
-import GlobalStyles from '../components/GlobalStyles'
+import SumCarbonFootprint from './SumCarbonFootprint'
+import GlobalStyles from '../GlobalStyles'
 import { addDecorator } from '@storybook/react'
 
 addDecorator((s) => (

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from '../components/Button'
-import useForm from './utils/useForm'
+import Button from '../Button/Button'
+import useForm from '../utils/useForm'
 
 export default function AddKilometers({ updateCarbonFootprint }) {
   const [values, handleChange] = useForm({})
