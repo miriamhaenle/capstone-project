@@ -34,7 +34,6 @@ export default function AddKilometers({ updateCarbonFootprint }) {
     event.preventDefault()
     const carbonFootprint = calculateCarbonEmission(values.distance)
     updateCarbonFootprint(carbonFootprint)
-    console.log(carbonFootprint)
   }
 }
 

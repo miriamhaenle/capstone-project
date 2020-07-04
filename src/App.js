@@ -3,28 +3,61 @@ import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootpri
 import AddKilometers from './components/AddKilometers/AddKilometers'
 
 function App() {
-  const [totalFootprint, setTotalFootprint] = useState(0)
+  const initialFootprintValue = 0
+  const [carbonFootprint, setCarbonFootprint] = useState([
+    initialFootprintValue,
+  ])
+  const [totalCarbonFootprint, setTotalCarbonFootprint] = useState(
+    initialFootprintValue
+  )
 
   useEffect(() => {
-    const lastSavedCarbonFootprint = JSON.parse(
-      localStorage.getItem('Carbon Footprint')
+    const historicCarbonFootprint = JSON.parse(
+      localStorage.getItem('Carbon Footprint History')
     )
-    setTotalFootprint(lastSavedCarbonFootprint)
+    if (historicCarbonFootprint !== null) {
+      setCarbonFootprint(historicCarbonFootprint)
+    }
+    const historicTotal = JSON.parse(localStorage.getItem('Sum'))
+    setTotalCarbonFootprint(historicTotal)
   }, [])
+
   useEffect(() => {
-    localStorage.setItem('Carbon Footprint', JSON.stringify(totalFootprint))
-  }, [totalFootprint])
+    localStorage.setItem(
+      'Carbon Footprint History',
+      JSON.stringify(carbonFootprint)
+    )
+  }, [carbonFootprint])
+
+  useEffect(() => {
+    localStorage.setItem('Sum', JSON.stringify(totalCarbonFootprint))
+  }, [totalCarbonFootprint])
+
+  useEffect(() => {
+    const calculatedTotalSum = calculateTotalFootprintSum(carbonFootprint)
+    setTotalCarbonFootprint(calculatedTotalSum)
+  }, [carbonFootprint])
 
   return (
     <div className="App">
-      <SumCarbonFootPrint totalFootprint={totalFootprint}></SumCarbonFootPrint>
+      <SumCarbonFootPrint
+        totalFootprint={totalCarbonFootprint || initialFootprintValue}
+      ></SumCarbonFootPrint>
       <AddKilometers
         updateCarbonFootprint={updateCarbonFootprint}
       ></AddKilometers>
     </div>
   )
   function updateCarbonFootprint(value) {
-    setTotalFootprint(value)
+    setCarbonFootprint([...carbonFootprint, value])
+  }
+
+  function calculateTotalFootprintSum(carbonFootprint) {
+    if (carbonFootprint === null) {
+      return 0
+    } else {
+      return carbonFootprint.reduce((acc, curr) => acc + curr, 0)
+    }
   }
 }
 
