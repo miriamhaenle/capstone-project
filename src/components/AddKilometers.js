@@ -53,10 +53,12 @@ const StyledAddKilometers = styled.form`
     color: var(--seafoam);
     font-family: var(--headlineFont);
     font-size: 32px;
-    padding: 30px 0;
+    padding: 40px 0 30px 0;
+    margin: 0;
   }
   p {
     width: 315px;
+    margin: 0;
   }
 
   input {
