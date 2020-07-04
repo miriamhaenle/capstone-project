@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Button from '../components/Button'
+import useForm from './utils/useForm'
 
-export default function AddKilometers({ disabled, updateCarbonFootprint }) {
-  const [kilometers, setKilometers] = useState('')
+export default function AddKilometers({ updateCarbonFootprint }) {
+  const [values, handleChange] = useForm({})
 
   return (
     <StyledAddKilometers onSubmit={submitHandler}>
@@ -16,21 +17,22 @@ export default function AddKilometers({ disabled, updateCarbonFootprint }) {
         Kilometers
         <input
           required
-          value={kilometers}
+          value={values.distance || ''}
           type="number"
           name="distance"
-          onChange={(event) =>
-            event.target.value.length <= 8 && setKilometers(event.target.value)
-          }
+          onChange={(event) => handleChange(event)}
         ></input>
       </label>
-      <Button disabled={kilometers >= 1 ? false : true} text="Add"></Button>
+      <Button
+        disabled={values.distance >= 1 ? false : true}
+        text="Add"
+      ></Button>
     </StyledAddKilometers>
   )
 
   function submitHandler(event) {
     event.preventDefault()
-    const carbonFootprint = calculateCarbonEmission(kilometers)
+    const carbonFootprint = calculateCarbonEmission(values.distance)
     updateCarbonFootprint(carbonFootprint)
     console.log(carbonFootprint)
   }
