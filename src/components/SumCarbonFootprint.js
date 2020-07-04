@@ -25,6 +25,7 @@ const StyledSumCarbonFootprint = styled.div`
   margin: 0 auto;
   margin-top: 50px;
   width: 228px;
+  overflow: hidden;
 
   span {
     font-size: 47px;

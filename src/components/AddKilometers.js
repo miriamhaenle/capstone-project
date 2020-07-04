@@ -19,7 +19,9 @@ export default function AddKilometers({ disabled, updateCarbonFootprint }) {
           value={kilometers}
           type="number"
           name="distance"
-          onChange={(event) => setKilometers(event.target.value)}
+          onChange={(event) =>
+            event.target.value.length <= 8 && setKilometers(event.target.value)
+          }
         ></input>
       </label>
       <Button disabled={kilometers >= 1 ? false : true} text="Add"></Button>
