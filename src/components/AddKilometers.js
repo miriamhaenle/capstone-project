@@ -16,6 +16,7 @@ export default function AddKilometers({ disabled, updateCarbonFootprint }) {
         Kilometers
         <input
           required
+          value={kilometers}
           type="number"
           name="distance"
           onChange={(event) => setKilometers(event.target.value)}
