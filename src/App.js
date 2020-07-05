@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
 import AddKilometers from './components/AddKilometers/AddKilometers'
+import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 
 function App() {
   const initialFootprintValue = 0
@@ -18,10 +19,10 @@ function App() {
     if (historicCarbonFootprint !== null) {
       setCarbonFootprint(historicCarbonFootprint)
     }
-    const historicTotal = JSON.parse(
+    const historicTotalCarbonFootprint = JSON.parse(
       localStorage.getItem('Total Carbon Footprint')
     )
-    setTotalCarbonFootprint(historicTotal)
+    setTotalCarbonFootprint(historicTotalCarbonFootprint)
   }, [])
 
   useEffect(() => {
@@ -57,9 +58,4 @@ function App() {
   }
 }
 
-export function calculateTotalFootprintSum(carbonFootprint) {
-  if (carbonFootprint !== null) {
-    return carbonFootprint.reduce((acc, curr) => acc + curr, 0)
-  }
-}
 export default App
