@@ -18,7 +18,9 @@ function App() {
     if (historicCarbonFootprint !== null) {
       setCarbonFootprint(historicCarbonFootprint)
     }
-    const historicTotal = JSON.parse(localStorage.getItem('Sum'))
+    const historicTotal = JSON.parse(
+      localStorage.getItem('Total Carbon Footprint')
+    )
     setTotalCarbonFootprint(historicTotal)
   }, [])
 
@@ -30,18 +32,20 @@ function App() {
   }, [carbonFootprint])
 
   useEffect(() => {
-    localStorage.setItem('Sum', JSON.stringify(totalCarbonFootprint))
+    localStorage.setItem(
+      'Total Carbon Footprint',
+      JSON.stringify(totalCarbonFootprint)
+    )
   }, [totalCarbonFootprint])
 
   useEffect(() => {
-    const calculatedTotalSum = calculateTotalFootprintSum(carbonFootprint)
-    setTotalCarbonFootprint(calculatedTotalSum)
+    setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
   }, [carbonFootprint])
 
   return (
     <div className="App">
       <SumCarbonFootPrint
-        totalFootprint={totalCarbonFootprint || initialFootprintValue}
+        sumCarbonFootprint={totalCarbonFootprint || initialFootprintValue}
       ></SumCarbonFootPrint>
       <AddKilometers
         updateCarbonFootprint={updateCarbonFootprint}
@@ -51,14 +55,11 @@ function App() {
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
   }
-
-  function calculateTotalFootprintSum(carbonFootprint) {
-    if (carbonFootprint === null) {
-      return 0
-    } else {
-      return carbonFootprint.reduce((acc, curr) => acc + curr, 0)
-    }
-  }
 }
 
+export function calculateTotalFootprintSum(carbonFootprint) {
+  if (carbonFootprint !== null) {
+    return carbonFootprint.reduce((acc, curr) => acc + curr, 0)
+  }
+}
 export default App

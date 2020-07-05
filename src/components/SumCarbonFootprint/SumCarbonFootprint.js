@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function SumCarbonFootprint({ totalFootprint }) {
+export default function SumCarbonFootprint({ sumCarbonFootprint }) {
   return (
     <StyledSumCarbonFootprint>
-      <span aria-label="total footprint">{totalFootprint}</span>
+      <span aria-label="total footprint">{sumCarbonFootprint}</span>
       kg CO2
     </StyledSumCarbonFootprint>
   )
