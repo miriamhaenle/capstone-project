@@ -20,6 +20,8 @@ export default function AddKilometers({ updateCarbonFootprint }) {
           value={values.distance || ''}
           type="number"
           name="distance"
+          autoFocus
+          ref={(input) => input && input.focus()}
           onChange={(event) => handleChange(event)}
         ></input>
       </label>
