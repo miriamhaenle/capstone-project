@@ -16,5 +16,5 @@ export default {
 }
 
 export const sumCarbonFootprint = () => (
-  <SumCarbonFootprint totalFootprint="1234"></SumCarbonFootprint>
+  <SumCarbonFootprint sumCarbonFootprint="1234"></SumCarbonFootprint>
 )

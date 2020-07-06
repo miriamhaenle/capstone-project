@@ -10,7 +10,7 @@ export default function AddKilometers({ updateCarbonFootprint }) {
     <StyledAddKilometers onSubmit={submitHandler}>
       <h2>Add new trip</h2>
       <p>
-        How many kilometers did it take you to get to your last race / trainings
+        How many kilometers did it take you to get to your last race / training
         camp?
       </p>
       <label>
@@ -40,6 +40,7 @@ export default function AddKilometers({ updateCarbonFootprint }) {
 }
 
 function calculateCarbonEmission(distance) {
+  //Formular below is just interims solution, will be changed for API call to carbon footprint API
   const calculateMiles = distance * 0.62
   const emissionsInPound = Math.round(
     ((calculateMiles * 52) / 19.4) * (100 / 95)
