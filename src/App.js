@@ -16,9 +16,7 @@ function App() {
     const historicCarbonFootprint = JSON.parse(
       localStorage.getItem('Carbon Footprint History')
     )
-    if (historicCarbonFootprint !== null) {
-      setCarbonFootprint(historicCarbonFootprint)
-    }
+    historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
     const historicTotalCarbonFootprint = JSON.parse(
       localStorage.getItem('Total Carbon Footprint')
     )
@@ -30,6 +28,7 @@ function App() {
       'Carbon Footprint History',
       JSON.stringify(carbonFootprint)
     )
+    setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
   }, [carbonFootprint])
 
   useEffect(() => {
@@ -38,10 +37,6 @@ function App() {
       JSON.stringify(totalCarbonFootprint)
     )
   }, [totalCarbonFootprint])
-
-  useEffect(() => {
-    setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
-  }, [carbonFootprint])
 
   return (
     <div className="App">
