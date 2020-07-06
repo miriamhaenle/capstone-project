@@ -2,7 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 export default function Button({ text, disabled }) {
-  return <StyledButton disabled={disabled}>{text}</StyledButton>
+  return (
+    <StyledButton disabled={disabled} data-cy="addTrip">
+      {text}
+    </StyledButton>
+  )
 }
 
 const StyledButton = styled.button`
