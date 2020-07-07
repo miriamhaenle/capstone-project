@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -44,6 +41,9 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.2",
     "@storybook/react": "^5.3.19",
-    "cypress": "^4.9.0"
+    "cypress": "^4.9.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1"
   }
 }
