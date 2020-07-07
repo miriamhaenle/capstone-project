@@ -4,13 +4,9 @@ const admin = require('firebase-admin')
 const express = require('express')
 const cors = require('cors')
 const axios = require('axios')
-const serviceAccount = require('./serviceAccountKey.json')
 const app = express()
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://capstone-project-c74dc.firebaseio.com',
-})
+admin.initializeApp()
 
 app.use(cors())
 app.use(express.json())

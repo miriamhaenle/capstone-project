@@ -5,19 +5,17 @@ If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment
 
 Dev App Server is now running.
 
-Jul 07, 2020 9:11:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Jul 07, 2020 9:26:41 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Jul 07, 2020 9:11:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Jul 07, 2020 9:26:41 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Jul 07, 2020 9:11:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Jul 07, 2020 9:26:41 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Jul 07, 2020 9:11:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Jul 07, 2020 9:26:41 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Jul 07, 2020 9:11:18 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Jul 07, 2020 9:26:41 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected HTTP/2 connection.
-Jul 07, 2020 9:11:19 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Jul 07, 2020 9:26:42 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
-Jul 07, 2020 9:11:19 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
-INFO: Detected non-HTTP/2 connection.
-Jul 07, 2020 9:12:19 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+Jul 07, 2020 9:26:42 AM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
