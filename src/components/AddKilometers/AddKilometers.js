@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
@@ -6,11 +6,14 @@ import TransportationType from '../transportationType/TransportationType'
 
 export default function AddKilometers({ updateCarbonFootprint }) {
   const [values, handleChange] = useForm({})
+  const [transportationType, setTransportationType] = useState('')
 
   return (
     <StyledAddKilometers onSubmit={submitHandler}>
       <h2>Add new trip</h2>
-      <TransportationType></TransportationType>
+      <TransportationType
+        updateTransportationType={updateTransportationType}
+      ></TransportationType>
       <p>
         How many kilometers did it take you to get to your last race / training
         camp?
@@ -36,13 +39,22 @@ export default function AddKilometers({ updateCarbonFootprint }) {
 
   function submitHandler(event) {
     event.preventDefault()
-    const carbonFootprint = calculateCarbonEmission(values.distance)
+    const carbonFootprint = calculateCarbonEmission(
+      values.distance,
+      transportationType
+    )
     updateCarbonFootprint(carbonFootprint)
+    console.log(carbonFootprint)
+  }
+
+  function updateTransportationType(value) {
+    setTransportationType(value)
   }
 }
 
-function calculateCarbonEmission(distance) {
+function calculateCarbonEmission(distance, transportationType) {
   //Formular below is just interims solution, will be changed for API call to carbon footprint API
+  console.log({ transportationType })
   const calculateMiles = distance * 0.62
   const emissionsInPound = Math.round(
     ((calculateMiles * 52) / 19.4) * (100 / 95)
