@@ -17,7 +17,7 @@ export default function AddKilometers({ updateCarbonFootprint }) {
       </p>
       <label>
         Kilometers
-        <input
+        <KilometerInput
           required
           value={values.distance || ''}
           type="number"
@@ -25,7 +25,7 @@ export default function AddKilometers({ updateCarbonFootprint }) {
           autoFocus
           ref={(input) => input && input.focus()}
           onChange={(event) => handleChange(event)}
-        ></input>
+        ></KilometerInput>
       </label>
       <Button
         disabled={values.distance >= 1 ? false : true}
@@ -68,14 +68,14 @@ const StyledAddKilometers = styled.form`
     width: 315px;
     margin: 0;
   }
+`
 
-  input {
-    border: none;
-    border-radius: 3px;
-    width: 315px;
-    background: var(--sand);
-    color: var(--dusk);
-    margin: 30px 0;
-    padding: 5px;
-  }
+const KilometerInput = styled.input`
+  border: none;
+  border-radius: 3px;
+  width: 315px;
+  background: var(--sand);
+  color: var(--dusk);
+  margin: 30px 0;
+  padding: 5px;
 `

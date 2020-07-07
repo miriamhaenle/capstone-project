@@ -6,55 +6,65 @@ import train from '../../images/train.svg'
 import plane from '../../images/plane.svg'
 
 export default function TransportationType() {
+  // MAke Controlled Component
   return (
-    <TransportationSelection>
+    <Container>
       <p>Select mode of transportation</p>
-      <SurroundingFlexbox>
-        <StyledTransportationType>
+      <div>
+        <input type="radio" name="transportation" id="car" />
+        <label htmlFor="car">
           <img src={car} alt="car" />
           Car
-        </StyledTransportationType>
-        <StyledTransportationType>
+        </label>
+        <input type="radio" name="transportation" id="bus" />
+        <label htmlFor="bus">
           <img src={bus} alt="bus" />
           Bus
-        </StyledTransportationType>
-        <StyledTransportationType>
+        </label>
+        <input type="radio" name="transportation" id="train" />
+        <label htmlFor="train">
           <img src={train} alt="train" />
           Train
-        </StyledTransportationType>
-        <StyledTransportationType>
+        </label>
+        <input type="radio" name="transportation" id="plane" />
+        <label htmlFor="plane">
+          {' '}
           <img src={plane} alt="plane" />
           Plane
-        </StyledTransportationType>
-      </SurroundingFlexbox>
-    </TransportationSelection>
+        </label>
+      </div>
+    </Container>
   )
 }
 
-const TransportationSelection = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-const SurroundingFlexbox = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 38px 0;
-`
+const Container = styled.div`
+  padding: 30px 0;
+  p {
+    grid-column: 1 / span 4;
+  }
+  div {
+    display: flex;
+    padding: 20px 0;
+  }
 
-const StyledTransportationType = styled.span`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 61px;
-  height: 61px;
-  border-radius: 50%;
-  background-color: var(--sand);
-  font-size: 14px;
-  color: var(--woodland);
+  input {
+    visibility: hidden;
+  }
 
-  img {
-    width: 26px;
-    height: 26px;
+  label {
+    background: var(--sand);
+    border-radius: 50%;
+    color: var(--woodland);
+    display: flex;
+    font-size: 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 61px;
+    width: 61px;
+  }
+
+  input[type='radio']:checked + label {
+    background: var(--sunset);
   }
 `
