@@ -38,9 +38,9 @@ export default function AddKilometers({ updateCarbonFootprint }) {
     </StyledAddKilometers>
   )
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault()
-    const carbonFootprint = calculateCarbonEmission(
+    const carbonFootprint = await calculateCarbonEmission(
       values.distance,
       transportationType
     )
@@ -54,11 +54,10 @@ export default function AddKilometers({ updateCarbonFootprint }) {
 }
 
 async function calculateCarbonEmission(distance, transportationType) {
-  console.log({ transportationType })
   const calculateMiles = distance * 0.62
 
-  const emissionsInPound = await axios
-    .get(
+  try {
+    const response = await axios.get(
       'http://localhost:5001/capstone-project-c74dc/europe-west3/app/my-carbon-footprint',
       {
         params: {
@@ -69,12 +68,17 @@ async function calculateCarbonEmission(distance, transportationType) {
         },
       }
     )
-    .then((response) =>
-      console.log({ Footprint: response.data.carbonFootprint })
-    )
-    .catch((error) => console.log(error))
 
-  return emissionsInPound
+    if (!response.data) {
+      return Math.random() * distance * 10
+    }
+
+    const carbonEmission = Number(response.data.carbonFootprint)
+
+    return carbonEmission
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 const StyledAddKilometers = styled.form`
