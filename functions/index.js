@@ -22,13 +22,13 @@ app.get('/my-carbon-footprint', (request, response) => {
       params: {
         activity: queryParams.activity,
         activityType: queryParams.activityType,
-        fuelType: queryParams.fuelType,
+        fuelType: 'diesel',
         country: queryParams.country,
         mode: queryParams.mode,
       },
     })
     .then((response) => response.data)
-    .then((footprint) => response.status(200).send(console.log(footprint)))
+    .then((footprint) => response.status(200).send(footprint))
     .catch((error) => console.log(error))
 })
 

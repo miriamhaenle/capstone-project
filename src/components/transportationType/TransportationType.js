@@ -15,7 +15,7 @@ export default function TransportationType({ updateTransportationType }) {
           type="radio"
           name="transportation"
           id="car"
-          value="car"
+          value="anyCar"
           onChange={handleChange}
         />
         <label htmlFor="car">
@@ -37,7 +37,7 @@ export default function TransportationType({ updateTransportationType }) {
           type="radio"
           name="transportation"
           id="train"
-          value="train"
+          value="transitRail"
           onChange={handleChange}
         />
         <label htmlFor="train">
@@ -48,7 +48,7 @@ export default function TransportationType({ updateTransportationType }) {
           type="radio"
           name="transportation"
           id="plane"
-          value="plane"
+          value="anyFlight"
           onChange={handleChange}
         />
         <label htmlFor="plane">

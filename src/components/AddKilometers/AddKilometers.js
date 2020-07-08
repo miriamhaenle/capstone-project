@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
 import TransportationType from '../transportationType/TransportationType'
+import axios from 'axios'
 
 export default function AddKilometers({ updateCarbonFootprint }) {
   const [values, handleChange] = useForm({})
@@ -52,13 +53,27 @@ export default function AddKilometers({ updateCarbonFootprint }) {
   }
 }
 
-function calculateCarbonEmission(distance, transportationType) {
-  //Formular below is just interims solution, will be changed for API call to carbon footprint API
+async function calculateCarbonEmission(distance, transportationType) {
   console.log({ transportationType })
   const calculateMiles = distance * 0.62
-  const emissionsInPound = Math.round(
-    ((calculateMiles * 52) / 19.4) * (100 / 95)
-  )
+
+  const emissionsInPound = await axios
+    .get(
+      'http://localhost:5001/capstone-project-c74dc/europe-west3/app/my-carbon-footprint',
+      {
+        params: {
+          activity: Number(calculateMiles),
+          activityType: 'miles',
+          country: 'def',
+          mode: 'anyCar',
+        },
+      }
+    )
+    .then((response) =>
+      console.log({ Footprint: response.data.carbonFootprint })
+    )
+    .catch((error) => console.log(error))
+
   return emissionsInPound
 }
 

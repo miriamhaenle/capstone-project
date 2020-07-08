@@ -6,7 +6,7 @@ import { addDecorator } from '@storybook/react'
 addDecorator((s) => (
   <>
     <GlobalStyles />
-    {s()}
+    <div style={{ margin: '0 auto' }}>{s()}</div>
   </>
 ))
 
