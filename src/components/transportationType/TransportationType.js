@@ -60,7 +60,6 @@ export default function TransportationType({ updateTransportationType }) {
     </Container>
   )
   function handleChange(event) {
-    console.log(event.target.value)
     updateTransportationType(event.target.value)
   }
 }
