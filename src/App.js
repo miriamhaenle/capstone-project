@@ -29,14 +29,12 @@ function App() {
       JSON.stringify(carbonFootprint)
     )
     setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
-  }, [carbonFootprint])
 
-  useEffect(() => {
     localStorage.setItem(
       'Total Carbon Footprint',
       JSON.stringify(totalCarbonFootprint)
     )
-  }, [totalCarbonFootprint])
+  }, [carbonFootprint, totalCarbonFootprint])
 
   return (
     <div className="App">
