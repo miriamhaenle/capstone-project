@@ -1,5 +1,5 @@
 import React from 'react'
-import AddKilometers from './AddKilometers'
+import AddKilometersForm from './AddKilometersForm'
 import GlobalStyles from '../GlobalStyles'
 import { addDecorator } from '@storybook/react'
 
@@ -12,7 +12,9 @@ addDecorator((s) => (
 
 export default {
   title: 'Add Kilometers Form',
-  component: AddKilometers,
+  component: AddKilometersForm,
 }
 
-export const addKilometersForm = () => <AddKilometers disabled></AddKilometers>
+export const addKilometersForm = () => (
+  <AddKilometersForm disabled></AddKilometersForm>
+)

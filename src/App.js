@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
-import AddKilometers from './components/AddKilometers/AddKilometers'
+import AddKilometersForm from './components/AddKilometers/AddKilometersForm'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 
 function App() {
@@ -43,9 +43,9 @@ function App() {
           totalCarbonFootprint.toFixed(2) || initialFootprintValue
         }
       ></SumCarbonFootPrint>
-      <AddKilometers
+      <AddKilometersForm
         updateCarbonFootprint={updateCarbonFootprint}
-      ></AddKilometers>
+      ></AddKilometersForm>
     </div>
   )
   function updateCarbonFootprint(value) {

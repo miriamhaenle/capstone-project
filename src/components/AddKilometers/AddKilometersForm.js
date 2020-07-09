@@ -3,24 +3,16 @@ import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
 import TransportationType from '../transportationType/TransportationType'
-import axios from 'axios'
+import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
-export default function AddKilometers({ updateCarbonFootprint }) {
-  async function calculateAndUpdateCarbonEmission() {
-    const carbonFootprint = await calculateCarbonEmission(
-      values.distance,
-      transportationType
-    )
-    updateCarbonFootprint(carbonFootprint)
-  }
-
+export default function AddKilometersForm({ updateCarbonFootprint }) {
   const [values, handleChange, handleSubmit] = useForm(
     calculateAndUpdateCarbonEmission
   )
   const [transportationType, setTransportationType] = useState('')
 
   return (
-    <StyledAddKilometers onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
       <h2>Add new trip</h2>
       <TransportationType
         updateTransportationType={updateTransportationType}
@@ -43,42 +35,21 @@ export default function AddKilometers({ updateCarbonFootprint }) {
         disabled={values.distance >= 1 ? false : true}
         text="Add"
       ></Button>
-    </StyledAddKilometers>
+    </StyledForm>
   )
-
+  async function calculateAndUpdateCarbonEmission() {
+    const carbonFootprint = await calculateCarbonEmission(
+      values.distance,
+      transportationType
+    )
+    updateCarbonFootprint(carbonFootprint)
+  }
   function updateTransportationType(value) {
     setTransportationType(value)
   }
 }
 
-async function calculateCarbonEmission(distance, transportationType) {
-  const distanceInMiles = distance * 0.62
-  try {
-    const response = await axios.get(
-      'http://localhost:5001/capstone-project-c74dc/europe-west3/app/my-carbon-footprint',
-      {
-        params: {
-          activity: Number(distanceInMiles),
-          activityType: 'miles',
-          country: 'def',
-          mode: transportationType,
-        },
-      }
-    )
-
-    if (!response.data) {
-      return Math.round(((distanceInMiles * 52) / 19.4) * (100 / 95))
-    }
-
-    const carbonEmission = Number(response.data.carbonFootprint)
-
-    return carbonEmission
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-const StyledAddKilometers = styled.form`
+const StyledForm = styled.form`
   padding: 0 30px;
   display: flex;
   flex-direction: column;
