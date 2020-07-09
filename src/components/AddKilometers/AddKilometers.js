@@ -52,23 +52,22 @@ export default function AddKilometers({ updateCarbonFootprint }) {
 }
 
 async function calculateCarbonEmission(distance, transportationType) {
-  const calculateMiles = distance * 0.62
-
+  const distanceInMiles = distance * 0.62
   try {
     const response = await axios.get(
       'http://localhost:5001/capstone-project-c74dc/europe-west3/app/my-carbon-footprint',
       {
         params: {
-          activity: Number(calculateMiles),
+          activity: Number(distanceInMiles),
           activityType: 'miles',
           country: 'def',
-          mode: 'anyCar',
+          mode: transportationType,
         },
       }
     )
 
     if (!response.data) {
-      return Math.random() * distance * 10
+      return Math.round(((distanceInMiles * 52) / 19.4) * (100 / 95))
     }
 
     const carbonEmission = Number(response.data.carbonFootprint)
