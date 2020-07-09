@@ -41,7 +41,9 @@ function App() {
   return (
     <div className="App">
       <SumCarbonFootPrint
-        sumCarbonFootprint={totalCarbonFootprint || initialFootprintValue}
+        sumCarbonFootprint={
+          totalCarbonFootprint.toFixed(2) || initialFootprintValue
+        }
       ></SumCarbonFootPrint>
       <AddKilometers
         updateCarbonFootprint={updateCarbonFootprint}

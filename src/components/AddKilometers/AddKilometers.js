@@ -6,7 +6,7 @@ import TransportationType from '../transportationType/TransportationType'
 import axios from 'axios'
 
 export default function AddKilometers({ updateCarbonFootprint }) {
-  async function calculateTotalEmissionSum() {
+  async function calculateAndUpdateCarbonEmission() {
     const carbonFootprint = await calculateCarbonEmission(
       values.distance,
       transportationType
@@ -15,7 +15,7 @@ export default function AddKilometers({ updateCarbonFootprint }) {
   }
 
   const [values, handleChange, handleSubmit] = useForm(
-    calculateTotalEmissionSum
+    calculateAndUpdateCarbonEmission
   )
   const [transportationType, setTransportationType] = useState('')
 
