@@ -6,11 +6,21 @@ import TransportationType from '../transportationType/TransportationType'
 import axios from 'axios'
 
 export default function AddKilometers({ updateCarbonFootprint }) {
-  const [values, handleChange] = useForm({})
+  async function calculateTotalEmissionSum() {
+    const carbonFootprint = await calculateCarbonEmission(
+      values.distance,
+      transportationType
+    )
+    updateCarbonFootprint(carbonFootprint)
+  }
+
+  const [values, handleChange, handleSubmit] = useForm(
+    calculateTotalEmissionSum
+  )
   const [transportationType, setTransportationType] = useState('')
 
   return (
-    <StyledAddKilometers onSubmit={submitHandler}>
+    <StyledAddKilometers onSubmit={handleSubmit}>
       <h2>Add new trip</h2>
       <TransportationType
         updateTransportationType={updateTransportationType}
@@ -26,8 +36,6 @@ export default function AddKilometers({ updateCarbonFootprint }) {
           value={values.distance || ''}
           type="number"
           name="distance"
-          autoFocus
-          ref={(input) => input && input.focus()}
           onChange={(event) => handleChange(event)}
         ></KilometerInput>
       </label>
@@ -37,16 +45,6 @@ export default function AddKilometers({ updateCarbonFootprint }) {
       ></Button>
     </StyledAddKilometers>
   )
-
-  async function submitHandler(event) {
-    event.preventDefault()
-    const carbonFootprint = await calculateCarbonEmission(
-      values.distance,
-      transportationType
-    )
-    updateCarbonFootprint(carbonFootprint)
-    console.log(carbonFootprint)
-  }
 
   function updateTransportationType(value) {
     setTransportationType(value)
