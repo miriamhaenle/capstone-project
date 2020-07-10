@@ -10,7 +10,7 @@ export default function TransportationType({ updateTransportationType }) {
   return (
     <Container>
       <p>Select mode of transportation</p>
-      <div>
+      <div name="transportationSelection">
         <input
           type="radio"
           name="transportation"
@@ -18,7 +18,7 @@ export default function TransportationType({ updateTransportationType }) {
           value="anyCar"
           onChange={handleChange}
         />
-        <label htmlFor="car">
+        <label htmlFor="car" name="transportation">
           <img src={car} alt="car" />
           Car
         </label>
@@ -64,7 +64,7 @@ export default function TransportationType({ updateTransportationType }) {
   }
 }
 
-const Container = styled.div`
+const Container = styled.section`
   padding: 30px 0;
 
   div {

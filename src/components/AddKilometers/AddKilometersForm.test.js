@@ -2,22 +2,39 @@ import '@testing-library/jest-dom/extend-expect'
 
 import React from 'react'
 import AddKilometersForm from './AddKilometersForm'
-import { render, screen } from '@testing-library/react'
+import { render, screen, mount } from '@testing-library/react'
 
-describe('AddKilometersForm.test.js', () => {
-  it('exist an h2 with content add new trip', () => {
-    const { queryByText } = render(<AddKilometersForm />)
-    expect(queryByText('Add new trip')).toBeTruthy
+describe('AddKilometersForm', () => {
+  it('renders the form', () => {
+    const renderedResult = render(<AddKilometersForm />)
+    expect(renderedResult).toBeTruthy()
   })
 
-  it('wraps headline in h2 html tag', () => {
-    const { queryByText } = render(<AddKilometersForm />)
-    expect(queryByText('Add new trip').tagName).toBe('H2')
+  it('should render Transportation Selection as child element', () => {
+    const transportationSelection = 'Select mode of transportation'
+    render(<AddKilometersForm>{transportationSelection}</AddKilometersForm>)
+    expect(screen.getByText(transportationSelection)).toBeInTheDocument()
   })
 
-  it('renders a child element', () => {
-    const testChildren = 'Select mode of transportation'
-    render(<AddKilometersForm>{testChildren}</AddKilometersForm>)
-    expect(screen.getByText(testChildren)).toBeInTheDocument()
+  it('should render the add Kilometer input', () => {
+    render(<AddKilometersForm />)
+    expect(
+      screen.getByRole('spinbutton', { name: 'Kilometers' })
+    ).toBeInTheDocument()
+  })
+
+  it('should render the button', () => {
+    render(<AddKilometersForm />)
+    expect(screen.getByRole('button')).toBeInTheDocument()
+  })
+
+  it('should have a disabled button by default', () => {
+    render(<AddKilometersForm />)
+    expect(screen.getByText('Add').closest('button')).toBeDisabled()
+  })
+
+  it('should have a clickable button if input is present', () => {
+    render(<AddKilometersForm />)
+    expect(screen.getByText('Add').closest('button')).toBeDisabled()
   })
 })
