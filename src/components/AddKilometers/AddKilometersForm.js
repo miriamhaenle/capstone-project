@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
-import TransportationType from '../transportationType/TransportationType'
+import TransportationTypes from '../transportationTypes/TransportationTypes'
 import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
 export default function AddKilometersForm({ updateCarbonFootprint }) {
@@ -14,11 +14,11 @@ export default function AddKilometersForm({ updateCarbonFootprint }) {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <h2>Add new trip</h2>
-      <TransportationType
+      <TransportationTypes
         updateTransportationType={updateTransportationType}
         data-test="child"
         name="Selection of transportation type"
-      ></TransportationType>
+      ></TransportationTypes>
       <p>
         How many kilometers did it take you to get to your last race / training
         camp?

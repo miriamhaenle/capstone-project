@@ -8,7 +8,7 @@ import plane from '../../images/plane.svg'
 
 export default function TransportationType({ updateTransportationType }) {
   return (
-    <Container>
+    <Container role="transportationTypes">
       <p>Select mode of transportation</p>
       <div name="transportationSelection">
         <input
