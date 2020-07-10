@@ -16,6 +16,8 @@ export default function AddKilometersForm({ updateCarbonFootprint }) {
       <h2>Add new trip</h2>
       <TransportationType
         updateTransportationType={updateTransportationType}
+        data-test="child"
+        name="Selection of transportation type"
       ></TransportationType>
       <p>
         How many kilometers did it take you to get to your last race / training
@@ -44,6 +46,7 @@ export default function AddKilometersForm({ updateCarbonFootprint }) {
     )
     updateCarbonFootprint(carbonFootprint)
   }
+
   function updateTransportationType(value) {
     setTransportationType(value)
   }
