@@ -4,7 +4,11 @@ import styled from 'styled-components'
 export default function SumCarbonFootprint({ sumCarbonFootprint }) {
   return (
     <StyledSumCarbonFootprint>
-      <span aria-label="total footprint" data-cy="sumFootprint">
+      <span
+        aria-labelledby="total footprint"
+        data-cy="sumFootprint"
+        role="sumFootprint"
+      >
         {sumCarbonFootprint}
       </span>
       kg CO2
@@ -12,7 +16,7 @@ export default function SumCarbonFootprint({ sumCarbonFootprint }) {
   )
 }
 
-const StyledSumCarbonFootprint = styled.div`
+const StyledSumCarbonFootprint = styled.section`
   align-items: center;
   background: var(--sunset);
   border: none;

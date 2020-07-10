@@ -6,8 +6,8 @@ import { render, screen } from '@testing-library/react'
 
 describe('AddKilometersForm', () => {
   it('renders the form', () => {
-    const renderedResult = render(<AddKilometersForm />)
-    expect(renderedResult).toBeTruthy()
+    const renderedComponent = render(<AddKilometersForm />)
+    expect(renderedComponent).toBeTruthy()
   })
 
   it('should render Transportation Selection as child element', () => {
