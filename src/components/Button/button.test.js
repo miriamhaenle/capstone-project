@@ -1,30 +1,16 @@
 import Button from './Button'
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
-import { act } from 'react-dom/test-utils'
-
-let container = null
-beforeEach(() => {
-  container = document.createElement('div')
-  document.body.appendChild(container)
-})
-
-afterEach(() => {
-  unmountComponentAtNode(container)
-  container.remove()
-  container = null
-})
+import { render, screen } from '@testing-library/react'
 
 describe('button behaviour based on input value', () => {
-  it('renders with or without text', () => {
-    act(() => {
-      render(<Button />, container)
-    })
-    expect(container.textContent).toBe('')
-    act(() => {
-      render(<Button text="Add trip" />, container)
-    })
-    expect(container.textContent).toBe('Add trip')
+  it('renders without text', () => {
+    render(<Button />)
+    expect(screen.getByRole('button')).toBeInTheDocument()
+  })
+
+  it('renders with text', () => {
+    render(<Button text="Add trip" />)
+    expect(screen.getByRole('button').textContent).toBe('Add trip')
   })
 })
 

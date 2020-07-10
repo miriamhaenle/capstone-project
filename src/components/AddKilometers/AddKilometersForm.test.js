@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import React from 'react'
 import AddKilometersForm from './AddKilometersForm'
-import { render, screen, mount } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 describe('AddKilometersForm', () => {
   it('renders the form', () => {
