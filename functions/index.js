@@ -8,16 +8,17 @@ const app = express()
 
 admin.initializeApp()
 
-app.use(cors())
 app.use(express.json())
+app.use(cors())
 
-app.get('/', (reqest, response) => {
+/* app.get('/', (reqest, response) => {
   return response.status(200).send('Hello World')
-})
+}) */
+
 app.get('/my-carbon-footprint', (request, response) => {
   const queryParams = request.query
 
-  const footprint = axios
+  axios
     .get('https://api.triptocarbon.xyz/v1/footprint', {
       params: {
         activity: queryParams.activity,
