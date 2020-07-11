@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
-import AddKilometers from './components/AddKilometers/AddKilometers'
+import AddKilometersForm from './components/AddKilometers/AddKilometersForm'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 
-function App() {
+export default function App() {
   const initialFootprintValue = 0
   const [carbonFootprint, setCarbonFootprint] = useState([
     initialFootprintValue,
@@ -29,28 +29,26 @@ function App() {
       JSON.stringify(carbonFootprint)
     )
     setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
-  }, [carbonFootprint])
 
-  useEffect(() => {
     localStorage.setItem(
       'Total Carbon Footprint',
       JSON.stringify(totalCarbonFootprint)
     )
-  }, [totalCarbonFootprint])
+  }, [carbonFootprint, totalCarbonFootprint])
 
   return (
-    <div className="App">
+    <main>
       <SumCarbonFootPrint
-        sumCarbonFootprint={totalCarbonFootprint || initialFootprintValue}
+        sumCarbonFootprint={
+          totalCarbonFootprint.toFixed(2) || initialFootprintValue
+        }
       ></SumCarbonFootPrint>
-      <AddKilometers
+      <AddKilometersForm
         updateCarbonFootprint={updateCarbonFootprint}
-      ></AddKilometers>
-    </div>
+      ></AddKilometersForm>
+    </main>
   )
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
   }
 }
-
-export default App

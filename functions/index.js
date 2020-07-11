@@ -8,27 +8,24 @@ const app = express()
 
 admin.initializeApp()
 
-app.use(cors())
 app.use(express.json())
+app.use(cors())
 
-app.get('/', (reqest, response) => {
-  return response.status(200).send('Hello World')
-})
 app.get('/my-carbon-footprint', (request, response) => {
   const queryParams = request.query
 
-  const footprint = axios
+  axios
     .get('https://api.triptocarbon.xyz/v1/footprint', {
       params: {
         activity: queryParams.activity,
         activityType: queryParams.activityType,
-        fuelType: queryParams.fuelType,
+        fuelType: 'diesel',
         country: queryParams.country,
         mode: queryParams.mode,
       },
     })
     .then((response) => response.data)
-    .then((footprint) => response.status(200).send(console.log(footprint)))
+    .then((footprint) => response.status(200).send(footprint))
     .catch((error) => console.log(error))
 })
 
