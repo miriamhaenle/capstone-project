@@ -3,7 +3,7 @@ import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootpri
 import AddKilometersForm from './components/AddKilometers/AddKilometersForm'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 
-function App() {
+export default function App() {
   const initialFootprintValue = 0
   const [carbonFootprint, setCarbonFootprint] = useState([
     initialFootprintValue,
@@ -37,7 +37,7 @@ function App() {
   }, [carbonFootprint, totalCarbonFootprint])
 
   return (
-    <div className="App">
+    <main>
       <SumCarbonFootPrint
         sumCarbonFootprint={
           totalCarbonFootprint.toFixed(2) || initialFootprintValue
@@ -46,11 +46,9 @@ function App() {
       <AddKilometersForm
         updateCarbonFootprint={updateCarbonFootprint}
       ></AddKilometersForm>
-    </div>
+    </main>
   )
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
   }
 }
-
-export default App
