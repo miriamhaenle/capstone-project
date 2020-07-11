@@ -1,11 +1,9 @@
 import axios from 'axios'
-const apiURL =
-  'http://localhost:5001/capstone-project-c74dc/europe-west3/app/my-carbon-footprint'
 
 export async function calculateCarbonEmission(distance, transportationType) {
   const distanceInMiles = distance * 0.62
   try {
-    const response = await axios.get(apiURL, {
+    const response = await axios.get(process.env.REACT_APP_API_URL, {
       params: {
         activity: Number(distanceInMiles),
         activityType: 'miles',
