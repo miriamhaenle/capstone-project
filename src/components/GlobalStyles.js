@@ -14,7 +14,6 @@ export default createGlobalStyle`
 --headlineFont: 'PT Serif', serif
 }
 
-
 body {
   background: var(--woodland);
   font-family: 'Poppins', sans-serif;

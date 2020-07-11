@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
-import TransportationTypes from '../transportationTypes/TransportationTypes'
+import TransportationTypes from '../TransportationTypes/TransportationTypes'
 import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
 export default function AddKilometersForm({ updateCarbonFootprint }) {
@@ -28,7 +28,7 @@ export default function AddKilometersForm({ updateCarbonFootprint }) {
         <KilometerInput
           required
           value={values.distance || ''}
-          type="number"
+          type="tel"
           name="distance"
           onChange={(event) => handleChange(event)}
         ></KilometerInput>
