@@ -14,11 +14,10 @@ export default createGlobalStyle`
 --headlineFont: 'PT Serif', serif
 }
 
-
 body {
   background: var(--woodland);
   font-family: 'Poppins', sans-serif;
-  margin: 0;
+  margin: 0 auto;
   max-width: 375px;
   height: 100%;
 

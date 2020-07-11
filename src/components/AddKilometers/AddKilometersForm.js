@@ -28,7 +28,7 @@ export default function AddKilometersForm({ updateCarbonFootprint }) {
         <KilometerInput
           required
           value={values.distance || ''}
-          type="number"
+          type="tel"
           name="distance"
           onChange={(event) => handleChange(event)}
         ></KilometerInput>

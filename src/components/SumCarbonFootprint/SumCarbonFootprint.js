@@ -1,12 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { useSpring, animated } from 'react-spring'
+
 export default function SumCarbonFootprint({ sumCarbonFootprint }) {
+  const springProps = useSpring({
+    number: Number(sumCarbonFootprint),
+    from: { number: 0 },
+  })
   return (
     <StyledSumCarbonFootprint>
-      <span data-cy="sumFootprint" role="note">
-        {sumCarbonFootprint}
-      </span>
+      <animated.span data-cy="sumFootprint" role="note">
+        {springProps.number.interpolate((valueToInterpolate) =>
+          valueToInterpolate.toFixed(2)
+        )}
+      </animated.span>
       kg CO2
     </StyledSumCarbonFootprint>
   )
