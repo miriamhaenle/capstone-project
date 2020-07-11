@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
-import TransportationTypes from '../TransportationTypes/TransportationTypes'
+import TransportationTypes from '../transportationTypes/TransportationTypes'
 import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
 export default function AddKilometersForm({ updateCarbonFootprint }) {
