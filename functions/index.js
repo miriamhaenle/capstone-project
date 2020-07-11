@@ -11,10 +11,6 @@ admin.initializeApp()
 app.use(express.json())
 app.use(cors())
 
-/* app.get('/', (reqest, response) => {
-  return response.status(200).send('Hello World')
-}) */
-
 app.get('/my-carbon-footprint', (request, response) => {
   const queryParams = request.query
 
