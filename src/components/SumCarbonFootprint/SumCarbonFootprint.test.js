@@ -12,6 +12,6 @@ describe('SumCarbonFootprint', () => {
   it('renders with carbon footprint numbers (child)', () => {
     const carbonFootprintSum = 90
     render(<SumCarbonFootprint>{carbonFootprintSum}</SumCarbonFootprint>)
-    expect(screen.getByRole('sumFootprint')).toBeInTheDocument()
+    expect(screen.getByRole('note')).toBeInTheDocument()
   })
 })

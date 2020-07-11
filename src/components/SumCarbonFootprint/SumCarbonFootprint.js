@@ -4,11 +4,7 @@ import styled from 'styled-components'
 export default function SumCarbonFootprint({ sumCarbonFootprint }) {
   return (
     <StyledSumCarbonFootprint>
-      <span
-        aria-labelledby="total footprint"
-        data-cy="sumFootprint"
-        role="sumFootprint"
-      >
+      <span data-cy="sumFootprint" role="note">
         {sumCarbonFootprint}
       </span>
       kg CO2
