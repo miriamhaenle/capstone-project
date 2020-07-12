@@ -63,7 +63,7 @@ const Container = styled.section`
   div {
     display: flex;
     padding: 20px 0;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   input {
