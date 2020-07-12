@@ -15,6 +15,6 @@ export default {
   component: AddKilometersForm,
 }
 
-export const addKilometersForm = () => (
+export const addKilometersForm = ({ callback }) => (
   <AddKilometersForm disabled></AddKilometersForm>
 )
