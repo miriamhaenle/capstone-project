@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
 import TransportationTypes from '../TransportationTypes/TransportationTypes'
+import SportTypes from '../SportTypes/SportTypes'
 import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
 export default function AddKilometersForm({ updateCarbonFootprint }) {
@@ -33,6 +34,7 @@ export default function AddKilometersForm({ updateCarbonFootprint }) {
           onChange={(event) => handleChange(event)}
         ></KilometerInput>
       </label>
+      <SportTypes></SportTypes>
       <Button
         disabled={values.distance >= 1 ? false : true}
         text="Add"
