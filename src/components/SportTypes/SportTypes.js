@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import swim from '../../images/swim.svg'
 import bike from '../../images/bike.svg'
@@ -50,6 +51,10 @@ export default function SportTypes({ updateSportType }) {
   function handleChange(event) {
     updateSportType(event.target.value)
   }
+}
+
+SportTypes.propTypes = {
+  updateSportType: PropTypes.func,
 }
 
 const Container = styled.section`

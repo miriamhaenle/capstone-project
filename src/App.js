@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
+import tripsPage from './pages/tripsPage'
+import sportsActivitiesPage from './pages/sportsActivitiesPage'
 import AddKilometersForm from './components/AddKilometers/AddKilometersForm'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 
@@ -43,6 +45,7 @@ export default function App() {
           totalCarbonFootprint.toFixed(2) || initialFootprintValue
         }
       ></SumCarbonFootPrint>
+
       <AddKilometersForm
         updateCarbonFootprint={updateCarbonFootprint}
       ></AddKilometersForm>
