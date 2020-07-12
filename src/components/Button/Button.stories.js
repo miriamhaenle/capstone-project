@@ -1,14 +1,5 @@
 import React from 'react'
 import Button from './Button'
-import GlobalStyles from '../GlobalStyles'
-import { addDecorator } from '@storybook/react'
-
-addDecorator((s) => (
-  <>
-    <GlobalStyles />
-    <div style={{ margin: '0 auto' }}>{s()}</div>
-  </>
-))
 
 export default {
   title: 'Button',
