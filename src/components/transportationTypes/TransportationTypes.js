@@ -74,6 +74,7 @@ const Container = styled.section`
 
   input {
     visibility: hidden;
+    margin: 0;
   }
 
   label {
