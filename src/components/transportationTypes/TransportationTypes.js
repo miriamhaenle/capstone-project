@@ -77,6 +77,10 @@ const Container = styled.section`
     margin: 0;
   }
 
+  img {
+    width: 30px;
+  }
+
   label {
     background: var(--sand);
     border-radius: 50%;
