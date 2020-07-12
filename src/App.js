@@ -50,7 +50,7 @@ export default function App() {
 
       <Navigation></Navigation>
       <Switch>
-        <Route path="/add-trip">
+        <Route exact path="/">
           <TripsPage updateCarbonFootprint={updateCarbonFootprint} />
         </Route>
         <Route path="/add-activity">

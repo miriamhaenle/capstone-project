@@ -7,7 +7,7 @@ export default function Navigation() {
     <StyledNavigation>
       <ul>
         <li>
-          <NavLink to="/add-trip">Add trip</NavLink>
+          <NavLink to="/">Add trip</NavLink>
         </li>
         <li>
           <NavLink to="/add-activity">Add activity</NavLink>
