@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
-import tripsPage from './pages/tripsPage'
-import sportsActivitiesPage from './pages/sportsActivitiesPage'
 import AddKilometersForm from './components/AddKilometers/AddKilometersForm'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 
@@ -50,6 +48,7 @@ export default function App() {
         headline="Add new trip"
         paragraph="How many kilometers did it take you to get to your last race / training
         camp?"
+        type="transportation"
         updateCarbonFootprint={updateCarbonFootprint}
       ></AddKilometersForm>
     </main>

@@ -3,11 +3,13 @@ import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
 import TransportationTypes from '../TransportationTypes/TransportationTypes'
+import SportTypes from '../SportTypes/SportTypes'
 import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
 export default function AddKilometersForm({
   headline,
   paragraph,
+  type,
   updateCarbonFootprint,
 }) {
   const [values, handleChange, handleSubmit] = useForm(
@@ -18,11 +20,17 @@ export default function AddKilometersForm({
   return (
     <StyledForm onSubmit={handleSubmit}>
       <h2>{headline}</h2>
-      <TransportationTypes
-        updateTransportationType={updateTransportationType}
-        data-test="child"
-        name="Selection of transportation type"
-      ></TransportationTypes>
+      {type === 'transportation' ? (
+        <TransportationTypes
+          updateTransportationType={updateTransportationType}
+          data-test="child"
+          name="Selection of transportation type"
+          updateCarbonFootprint={updateCarbonFootprint}
+        ></TransportationTypes>
+      ) : (
+        <SportTypes name="Selection of sport type"></SportTypes>
+      )}
+
       <p>{paragraph}</p>
       <label>
         Kilometers
