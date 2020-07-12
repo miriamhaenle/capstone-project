@@ -6,6 +6,10 @@ export default {
   component: AddKilometersForm,
 }
 
+export const addKilometersFormButtonDisabled = ({ callback }) => (
+  <AddKilometersForm></AddKilometersForm>
+)
+
 export const addKilometersForm = ({ callback }) => (
-  <AddKilometersForm disabled></AddKilometersForm>
+  <AddKilometersForm value="100"></AddKilometersForm>
 )

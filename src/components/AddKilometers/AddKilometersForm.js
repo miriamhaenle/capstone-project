@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
 import TransportationTypes from '../TransportationTypes/TransportationTypes'
-import SportTypes from '../SportTypes/SportTypes'
 import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
 export default function AddKilometersForm({ updateCarbonFootprint }) {
