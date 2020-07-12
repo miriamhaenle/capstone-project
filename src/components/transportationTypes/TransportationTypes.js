@@ -65,11 +65,11 @@ export default function TransportationType({ updateTransportationType }) {
 }
 
 const Container = styled.section`
-  padding: 30px 0;
+  padding: 0;
 
   div {
     display: flex;
-    padding: 20px 0;
+    padding: 25px 0;
   }
 
   input {

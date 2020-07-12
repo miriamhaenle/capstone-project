@@ -63,12 +63,13 @@ const StyledForm = styled.form`
     color: var(--seafoam);
     font-family: var(--headlineFont);
     font-size: 32px;
-    padding: 40px 0 30px 0;
+    padding: 25px 0 20px 0;
     margin: 0;
   }
   p {
     width: 315px;
     margin: 0;
+    padding-bottom: 10px;
   }
 `
 
@@ -78,6 +79,6 @@ const KilometerInput = styled.input`
   width: 315px;
   background: var(--sand);
   color: var(--dusk);
-  margin: 30px 0;
+  margin: 25px 0;
   padding: 5px;
 `
