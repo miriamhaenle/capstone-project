@@ -47,6 +47,9 @@ export default function App() {
       ></SumCarbonFootPrint>
 
       <AddKilometersForm
+        headline="Add new trip"
+        paragraph="How many kilometers did it take you to get to your last race / training
+        camp?"
         updateCarbonFootprint={updateCarbonFootprint}
       ></AddKilometersForm>
     </main>

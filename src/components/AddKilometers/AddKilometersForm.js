@@ -5,7 +5,11 @@ import useForm from '../utils/useForm'
 import TransportationTypes from '../TransportationTypes/TransportationTypes'
 import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
-export default function AddKilometersForm({ updateCarbonFootprint }) {
+export default function AddKilometersForm({
+  headline,
+  paragraph,
+  updateCarbonFootprint,
+}) {
   const [values, handleChange, handleSubmit] = useForm(
     calculateAndUpdateCarbonEmission
   )
@@ -13,16 +17,13 @@ export default function AddKilometersForm({ updateCarbonFootprint }) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <h2>Add new trip</h2>
+      <h2>{headline}</h2>
       <TransportationTypes
         updateTransportationType={updateTransportationType}
         data-test="child"
         name="Selection of transportation type"
       ></TransportationTypes>
-      <p>
-        How many kilometers did it take you to get to your last race / training
-        camp?
-      </p>
+      <p>{paragraph}</p>
       <label>
         Kilometers
         <KilometerInput
