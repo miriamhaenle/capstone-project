@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
 import AddKilometersForm from './components/AddKilometers/AddKilometersForm'
+import TripsPage from './pages/TripsPage'
+import SportsActivitiesPage from './pages/SpotsActivitiesPage'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
+import Navigation from './components/Navigation/Navigation'
+import { Switch, Route } from 'react-router-dom'
 
 export default function App() {
   const initialFootprintValue = 0
@@ -44,13 +48,22 @@ export default function App() {
         }
       ></SumCarbonFootPrint>
 
-      <AddKilometersForm
+      <Navigation></Navigation>
+      <Switch>
+        <Route path="/add-trip">
+          <TripsPage updateCarbonFootprint={updateCarbonFootprint} />
+        </Route>
+        <Route path="/add-activity">
+          <SportsActivitiesPage />
+        </Route>
+      </Switch>
+      {/*     <AddKilometersForm
         headline="Add new trip"
         paragraph="How many kilometers did it take you to get to your last race / training
         camp?"
         type="transportation"
         updateCarbonFootprint={updateCarbonFootprint}
-      ></AddKilometersForm>
+      ></AddKilometersForm> */}
     </main>
   )
   function updateCarbonFootprint(value) {

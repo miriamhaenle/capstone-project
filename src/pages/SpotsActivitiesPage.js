@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AddKilometersForm from '../components/AddKilometers/AddKilometersForm'
 
 export default function SportsActivitiesPage() {
