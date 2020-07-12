@@ -34,7 +34,6 @@ export default function AddKilometersForm({ updateCarbonFootprint }) {
           onChange={(event) => handleChange(event)}
         ></KilometerInput>
       </label>
-      <SportTypes></SportTypes>
       <Button
         disabled={values.distance >= 1 ? false : true}
         text="Add"
