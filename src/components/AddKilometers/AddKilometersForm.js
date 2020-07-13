@@ -10,25 +10,29 @@ export default function AddKilometersForm({
   headline,
   paragraph,
   type,
-  updateCarbonFootprint,
+
+  updateData,
+  updateCarbonEmission,
+  getValues,
 }) {
-  const [values, handleChange, handleSubmit] = useForm(
-    calculateAndUpdateCarbonEmission
-  )
-  const [transportationType, setTransportationType] = useState('')
+  const [values, handleChange, handleSubmit] = useForm(updateCarbonEmission)
+  //const [transportationType, setTransportationType] = useState('')
+  const [sportsType, setSportsType] = useState('')
 
   return (
     <StyledForm onSubmit={handleSubmit}>
       <h2>{headline}</h2>
       {type === 'transportation' ? (
         <TransportationTypes
-          updateTransportationType={updateTransportationType}
+          updateTransportationType={updateData}
           data-test="child"
           name="Selection of transportation type"
-          updateCarbonFootprint={updateCarbonFootprint}
         ></TransportationTypes>
       ) : (
-        <SportTypes name="Selection of sport type"></SportTypes>
+        <SportTypes
+          name="Selection of sport type"
+          updateSportsType={updateData}
+        ></SportTypes>
       )}
 
       <p>{paragraph}</p>
@@ -48,16 +52,21 @@ export default function AddKilometersForm({
       ></Button>
     </StyledForm>
   )
-  async function calculateAndUpdateCarbonEmission() {
+
+  /*   async function calculateAndUpdateCarbonEmission() {
     const carbonFootprint = await calculateCarbonEmission(
       values.distance,
       transportationType
     )
     updateCarbonFootprint(carbonFootprint)
-  }
+  } */
 
-  function updateTransportationType(value) {
+  /*   function updateTransportationType(value) {
     setTransportationType(value)
+  } */
+  function updateSportsType(value) {
+    console.log(value)
+    setSportsType(value)
   }
 }
 

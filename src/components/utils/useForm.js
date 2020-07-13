@@ -5,7 +5,7 @@ export default function useForm(submitCallback) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitCallback()
+    submitCallback(state)
     setState('')
   }
 

@@ -8,11 +8,12 @@ export default function SportsActivitiesPage() {
     <AddKilometersForm
       headline="Add new activity"
       paragraph="How many kilometers did you move outside today?"
-      updateSportType={updateSportsType}
+      updateSportsType={updateSportsType}
     ></AddKilometersForm>
   )
 
   function updateSportsType(value) {
+    console.log(value)
     setSportsType(value)
   }
 }

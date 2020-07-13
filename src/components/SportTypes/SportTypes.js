@@ -6,7 +6,7 @@ import swim from '../../images/swim.svg'
 import bike from '../../images/bike.svg'
 import run from '../../images/run.svg'
 
-export default function SportTypes({ updateSportType }) {
+export default function SportTypes({ updateSportsType }) {
   return (
     <Container>
       <p>Select sport type</p>
@@ -49,7 +49,7 @@ export default function SportTypes({ updateSportType }) {
     </Container>
   )
   function handleChange(event) {
-    updateSportType(event.target.value)
+    updateSportsType(event.target.value)
   }
 }
 
