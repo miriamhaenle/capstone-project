@@ -4,70 +4,60 @@ import Button from '../Button/Button'
 import useForm from '../utils/useForm'
 import TransportationTypes from '../TransportationTypes/TransportationTypes'
 import SportTypes from '../SportTypes/SportTypes'
-import { calculateCarbonEmission } from '../utils/calculateCarbonEmission'
 
 export default function AddKilometersForm({
   headline,
   paragraph,
   type,
-
   updateData,
   updateCarbonEmission,
-  getValues,
 }) {
   const [values, handleChange, handleSubmit] = useForm(updateCarbonEmission)
-  //const [transportationType, setTransportationType] = useState('')
-  const [sportsType, setSportsType] = useState('')
+
+  const getSelectionTemplate = (type) => {
+    switch (type) {
+      case 'transportation':
+        return (
+          <TransportationTypes
+            updateTransportationType={updateData}
+            data-test="child"
+            name="Selection of transportation type"
+          ></TransportationTypes>
+        )
+
+      default:
+        return (
+          <SportTypes
+            name="Selection of sport type"
+            updateSportsType={updateData}
+          ></SportTypes>
+        )
+    }
+  }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <h2>{headline}</h2>
-      {type === 'transportation' ? (
-        <TransportationTypes
-          updateTransportationType={updateData}
-          data-test="child"
-          name="Selection of transportation type"
-        ></TransportationTypes>
-      ) : (
-        <SportTypes
-          name="Selection of sport type"
-          updateSportsType={updateData}
-        ></SportTypes>
-      )}
-
-      <p>{paragraph}</p>
-      <label>
-        Kilometers
-        <KilometerInput
-          required
-          value={values.distance || ''}
-          type="tel"
-          name="distance"
-          onChange={(event) => handleChange(event)}
-        ></KilometerInput>
-      </label>
-      <Button
-        disabled={values.distance >= 1 ? false : true}
-        text="Add"
-      ></Button>
-    </StyledForm>
+    <>
+      <StyledForm>
+        <h2>{headline}</h2>
+        {getSelectionTemplate(type)}
+        <p>{paragraph}</p>
+        <label>
+          Kilometers
+          <KilometerInput
+            required
+            value={values.distance || ''}
+            type="tel"
+            name="distance"
+            onChange={(event) => handleChange(event)}
+          ></KilometerInput>
+        </label>
+        <Button
+          disabled={values.distance >= 1 ? false : true}
+          text="Add"
+        ></Button>
+      </StyledForm>
+    </>
   )
-
-  /*   async function calculateAndUpdateCarbonEmission() {
-    const carbonFootprint = await calculateCarbonEmission(
-      values.distance,
-      transportationType
-    )
-    updateCarbonFootprint(carbonFootprint)
-  } */
-
-  /*   function updateTransportationType(value) {
-    setTransportationType(value)
-  } */
-  function updateSportsType(value) {
-    console.log(value)
-    setSportsType(value)
-  }
 }
 
 const StyledForm = styled.form`
