@@ -6,6 +6,7 @@ import { calculateTotalFootprintSum } from './components/utils/calculateTotalFoo
 import Navigation from './components/Navigation/Navigation'
 import { Switch, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.minimal.css'
 
 export default function App() {
   const initialFootprintValue = 0

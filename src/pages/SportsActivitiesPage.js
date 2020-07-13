@@ -9,8 +9,8 @@ export default function SportsActivitiesPage() {
   const [footPrintSaved, setfootPrintSaved] = useState(0)
   const Msg = () => (
     <div>
-      Wohooo! You're awesome. You just saved {footPrintSaved}kg CO2 with your{' '}
-      {sportsType} session!
+      Woho! You saved <b>{footPrintSaved}kg CO2</b> through pure muscle strength
+      in your {sportsType} session!
     </div>
   )
 
