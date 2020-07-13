@@ -12,7 +12,7 @@ export default function TripsPage({ updateCarbonFootprint }) {
         camp?"
       type="transportation"
       updateData={updateTransportationType}
-      updateCarbonEmission={calculateAndUpdateCarbonEmission}
+      getKilometers={calculateAndUpdateCarbonEmission}
     ></AddKilometersForm>
   )
   function updateTransportationType(value) {

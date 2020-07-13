@@ -10,13 +10,21 @@ export default function AddKilometersForm({
   paragraph,
   type,
   updateData,
-  updateCarbonEmission,
+  getKilometers,
 }) {
-  const [values, handleChange, handleSubmit] = useForm(updateCarbonEmission)
+  const [values, handleChange, handleSubmit] = useForm(getKilometers)
 
   const getSelectionTemplate = (type) => {
     switch (type) {
-      case 'transportation':
+      case 'sportsType':
+        return (
+          <SportTypes
+            name="Selection of sport type"
+            updateSportsType={updateData}
+          ></SportTypes>
+        )
+
+      default:
         return (
           <TransportationTypes
             updateTransportationType={updateData}
@@ -24,20 +32,12 @@ export default function AddKilometersForm({
             name="Selection of transportation type"
           ></TransportationTypes>
         )
-
-      default:
-        return (
-          <SportTypes
-            name="Selection of sport type"
-            updateSportsType={updateData}
-          ></SportTypes>
-        )
     }
   }
 
   return (
     <>
-      <StyledForm>
+      <StyledForm onSubmit={handleSubmit}>
         <h2>{headline}</h2>
         {getSelectionTemplate(type)}
         <p>{paragraph}</p>

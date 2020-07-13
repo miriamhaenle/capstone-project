@@ -8,12 +8,18 @@ export default function SportsActivitiesPage() {
     <AddKilometersForm
       headline="Add new activity"
       paragraph="How many kilometers did you move outside today?"
-      updateSportsType={updateSportsType}
+      updateData={updateSportsType}
+      type="sportsType"
+      getKilometers={calculateCarbonSaved}
     ></AddKilometersForm>
   )
 
   function updateSportsType(value) {
     console.log(value)
     setSportsType(value)
+  }
+
+  function calculateCarbonSaved({ distance }) {
+    console.log(distance, sportsType)
   }
 }
