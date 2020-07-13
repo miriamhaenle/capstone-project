@@ -9,13 +9,18 @@ export default function SportsActivitiesPage() {
   const [footPrintSaved, setfootPrintSaved] = useState(0)
   const Msg = () => (
     <div>
-      Wohooo! You're awesome. You just saved {footPrintSaved}kg CO2 witht your{' '}
+      Wohooo! You're awesome. You just saved {footPrintSaved}kg CO2 with your{' '}
       {sportsType} session!
     </div>
   )
 
   useEffect(() => {
-    footPrintSaved && toast(<Msg />)
+    footPrintSaved &&
+      toast(<Msg />, {
+        position: toast.POSITION.TOP_CENTER,
+        draggablePercent: 60,
+        style: {},
+      })
   }, [footPrintSaved])
 
   return (

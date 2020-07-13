@@ -42,7 +42,7 @@ export default function App() {
 
   return (
     <main>
-      <ToastContainer />
+      <ToastContainer autoClose={6000} draggablePercent={60} />
       <SumCarbonFootPrint
         sumCarbonFootprint={
           totalCarbonFootprint.toFixed(2) || initialFootprintValue
