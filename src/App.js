@@ -5,6 +5,7 @@ import SportsActivitiesPage from './pages/SportsActivitiesPage'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import Navigation from './components/Navigation/Navigation'
 import { Switch, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 export default function App() {
   const initialFootprintValue = 0
@@ -41,6 +42,7 @@ export default function App() {
 
   return (
     <main>
+      <ToastContainer />
       <SumCarbonFootPrint
         sumCarbonFootprint={
           totalCarbonFootprint.toFixed(2) || initialFootprintValue
