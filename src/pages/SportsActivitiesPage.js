@@ -8,7 +8,10 @@ export default function SportsActivitiesPage() {
   const [sportsType, setSportsType] = useState('')
   const [footPrintSaved, setfootPrintSaved] = useState(0)
   const Msg = () => (
-    <div>Wohooo! You're awesome. You just saved {footPrintSaved}kg CO2!</div>
+    <div>
+      Wohooo! You're awesome. You just saved {footPrintSaved}kg CO2 witht your{' '}
+      {sportsType} session!
+    </div>
   )
 
   useEffect(() => {
