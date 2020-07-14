@@ -33,7 +33,7 @@ const StyledSumCarbonFootprint = styled.section`
   height: 228px;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
   width: 228px;
   overflow: hidden;
 
