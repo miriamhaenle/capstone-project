@@ -6,7 +6,6 @@ import TransportationTypes from '../TransportationTypes/TransportationTypes'
 import SportTypes from '../SportTypes/SportTypes'
 
 export default function AddKilometersForm({
-  headline,
   paragraph,
   type,
   updateData,
@@ -38,8 +37,6 @@ export default function AddKilometersForm({
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
-        <h2>{headline}</h2>
-        {getSelectionTemplate(type)}
         <p>{paragraph}</p>
         <label>
           Kilometers
@@ -67,6 +64,7 @@ const StyledForm = styled.form`
   color: var(--sand);
   margin-bottom: 50px;
 
+<<<<<<< HEAD
   h2 {
     color: var(--seafoam);
     font-family: var(--headlineFont);
@@ -78,6 +76,11 @@ const StyledForm = styled.form`
     width: 315px;
     margin: 0;
     padding-bottom: 10px;
+=======
+  p {
+    width: 315px;
+    margin: 30px 0;
+>>>>>>> Improve alignment of navigation
   }
 `
 

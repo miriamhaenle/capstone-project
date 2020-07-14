@@ -30,21 +30,25 @@ const StyledNavigation = styled.div`
     padding: 0;
     display: flex;
     justify-content: center;
+    align-items: baseline;
   }
 
   li {
     list-style: none;
     margin: 0 20px;
     color: var(--seafoam);
+
     .selected {
-      color: var(--sand);
+      color: var(--seafoam);
+      font-size: 34px;
     }
   }
   a {
-    color: var(--seafoam);
+    color: var(--sand);
     font-family: var(--headlineFont);
-    font-size: 32px;
+    font-size: 20px;
     padding: 40px 0 30px 0;
     margin: 0;
+    text-decoration: none;
   }
 `
