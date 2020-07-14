@@ -27,7 +27,7 @@ export default function AddKilometersForm({
         return (
           <TransportationTypes
             updateTransportationType={updateData}
-            data-test="child"
+            data-test="transportation"
             name="Selection of transportation type"
           ></TransportationTypes>
         )
@@ -44,7 +44,7 @@ export default function AddKilometersForm({
           <KilometerInput
             required
             value={values.distance || ''}
-            type="tel"
+            type="number"
             name="distance"
             onChange={(event) => handleChange(event)}
           ></KilometerInput>

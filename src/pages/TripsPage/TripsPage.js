@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import AddKilometersForm from '../components/AddKilometers/AddKilometersForm'
-import { calculateCarbonEmission } from '../components/utils/calculateCarbonEmission'
+import AddKilometersForm from '../../components/AddKilometers/AddKilometersForm'
+import { calculateCarbonEmission } from '../../components/utils/calculateCarbonEmission'
 
 export default function TripsPage({ updateCarbonFootprint }) {
   const [transportationType, setTransportationType] = useState('')
