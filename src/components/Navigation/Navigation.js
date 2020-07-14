@@ -41,14 +41,25 @@ const StyledNavigation = styled.div`
     .selected {
       color: var(--seafoam);
       font-size: 34px;
+      animation: breathe 1000ms forwards;
     }
   }
   a {
     color: var(--sand);
+    font-variation-settings: 'wght' 100, 'wdth' 85;
     font-family: var(--headlineFont);
     font-size: 20px;
     padding: 40px 0 30px 0;
     margin: 0;
     text-decoration: none;
+  }
+
+  @keyframes breathe {
+    40% {
+      font-variation-settings: 'wght' 900, 'wdth' 85;
+    }
+    100% {
+      font-variation-settings: 'wght' 100, 'wdth' 100;
+    }
   }
 `
