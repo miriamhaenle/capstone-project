@@ -9,7 +9,7 @@ import run from '../../images/run.svg'
 export default function SportTypes({ updateSportsType }) {
   return (
     <Container>
-      <p>Select sport type</p>
+      <p>Select sports type</p>
       <div name="sportSelection">
         <input
           type="radio"
