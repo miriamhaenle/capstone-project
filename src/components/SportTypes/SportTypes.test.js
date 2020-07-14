@@ -25,7 +25,7 @@ describe('Sports Types selection', () => {
     expect(screen.getAllByRole('img', 'run')).toBeTruthy()
   })
 
-  it('should render all buttons', () => {
+  it('should render all 3 buttons', () => {
     render(<SportTypes />)
     expect(screen.getAllByRole('img').length).toBe(3)
   })
