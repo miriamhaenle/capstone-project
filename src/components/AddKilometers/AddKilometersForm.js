@@ -37,6 +37,7 @@ export default function AddKilometersForm({
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
+        {getSelectionTemplate(type)}
         <p>{paragraph}</p>
         <label>
           Kilometers
@@ -79,8 +80,12 @@ const StyledForm = styled.form`
 =======
   p {
     width: 315px;
+<<<<<<< HEAD
     margin: 30px 0;
 >>>>>>> Improve alignment of navigation
+=======
+    margin: 0;
+>>>>>>> Improve paddings of navigation
   }
 `
 

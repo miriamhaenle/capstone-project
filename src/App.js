@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import styled, { css } from 'styled-components'
 import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
 import TripsPage from './pages/TripsPage'
 import SportsActivitiesPage from './pages/SportsActivitiesPage'

@@ -58,7 +58,7 @@ SportTypes.propTypes = {
 }
 
 const Container = styled.section`
-  padding: 30px 0;
+  padding: 10px 0;
 
   div {
     display: flex;

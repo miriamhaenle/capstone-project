@@ -11,6 +11,7 @@ export default function Navigation() {
             Add trip
           </NavLink>
         </li>
+
         <li>
           <NavLink to="/add-activity" activeClassName="selected">
             Add activity
@@ -21,9 +22,9 @@ export default function Navigation() {
   )
 }
 
-const StyledNavigation = styled.div`
+const StyledNavigation = styled.nav`
   margin: 0 auto;
-  padding: 10px;
+  padding: 30px 0;
 
   ul {
     margin: 0;
@@ -39,9 +40,10 @@ const StyledNavigation = styled.div`
     color: var(--seafoam);
 
     .selected {
+      padding: 0;
       color: var(--seafoam);
       font-size: 34px;
-      animation: breathe 1000ms forwards;
+      animation: breathe 1500ms forwards;
     }
   }
   a {
@@ -55,8 +57,11 @@ const StyledNavigation = styled.div`
   }
 
   @keyframes breathe {
+    10% {
+      font-variation-settings: 'wght' 700, 'wdth' 100;
+    }
     40% {
-      font-variation-settings: 'wght' 900, 'wdth' 85;
+      font-variation-settings: 'wght' 700, 'wdth' 85;
     }
     100% {
       font-variation-settings: 'wght' 100, 'wdth' 100;
