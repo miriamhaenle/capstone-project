@@ -45,7 +45,6 @@ export default function SportsActivitiesPage() {
 
   async function calculateCarbonSaved({ distance }) {
     const carbonFootprint = await calculateCarbonEmission(distance, 'anyCar')
-
     setfootPrintSaved(carbonFootprint)
   }
 }

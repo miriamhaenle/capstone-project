@@ -7,10 +7,14 @@ export default function Navigation() {
     <StyledNavigation>
       <ul>
         <li>
-          <NavLink to="/">Add trip</NavLink>
+          <NavLink exact to="/" activeClassName="selected">
+            Add trip
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/add-activity">Add activity</NavLink>
+          <NavLink to="/add-activity" activeClassName="selected">
+            Add activity
+          </NavLink>
         </li>
       </ul>
     </StyledNavigation>
@@ -31,8 +35,16 @@ const StyledNavigation = styled.div`
   li {
     list-style: none;
     margin: 0 20px;
+    color: var(--seafoam);
+    .selected {
+      color: var(--sand);
+    }
   }
   a {
-    color: var(--sand);
+    color: var(--seafoam);
+    font-family: var(--headlineFont);
+    font-size: 32px;
+    padding: 40px 0 30px 0;
+    margin: 0;
   }
 `
