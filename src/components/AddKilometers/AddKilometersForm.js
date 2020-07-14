@@ -50,7 +50,7 @@ export default function AddKilometersForm({
           ></KilometerInput>
         </label>
         <Button
-          disabled={values.distance >= 1 ? false : true}
+          disabled={values.distance >= 0.1 ? false : true}
           text="Add"
         ></Button>
       </StyledForm>
