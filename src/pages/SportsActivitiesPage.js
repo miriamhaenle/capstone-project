@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import AddKilometersForm from '../components/AddKilometers/AddKilometersForm'
 import { calculateCarbonEmission } from '../components/utils/calculateCarbonEmission'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.minimal.css'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function SportsActivitiesPage() {
   const [sportsType, setSportsType] = useState('')
@@ -29,8 +29,6 @@ export default function SportsActivitiesPage() {
 
   return (
     <>
-      <ToastContainer autoClose={6000} draggablePercent={60} />
-
       <AddKilometersForm
         headline="Add new activity"
         paragraph="How many kilometers did you move outside today?"
