@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import React from 'react'
 import SportTypes from '../SportTypes/SportTypes'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 describe('Sports Types selection', () => {
   it('renders the component', () => {
