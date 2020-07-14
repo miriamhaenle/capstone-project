@@ -9,7 +9,7 @@ export default function SportsActivitiesPage() {
   const [sportsType, setSportsType] = useState('')
   const [footPrintSaved, setfootPrintSaved] = useState(0)
   const Msg = () => (
-    <div>
+    <div data-cy="toast">
       <StyledToastHeader>Woho! </StyledToastHeader>
       <StyledToastText>
         You saved <b>{footPrintSaved}kg CO2</b> through pure muscle strength in

@@ -16,7 +16,7 @@ export default function Navigation() {
           <NavLink
             to="/add-activity"
             activeClassName="selected"
-            data-testid="activity"
+            data-cy="activity"
           >
             Add activity
           </NavLink>
