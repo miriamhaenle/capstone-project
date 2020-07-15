@@ -46,7 +46,7 @@ const ChartContainer = styled.div`
     list-style: none;
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     background: var(--sand);
   }

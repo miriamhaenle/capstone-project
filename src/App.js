@@ -4,8 +4,9 @@ import TripsPage from './pages/TripsPage/TripsPage'
 import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import Navigation from './components/Navigation/Navigation'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 
 export default function App() {
   const initialFootprintValue = 0
@@ -43,14 +44,20 @@ export default function App() {
   return (
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
+      <Route path="/footprint-history">
+        <FootprintHistoryPage />
+      </Route>
 
-      <SumCarbonFootPrint
-        sumCarbonFootprint={
-          totalCarbonFootprint.toFixed(2) || initialFootprintValue
-        }
-      ></SumCarbonFootPrint>
+      <Link to="/footprint-history">
+        <SumCarbonFootPrint
+          sumCarbonFootprint={
+            totalCarbonFootprint.toFixed(2) || initialFootprintValue
+          }
+        ></SumCarbonFootPrint>
+      </Link>
 
       <Navigation></Navigation>
+
       <Switch>
         <Route exact path="/">
           <TripsPage updateCarbonFootprint={updateCarbonFootprint} />

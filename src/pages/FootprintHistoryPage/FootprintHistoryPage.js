@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import DonutChart from '../../components/DonutChart/DonutChart'
+import { Link } from 'react-router-dom'
 
 export default function FootprintHistoryPage() {
   const footprintData = [
@@ -10,5 +11,20 @@ export default function FootprintHistoryPage() {
     { label: 'plane', y: 300 },
   ]
 
-  return <DonutChart footprintData={footprintData} />
+  return (
+    <StyledSection>
+      <Link to="/">
+        <span>Go Back</span>
+      </Link>
+      <h2>Breakdown of your carbon footprint</h2>
+
+      <DonutChart footprintData={footprintData} />
+    </StyledSection>
+  )
 }
+
+const StyledSection = styled.main`
+  background: var(--sand);
+  height: 100vh;
+  padding: 30px;
+`
