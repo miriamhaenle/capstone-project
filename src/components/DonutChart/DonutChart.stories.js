@@ -9,10 +9,10 @@ export default {
 }
 
 const footprintData = [
-  { x: 'car', y: 890, label: 'car' },
-  { x: 'bus', y: 200, label: 'bus' },
-  { x: 'train', y: 100, label: 'train' },
-  { x: 'plane', y: 300, label: 'plane' },
+  { label: 'car', y: 80 },
+  { label: 'bus', y: 20 },
+  { label: 'train', y: 100 },
+  { label: 'plane', y: 300 },
 ]
 
 export const donutType = () => (

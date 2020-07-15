@@ -3,15 +3,20 @@ import styled from 'styled-components'
 import { VictoryPie } from 'victory'
 
 export default function DonutChart({ footprintData }) {
-  const colors = ['#A2D5D8', '#091A1A', '#F7EEDF', '#164036']
+  const colors = ['#A2D5D8', '#091A1A', '#FF8C66', '#164036']
 
   return (
     <ChartContainer>
       <VictoryPie
         data={footprintData}
         colorScale={colors}
-        innerRadius={110}
+        innerRadius={85}
+        padAngle={2}
+        style={{
+          labels: { fill: '#091A1A', fontSize: 20, fontFamily: 'Poppins' },
+        }}
         animate={{ duration: 2000 }}
+        labelRadius={({ innerRadius }) => innerRadius + 70}
       />
     </ChartContainer>
   )
@@ -19,7 +24,7 @@ export default function DonutChart({ footprintData }) {
 
 const ChartContainer = styled.section`
   align-items: center;
-  background: var(--sunset);
+  background: var(--sand);
   border: none;
   border-radius: 50%;
   color: var(--sand);
