@@ -44,6 +44,7 @@ export default function App() {
   return (
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
+
       <Route path="/footprint-history">
         <FootprintHistoryPage />
       </Route>

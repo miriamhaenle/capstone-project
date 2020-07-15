@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 
 export default function FootprintHistoryPage() {
   const footprintData = [
-    { label: 'car', y: 8 },
-    { label: 'bus', y: 20 },
+    { label: 'car', y: 80 },
+    { label: 'bus', y: 50 },
     { label: 'train', y: 100 },
     { label: 'plane', y: 300 },
   ]
