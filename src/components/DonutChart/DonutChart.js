@@ -2,18 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { VictoryPie } from 'victory'
 
-export default function DonutChart() {
-  const footprintData = [
-    { x: 'car', y: 80, label: 'car' },
-    { x: 'bus', y: 200, label: 'bus' },
-    { x: 'train', y: 100, label: 'train' },
-    { x: 'plane', y: 2000, label: 'plane' },
-  ]
-  const COLORS = ['#A2D5D8', '#091A1A', '#F7EEDF', '#164036']
+export default function DonutChart({ footprintData }) {
+  const colors = ['#A2D5D8', '#091A1A', '#F7EEDF', '#164036']
 
   return (
     <ChartContainer>
-      <VictoryPie data={footprintData} colorScale={COLORS} innerRadius={110} />
+      <VictoryPie data={footprintData} colorScale={colors} innerRadius={110} />
     </ChartContainer>
   )
 }

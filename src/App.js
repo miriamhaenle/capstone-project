@@ -16,6 +16,12 @@ export default function App() {
   const [totalCarbonFootprint, setTotalCarbonFootprint] = useState(
     initialFootprintValue
   )
+  const footprintData = [
+    { x: 'car', y: 890, label: 'car' },
+    { x: 'bus', y: 200, label: 'bus' },
+    { x: 'train', y: 100, label: 'train' },
+    { x: 'plane', y: 300, label: 'plane' },
+  ]
 
   useEffect(() => {
     const historicCarbonFootprint = JSON.parse(
@@ -50,7 +56,7 @@ export default function App() {
           totalCarbonFootprint.toFixed(2) || initialFootprintValue
         }
       ></SumCarbonFootPrint>
-      <DonutChart />
+      <DonutChart footprintData={footprintData} />
 
       <Navigation></Navigation>
       <Switch>
