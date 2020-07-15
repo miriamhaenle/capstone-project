@@ -27,7 +27,7 @@ export default function AddKilometersForm({
         return (
           <TransportationTypes
             updateTransportationType={updateData}
-            data-test="transportation"
+            data-test="child"
             name="Selection of transportation type"
           ></TransportationTypes>
         )
@@ -37,20 +37,19 @@ export default function AddKilometersForm({
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
-        {getSelectionTemplate(type)}
         <p>{paragraph}</p>
         <label>
           Kilometers
           <KilometerInput
             required
             value={values.distance || ''}
-            type="number"
+            type="tel"
             name="distance"
             onChange={(event) => handleChange(event)}
           ></KilometerInput>
         </label>
         <Button
-          disabled={values.distance >= 0.1 ? false : true}
+          disabled={values.distance >= 1 ? false : true}
           text="Add"
         ></Button>
       </StyledForm>
@@ -65,7 +64,6 @@ const StyledForm = styled.form`
   color: var(--sand);
   margin-bottom: 50px;
 
-<<<<<<< HEAD
   h2 {
     color: var(--seafoam);
     font-family: var(--headlineFont);
@@ -77,15 +75,6 @@ const StyledForm = styled.form`
     width: 315px;
     margin: 0;
     padding-bottom: 10px;
-=======
-  p {
-    width: 315px;
-<<<<<<< HEAD
-    margin: 30px 0;
->>>>>>> Improve alignment of navigation
-=======
-    margin: 0;
->>>>>>> Improve paddings of navigation
   }
 `
 
