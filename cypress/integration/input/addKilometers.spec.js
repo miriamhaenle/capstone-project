@@ -26,13 +26,13 @@ describe('user successfully adds kilometers of last trip', () => {
 })
 
 describe('No updates should happen', () => {
-  it('should not do anything if a user enters 0 as distance and button should stay disabled', () => {
+  it('should have a disabled button if user enters a 0 as number', () => {
     cy.visit('http://localhost:3000/')
     cy.get('#car').click({ force: true })
     cy.get('[name="distance"]').type('0')
     cy.get('[data-cy="addTrip"]').should('be.disabled')
   })
-  it('should not do anything and button should stay disabled', () => {
+  it('should have a disabled button if user enters a negative number', () => {
     cy.visit('http://localhost:3000/')
     cy.get('#car').click({ force: true })
     cy.get('[name="distance"]').type('-3')
