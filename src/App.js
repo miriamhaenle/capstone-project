@@ -6,6 +6,7 @@ import { calculateTotalFootprintSum } from './components/utils/calculateTotalFoo
 import Navigation from './components/Navigation/Navigation'
 import { Switch, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import DonutChart from './components/DonutChart/DonutChart'
 
 export default function App() {
   const initialFootprintValue = 0
@@ -49,6 +50,7 @@ export default function App() {
           totalCarbonFootprint.toFixed(2) || initialFootprintValue
         }
       ></SumCarbonFootPrint>
+      <DonutChart />
 
       <Navigation></Navigation>
       <Switch>
