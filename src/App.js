@@ -48,15 +48,15 @@ export default function App() {
         <FootprintHistoryPage />
       </Route>
 
-      <Link to="/footprint-history">
+      <Link to="/footprint-history" style={{ textDecoration: 'none' }}>
         <SumCarbonFootPrint
           sumCarbonFootprint={
             totalCarbonFootprint.toFixed(2) || initialFootprintValue
           }
-        ></SumCarbonFootPrint>
+        />
       </Link>
 
-      <Navigation></Navigation>
+      <Navigation />
 
       <Switch>
         <Route exact path="/">

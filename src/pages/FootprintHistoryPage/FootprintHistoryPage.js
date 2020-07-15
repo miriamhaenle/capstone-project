@@ -27,4 +27,12 @@ const StyledSection = styled.main`
   background: var(--sand);
   height: 100vh;
   padding: 30px;
+
+  h2 {
+    font-family: var(--headlineFont);
+  }
+
+  a {
+    color: var(--woodland);
+  }
 `
