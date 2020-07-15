@@ -19,7 +19,7 @@ describe('AddKilometersForm', () => {
   it('should render the add Kilometer input', () => {
     render(<AddKilometersForm />)
     expect(
-      screen.getByRole('spinbutton', { name: 'Kilometers' })
+      screen.getByRole('textbox', { name: 'Kilometers' })
     ).toBeInTheDocument()
   })
 

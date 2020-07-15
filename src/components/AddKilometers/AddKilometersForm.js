@@ -37,6 +37,7 @@ export default function AddKilometersForm({
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
+        {getSelectionTemplate(type)}
         <p>{paragraph}</p>
         <label>
           Kilometers
