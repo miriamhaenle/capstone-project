@@ -19,7 +19,7 @@ export default function TransportationType({ updateTransportationType }) {
           onChange={handleChange}
         />
         <label htmlFor="car" name="transportation">
-          <img src={car} alt="car" />
+          <img src={car} alt="car" id="carIcon" />
           Car
         </label>
         <input
@@ -30,7 +30,7 @@ export default function TransportationType({ updateTransportationType }) {
           onChange={handleChange}
         />
         <label htmlFor="bus">
-          <img src={bus} alt="bus" />
+          <img src={bus} alt="bus" id="busIcon" />
           Bus
         </label>
         <input
@@ -41,7 +41,7 @@ export default function TransportationType({ updateTransportationType }) {
           onChange={handleChange}
         />
         <label htmlFor="train">
-          <img src={train} alt="train" />
+          <img src={train} alt="train" id="trainIcon" />
           Train
         </label>
         <input
@@ -53,7 +53,7 @@ export default function TransportationType({ updateTransportationType }) {
         />
         <label htmlFor="plane">
           {' '}
-          <img src={plane} alt="plane" />
+          <img src={plane} alt="plane" id="planeIcon" />
           Plane
         </label>
       </div>
@@ -77,6 +77,10 @@ const Container = styled.section`
     margin: 0;
   }
 
+  img {
+    width: 30px;
+  }
+
   label {
     background: var(--sand);
     border-radius: 50%;
@@ -92,5 +96,16 @@ const Container = styled.section`
 
   input[type='radio']:checked + label {
     background: var(--sunset);
+  }
+
+  #carIcon {
+    margin-bottom: -5px;
+  }
+
+  #busIcon {
+    margin-bottom: -5px;
+  }
+  #trainIcon {
+    margin-bottom: -2px;
   }
 `

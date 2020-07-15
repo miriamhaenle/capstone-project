@@ -28,12 +28,12 @@ const StyledSumCarbonFootprint = styled.section`
   color: var(--sand);
   display: flex;
   flex-direction: column;
-  font-family: var(--headline-font);
-  font-size: 20px;
+  font-family: var(--headlineFont);
+  font-size: 30px;
   height: 228px;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
   width: 228px;
   overflow: hidden;
 

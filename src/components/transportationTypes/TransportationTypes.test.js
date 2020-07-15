@@ -25,4 +25,9 @@ describe('Transportation Types selection', () => {
     render(<TransportationTypes />)
     expect(screen.getAllByRole('img', 'plane')).toBeTruthy()
   })
+
+  it('should render all 4 buttons', () => {
+    render(<TransportationTypes />)
+    expect(screen.getAllByRole('img').length).toBe(4)
+  })
 })

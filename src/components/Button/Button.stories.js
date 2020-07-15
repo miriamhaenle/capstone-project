@@ -1,22 +1,17 @@
 import React from 'react'
 import Button from './Button'
-import GlobalStyles from '../GlobalStyles'
-import { addDecorator } from '@storybook/react'
-
-addDecorator((s) => (
-  <>
-    <GlobalStyles />
-    <div style={{ margin: '0 auto' }}>{s()}</div>
-  </>
-))
+import { withKnobs, boolean } from '@storybook/addon-knobs'
 
 export default {
   title: 'Button',
   component: Button,
+  decorators: [withKnobs],
 }
 
-export const buttonWithText = () => <Button text="Add new trip" />
+export const buttonWithText = () => (
+  <Button disabled={boolean('Disabled', false)} text="Add new trip" />
+)
 
 export const disabledButtonWithText = () => (
-  <Button disabled text="Disabled button" />
+  <Button disabled={boolean('Disabled', true)} text="Disabled button" />
 )
