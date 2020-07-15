@@ -3,7 +3,12 @@ import styled from 'styled-components'
 import { VictoryPie } from 'victory'
 
 export default function DonutChart({ footprintData }) {
-  const colors = ['#A2D5D8', '#091A1A', '#FF8C66', '#164036']
+  const colors = [
+    'var(--seafoam)',
+    'var(-dusk)',
+    'var(--sunset)',
+    'var(--woodland)',
+  ]
 
   return (
     <ChartContainer>
@@ -13,28 +18,61 @@ export default function DonutChart({ footprintData }) {
         innerRadius={85}
         padAngle={2}
         style={{
-          labels: { fill: '#091A1A', fontSize: 20, fontFamily: 'Poppins' },
+          labels: {
+            visibility: 'hidden',
+          },
         }}
         animate={{ duration: 2000 }}
-        labelRadius={({ innerRadius }) => innerRadius + 70}
+        labelRadius={({ innerRadius }) => innerRadius + 65}
       />
+      <ul>
+        {footprintData.map((data) => (
+          <FootprintLegendListItem key={data.label}>
+            {data.label}
+          </FootprintLegendListItem>
+        ))}
+      </ul>
     </ChartContainer>
   )
 }
 
-const ChartContainer = styled.section`
-  align-items: center;
+const ChartContainer = styled.div`
   background: var(--sand);
-  border: none;
-  border-radius: 50%;
-  color: var(--sand);
-  display: flex;
-  font-family: var(--headlineFont);
-  font-size: 30px;
+
   height: 228px;
-  justify-content: center;
   margin: 0 auto;
-  margin-top: 30px;
   width: 228px;
-  overflow: hidden;
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background: var(--sand);
+  }
+`
+const FootprintLegendListItem = styled.li`
+  display: inline-block;
+  list-style: none;
+  border-radius: 3px;
+  width: 60px;
+  padding: 2px;
+  text-align: center;
+  margin: 20px 10px;
+
+  :first-child {
+    background: var(--seafoam);
+  }
+  :nth-child(2) {
+    background: var(--dusk);
+    color: var(--sand);
+  }
+  :nth-child(3) {
+    background: var(--sunset);
+  }
+  :last-child {
+    background: var(--woodland);
+
+    color: var(--sand);
+  }
 `

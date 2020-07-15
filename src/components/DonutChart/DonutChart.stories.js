@@ -1,6 +1,6 @@
 import React from 'react'
 import DonutChart from './DonutChart'
-import { withKnobs, object, array } from '@storybook/addon-knobs'
+import { withKnobs, object } from '@storybook/addon-knobs'
 
 export default {
   title: 'Donut Chart',
