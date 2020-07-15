@@ -7,7 +7,12 @@ export default function DonutChart({ footprintData }) {
 
   return (
     <ChartContainer>
-      <VictoryPie data={footprintData} colorScale={colors} innerRadius={110} />
+      <VictoryPie
+        data={footprintData}
+        colorScale={colors}
+        innerRadius={110}
+        animate={{ duration: 2000 }}
+      />
     </ChartContainer>
   )
 }
