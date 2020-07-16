@@ -15,7 +15,7 @@ export default function DonutChart({ footprintData }) {
     <ChartContainer>
       <VictoryPie
         data={footprintData}
-        colorScale={colors}
+        colorScale={colors.slice(0, footprintData.length)}
         innerRadius={85}
         padAngle={2}
         style={{
@@ -71,9 +71,8 @@ const FootprintLegendListItem = styled.li`
   :nth-child(3) {
     background: var(--sunset);
   }
-  :last-child {
+  :nth-child(4) {
     background: var(--woodland);
-
     color: var(--sand);
   }
 `
