@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { VictoryPie } from 'victory'
+import { tripToCarbonActivityTypeToDonutChartLabel } from '../utils/mappings/tripToCarbonActivityTypeToDonutChartLabel'
 
 export default function DonutChart({ footprintData }) {
   const colors = [
@@ -28,7 +29,7 @@ export default function DonutChart({ footprintData }) {
       <ul>
         {footprintData.map((data) => (
           <FootprintLegendListItem key={data.label}>
-            {data.label}
+            {tripToCarbonActivityTypeToDonutChartLabel(data.label)}
           </FootprintLegendListItem>
         ))}
       </ul>
