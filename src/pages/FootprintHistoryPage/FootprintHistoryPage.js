@@ -1,15 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import DonutChart from '../../components/DonutChart/DonutChart'
 import { Link } from 'react-router-dom'
 
-export default function FootprintHistoryPage() {
-  const footprintData = [
-    { label: 'car', y: 80 },
-    { label: 'bus', y: 50 },
-    { label: 'train', y: 100 },
-    { label: 'plane', y: 300 },
-  ]
+export default function FootprintHistoryPage({ data }) {
+  const [footprintData, setFootprintData] = useState([])
+
+  /*   const testData = [
+    { label: 'car', y: 100 },
+    { label: 'bus', y: 200 },
+    { label: 'train', y: 300 },
+    { label: 'plane', y: 400 },
+  ] */
+
+  useEffect(() => {
+    const sum = mapDataForDonutChart()
+    console.log({ sum })
+    setFootprintData([
+      {
+        label: 'car',
+        y: 299,
+      },
+      { label: 'bus', y: 200 },
+      { label: 'train', y: 300 },
+      { label: 'plane', y: 400 },
+    ])
+  }, [])
+
+  function mapDataForDonutChart() {
+    data.map((singleData) => {
+      console.log({ inFunction: singleData.sum })
+      return singleData.sum
+    })
+  }
 
   return (
     <StyledSection>

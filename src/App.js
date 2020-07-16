@@ -20,12 +20,7 @@ export default function App() {
   const [
     footprintPerTransportationType,
     setFootprintPerTransportationType,
-  ] = useState([
-    {
-      transportationType: '',
-      sum: 0,
-    },
-  ])
+  ] = useState([])
 
   useEffect(() => {
     const historicCarbonFootprint = JSON.parse(
@@ -60,7 +55,7 @@ export default function App() {
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
       <Route path="/footprint-history">
-        <FootprintHistoryPage />
+        <FootprintHistoryPage data={footprintPerTransportationType} />
       </Route>
       <Link to="/footprint-history" style={{ textDecoration: 'none' }}>
         <SumCarbonFootPrint
