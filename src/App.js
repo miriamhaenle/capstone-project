@@ -17,6 +17,16 @@ export default function App() {
     initialFootprintValue
   )
 
+  const [
+    footprintPerTransportationType,
+    setFootprintPerTransportationType,
+  ] = useState([
+    {
+      transportationType: '',
+      sum: 0,
+    },
+  ])
+
   useEffect(() => {
     const historicCarbonFootprint = JSON.parse(
       localStorage.getItem('Carbon Footprint History')
@@ -39,16 +49,19 @@ export default function App() {
       'Total Carbon Footprint',
       JSON.stringify(totalCarbonFootprint)
     )
-  }, [carbonFootprint, totalCarbonFootprint])
+
+    localStorage.setItem(
+      'Footprint per Transportation Type',
+      JSON.stringify(footprintPerTransportationType)
+    )
+  }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
 
   return (
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
-
       <Route path="/footprint-history">
         <FootprintHistoryPage />
       </Route>
-
       <Link to="/footprint-history" style={{ textDecoration: 'none' }}>
         <SumCarbonFootPrint
           sumCarbonFootprint={
@@ -61,7 +74,12 @@ export default function App() {
 
       <Switch>
         <Route exact path="/">
-          <TripsPage updateCarbonFootprint={updateCarbonFootprint} />
+          <TripsPage
+            updateCarbonFootprint={updateCarbonFootprint}
+            updateFootprintPerTransportationType={
+              updateFootprintPerTransportationType
+            }
+          />
         </Route>
         <Route path="/add-activity">
           <SportsActivitiesPage />
@@ -71,5 +89,15 @@ export default function App() {
   )
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
+  }
+
+  function updateFootprintPerTransportationType(type, sum) {
+    setFootprintPerTransportationType([
+      ...footprintPerTransportationType,
+      {
+        transportationType: type,
+        sum: sum,
+      },
+    ])
   }
 }

@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import AddKilometersForm from '../../components/AddKilometers/AddKilometersForm'
 import { calculateCarbonEmission } from '../../components/utils/calculateCarbonEmission'
 
-export default function TripsPage({ updateCarbonFootprint }) {
+export default function TripsPage({
+  updateCarbonFootprint,
+  updateFootprintPerTransportationType,
+}) {
   const [transportationType, setTransportationType] = useState('')
 
   return (
@@ -25,5 +28,6 @@ export default function TripsPage({ updateCarbonFootprint }) {
       transportationType
     )
     updateCarbonFootprint(carbonFootprint)
+    updateFootprintPerTransportationType(transportationType, carbonFootprint)
   }
 }
