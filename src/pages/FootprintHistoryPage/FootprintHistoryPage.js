@@ -13,8 +13,8 @@ export default function FootprintHistoryPage({
     const donutData = (footprintPerTransportationType || []).map((footprint) =>
       footprintPerTransportationTypeToDonutChartData(footprint)
     )
-    console.log({ donutData })
     setDonutData(donutData)
+    console.log({ donutData })
   }, [footprintPerTransportationType])
 
   return (
@@ -23,8 +23,11 @@ export default function FootprintHistoryPage({
         <span>Go Back</span>
       </Link>
       <h2>Breakdown of your carbon footprint</h2>
-
-      <DonutChart footprintData={donutData} />
+      {donutData.length >= 1 ? (
+        <DonutChart footprintData={donutData} />
+      ) : (
+        'No data yet'
+      )}
     </StyledSection>
   )
 }
