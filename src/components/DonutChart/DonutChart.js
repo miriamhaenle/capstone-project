@@ -12,7 +12,7 @@ export default function DonutChart({ footprintData }) {
   ]
 
   return (
-    <ChartContainer>
+    <ChartContainer data-testid="donut-chart">
       <VictoryPie
         data={footprintData}
         colorScale={colors}
