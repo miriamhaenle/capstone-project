@@ -5,8 +5,6 @@ const mappingObject = {
   bus: 'bus',
 }
 
-export function mapTripToCarbonActivityTypeToDonutChartLabel(
-  tripToCarbonActivityType
-) {
+export function mapApiActivityTypeToDonutChartLabel(tripToCarbonActivityType) {
   return mappingObject[tripToCarbonActivityType] || tripToCarbonActivityType
 }
