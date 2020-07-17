@@ -17,6 +17,7 @@ export default createGlobalStyle`
 body {
   background: var(--woodland);
   font-family: 'Poppins', sans-serif;
+  font-weight: 300;
   margin: 0 auto;
   max-width: 375px;
   height: 100%;

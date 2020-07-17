@@ -12,7 +12,8 @@
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
     "react-toastify": "^6.0.8",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "victory": "^35.0.3"
   },
   "scripts": {
     "start": "react-scripts start .env.development",
