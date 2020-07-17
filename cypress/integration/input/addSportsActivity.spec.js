@@ -1,7 +1,8 @@
+beforeEach(() => {
+  cy.visit('/')
+})
+
 describe('user can add new activity', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
   it('should navigate to the add activity form', () => {
     cy.get('[data-cy=activity]').click()
     cy.get('form').contains('Select sports type')
@@ -18,9 +19,6 @@ describe('user can add new activity', () => {
 })
 
 describe('No updates should happen', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
   it('should have a disabled button if user enters a 0', () => {
     cy.get('[data-cy=activity]').click()
     cy.get('form').contains('Select sports type')

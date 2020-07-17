@@ -4,7 +4,7 @@ const mappingObject = {
   transitRail: 'train',
   bus: 'bus',
 }
-
+// getDonutLabelByApiTransportationType
 export function mapApiTransportationTypeToDonutChartLabel(apiActivityType) {
   return mappingObject[apiActivityType] || apiActivityType
 }

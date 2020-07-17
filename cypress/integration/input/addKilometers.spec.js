@@ -1,7 +1,8 @@
+beforeEach(() => {
+  cy.visit('/')
+})
+
 describe('user successfully adds kilometers of last trip', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
   it('should update the carbon footprint after submit', () => {
     cy.get('#car').click({ force: true })
     cy.get('[name="distance"]').type('3')
@@ -26,9 +27,6 @@ describe('user successfully adds kilometers of last trip', () => {
 })
 
 describe('No updates should happen', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
   it('should have a disabled button if user enters a 0 as number', () => {
     cy.get('#car').click({ force: true })
     cy.get('[name="distance"]').type('0')
