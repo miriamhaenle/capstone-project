@@ -2,28 +2,28 @@ import React, { useState, useEffect } from 'react'
 import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
 import TripsPage from './pages/TripsPage/TripsPage'
 import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
-import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import Navigation from './components/Navigation/Navigation'
+import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import { Switch, Route, Link, useLocation } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
-import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
+import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
 
 export default function App() {
   const initialFootprintValue = 0
+
   const [carbonFootprint, setCarbonFootprint] = useState([
     initialFootprintValue,
   ])
   const [totalCarbonFootprint, setTotalCarbonFootprint] = useState(
     initialFootprintValue
   )
-
-  const location = useLocation()
-
   const [
     footprintPerTransportationType,
     setFootprintPerTransportationType,
   ] = useState([])
+
+  const location = useLocation()
 
   useEffect(() => {
     const historicCarbonFootprint = JSON.parse(
@@ -53,10 +53,6 @@ export default function App() {
       JSON.stringify(footprintPerTransportationType)
     )
   }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
-
-  useEffect(() => {
-    console.log({ location })
-  }, [location])
 
   return (
     <main>

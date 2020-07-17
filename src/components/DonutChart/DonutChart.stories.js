@@ -15,6 +15,6 @@ const footprintData = [
   { label: 'plane', y: 300 },
 ]
 
-export const donutType = () => (
+export const donutChart = () => (
   <DonutChart footprintData={object('footprint data', footprintData)} />
 )

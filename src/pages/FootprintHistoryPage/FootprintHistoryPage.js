@@ -14,7 +14,6 @@ export default function FootprintHistoryPage({
       footprintPerTransportationTypeToDonutChartData(footprint)
     )
     setDonutData(donutData)
-    console.log({ donutData })
   }, [footprintPerTransportationType])
 
   return (
