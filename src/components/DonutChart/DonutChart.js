@@ -27,8 +27,8 @@ export default function DonutChart({ footprintData }) {
         labelRadius={({ innerRadius }) => innerRadius + 65}
       />
       <ul>
-        {footprintData.map((data) => (
-          <FootprintLegendListItem key={data.label}>
+        {footprintData.map((data, index) => (
+          <FootprintLegendListItem key={index}>
             {mapTripToCarbonActivityTypeToDonutChartLabel(data.label)}
           </FootprintLegendListItem>
         ))}
