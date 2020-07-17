@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import DonutChart from '../../components/DonutChart/DonutChart'
 import { Link } from 'react-router-dom'
-import { footprintPerTransportationTypeToDonutChartData } from '../../components/utils/mappings/footprintPerTransportationTypeToDonutChartData'
+import { mapTransportationTypeDataToDonutChartData } from '../../components/utils/mappings/mapTransportationTypeDataToDonutChartData'
 
 export default function FootprintHistoryPage({
   footprintPerTransportationType,
@@ -11,7 +11,7 @@ export default function FootprintHistoryPage({
 
   useEffect(() => {
     const donutData = (footprintPerTransportationType || []).map((footprint) =>
-      footprintPerTransportationTypeToDonutChartData(footprint)
+      mapTransportationTypeDataToDonutChartData(footprint)
     )
     setDonutData(donutData)
   }, [footprintPerTransportationType])
@@ -25,7 +25,7 @@ export default function FootprintHistoryPage({
       {donutData.length >= 1 ? (
         <DonutChart footprintData={donutData} />
       ) : (
-        'No data yet'
+        <p>No data yet. Start tracking your trips!</p>
       )}
     </StyledSection>
   )
@@ -42,5 +42,8 @@ const StyledSection = styled.main`
 
   a {
     color: var(--woodland);
+  }
+  p {
+    padding-top: 30px;
   }
 `

@@ -1,4 +1,4 @@
-export function footprintPerTransportationTypeToDonutChartData({
+export function mapTransportationTypeDataToDonutChartData({
   transportationType,
   sum,
 }) {
