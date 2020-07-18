@@ -6,7 +6,10 @@ import bus from '../../images/bus.svg'
 import train from '../../images/train.svg'
 import plane from '../../images/plane.svg'
 
-export default function TransportationType({ updateTransportationType }) {
+export default function TransportationType({
+  updateTransportationType,
+  transportationType,
+}) {
   return (
     <Container role="transportationTypes">
       <p>Select mode of transportation</p>
@@ -17,6 +20,7 @@ export default function TransportationType({ updateTransportationType }) {
           id="car"
           value="anyCar"
           onChange={handleChange}
+          checked={'anyCar' === transportationType}
         />
         <label htmlFor="car" name="transportation">
           <img src={car} alt="car" id="carIcon" />
@@ -28,6 +32,7 @@ export default function TransportationType({ updateTransportationType }) {
           id="bus"
           value="bus"
           onChange={handleChange}
+          checked={'bus' === transportationType}
         />
         <label htmlFor="bus">
           <img src={bus} alt="bus" id="busIcon" />
@@ -39,6 +44,7 @@ export default function TransportationType({ updateTransportationType }) {
           id="train"
           value="transitRail"
           onChange={handleChange}
+          checked={'transitRail' === transportationType}
         />
         <label htmlFor="train">
           <img src={train} alt="train" id="trainIcon" />
@@ -50,6 +56,7 @@ export default function TransportationType({ updateTransportationType }) {
           id="plane"
           value="anyFlight"
           onChange={handleChange}
+          checked={'anyFlight' === transportationType}
         />
         <label htmlFor="plane">
           {' '}
