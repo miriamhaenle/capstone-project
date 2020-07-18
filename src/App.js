@@ -129,7 +129,6 @@ export default function App() {
     if (shouldNavigate(bubbleStatus.timestamp)) {
       history.push('/footprint-history')
     }
-
     setBubbleStatus({ active: false, timestamp: Date.now() })
   }
   function shouldNavigate(timeButtonClicked) {

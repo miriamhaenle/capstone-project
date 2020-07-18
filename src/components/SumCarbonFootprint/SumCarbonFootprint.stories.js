@@ -7,5 +7,8 @@ export default {
 }
 
 export const sumCarbonFootprint = () => (
-  <SumCarbonFootprint sumCarbonFootprint="1234"></SumCarbonFootprint>
+  <SumCarbonFootprint
+    sumCarbonFootprint="1234"
+    bubbleStatus={{ active: false, timestamp: Date.now() }}
+  ></SumCarbonFootprint>
 )
