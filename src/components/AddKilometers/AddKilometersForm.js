@@ -11,9 +11,9 @@ export default function AddKilometersForm({
   updateData,
   getKilometers,
   transportationType,
+  sportsType,
 }) {
   const [values, handleChange, handleSubmit] = useForm(getKilometers)
-  const [buttonIsDisabled, setButtonIsDisabled] = useForm(true)
 
   const getSelectionTemplate = (type) => {
     switch (type) {
@@ -22,6 +22,7 @@ export default function AddKilometersForm({
           <SportTypes
             name="sportsType"
             updateSportsType={updateData}
+            sportsType={sportsType}
           ></SportTypes>
         )
 

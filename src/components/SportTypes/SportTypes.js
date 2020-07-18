@@ -6,7 +6,7 @@ import swim from '../../images/swim.svg'
 import bike from '../../images/bike.svg'
 import run from '../../images/run.svg'
 
-export default function SportTypes({ updateSportsType }) {
+export default function SportTypes({ updateSportsType, sportsType }) {
   return (
     <Container>
       <p>Select sports type</p>
@@ -17,6 +17,7 @@ export default function SportTypes({ updateSportsType }) {
           id="swim"
           value="swim"
           onChange={handleChange}
+          checked={'swim' === sportsType}
         />
         <label htmlFor="swim" name="sports">
           <img src={swim} alt="swim" />
@@ -28,6 +29,7 @@ export default function SportTypes({ updateSportsType }) {
           id="bike"
           value="bike"
           onChange={handleChange}
+          checked={'bike' === sportsType}
         />
         <label htmlFor="bike" name="sports">
           <img src={bike} alt="bike" />
@@ -39,6 +41,7 @@ export default function SportTypes({ updateSportsType }) {
           id="run"
           value="run"
           onChange={handleChange}
+          checked={'run' === sportsType}
         />
 
         <label htmlFor="run" name="sports">

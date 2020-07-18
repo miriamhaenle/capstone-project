@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function SportsActivitiesPage() {
-  const [sportsType, setSportsType] = useState('')
+  const [sportsType, setSportsType] = useState('swim')
   const [footPrintSaved, setfootPrintSaved] = useState(0)
   const Msg = () => (
     <div data-cy="toast">
@@ -35,6 +35,7 @@ export default function SportsActivitiesPage() {
         updateData={updateSportsType}
         type="sportsType"
         getKilometers={calculateCarbonSaved}
+        sportsType={sportsType}
       ></AddKilometersForm>
     </>
   )
