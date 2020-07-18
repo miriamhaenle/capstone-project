@@ -23,7 +23,7 @@ export default function DonutChart({ footprintData }) {
             visibility: 'hidden',
           },
         }}
-        animate={{ duration: 2000 }}
+        animate={{ duration: 2000, easing: 'bounce' }}
         labelRadius={({ innerRadius }) => innerRadius + 65}
       />
       <ul>

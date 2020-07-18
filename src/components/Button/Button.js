@@ -24,4 +24,11 @@ const StyledButton = styled.button`
     cursor: not-allowed;
     opacity: 50%;
   }
+  :hover {
+    cursor: pointer;
+  }
+
+  :active {
+    transform: scale(0.9);
+  }
 `

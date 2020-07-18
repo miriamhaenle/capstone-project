@@ -64,7 +64,11 @@ export default function App() {
       </Route>
       {location.pathname !== '/footprint-history' && (
         <>
-          <Link to="/footprint-history" style={{ textDecoration: 'none' }}>
+          <Link
+            to="/footprint-history"
+            style={{ textDecoration: 'none' }}
+            onClick={animatedTransition}
+          >
             <SumCarbonFootPrint
               sumCarbonFootprint={
                 totalCarbonFootprint.toFixed(2) || initialFootprintValue
@@ -101,5 +105,8 @@ export default function App() {
         sum,
       })
     )
+  }
+  function animatedTransition() {
+    console.log('Transition time')
   }
 }
