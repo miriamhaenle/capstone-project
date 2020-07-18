@@ -4,7 +4,7 @@ import TripsPage from './pages/TripsPage/TripsPage'
 import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
 import Navigation from './components/Navigation/Navigation'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
-import { Switch, Route, Link, useLocation } from 'react-router-dom'
+import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
@@ -23,8 +23,12 @@ export default function App() {
     setFootprintPerTransportationType,
   ] = useState([])
 
-  const [bubbleIsClicked, setBubbleIsClicked] = useState(false)
+  const [bubbleStatus, setBubbleStatus] = useState({
+    active: false,
+    timestamp: Date.now(),
+  })
   const location = useLocation()
+  const history = useHistory()
 
   useEffect(() => {
     const historicCarbonFootprint = JSON.parse(
@@ -68,12 +72,17 @@ export default function App() {
           <Link
             to="/footprint-history"
             style={{ textDecoration: 'none' }}
-            onClick={startTransition}
+            onClick={(event) => event.preventDefault()}
+            onTouchStart={startTransition}
+            onTouchEnd={endTransition}
+            onMouseDown={startTransition}
+            onMouseUp={endTransition}
           >
             <SumCarbonFootPrint
               sumCarbonFootprint={
                 totalCarbonFootprint.toFixed(2) || initialFootprintValue
               }
+              bubbleStatus={bubbleStatus}
             />
           </Link>
           <Navigation />
@@ -113,7 +122,17 @@ export default function App() {
     )
   }
   function startTransition() {
-    setBubbleIsClicked(true)
-    console.log('Transition time', bubbleIsClicked)
+    setBubbleStatus({ active: true, timestamp: Date.now() })
+  }
+
+  function endTransition() {
+    if (shouldNavigate(bubbleStatus.timestamp)) {
+      history.push('/footprint-history')
+    }
+
+    setBubbleStatus({ active: false, timestamp: Date.now() })
+  }
+  function shouldNavigate(timeButtonClicked) {
+    return Date.now() - timeButtonClicked > 200
   }
 }

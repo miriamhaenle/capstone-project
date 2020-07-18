@@ -3,13 +3,16 @@ import styled from 'styled-components'
 
 import { useSpring, animated } from 'react-spring'
 
-export default function SumCarbonFootprint({ sumCarbonFootprint }) {
+export default function SumCarbonFootprint({
+  sumCarbonFootprint,
+  bubbleStatus,
+}) {
   const springProps = useSpring({
     number: Number(sumCarbonFootprint),
     from: { number: 0 },
   })
   return (
-    <StyledSumCarbonFootprint>
+    <StyledSumCarbonFootprint bubbleClicked={bubbleStatus.active}>
       <animated.span data-cy="sumFootprint" role="note">
         {springProps.number.interpolate((valueToInterpolate) =>
           valueToInterpolate.toFixed(2)
@@ -41,9 +44,8 @@ const StyledSumCarbonFootprint = styled.section`
     cursor: pointer;
   }
 
-  :active {
-    animation: grow 1500ms forwards;
-  }
+  animation: ${(props) =>
+    props.bubbleClicked ? 'grow 1500ms forwards' : 'none'};
 
   span {
     font-size: 47px;
