@@ -23,6 +23,7 @@ export default function App() {
     setFootprintPerTransportationType,
   ] = useState([])
 
+  const [bubbleIsClicked, setBubbleIsClicked] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -33,7 +34,11 @@ export default function App() {
     const historicTotalCarbonFootprint = JSON.parse(
       localStorage.getItem('Total Carbon Footprint')
     )
+    const historyFootprintPerTransportationType = JSON.parse(
+      localStorage.getItem('Footprint per Transportation Type')
+    )
     setTotalCarbonFootprint(historicTotalCarbonFootprint)
+    setFootprintPerTransportationType(historyFootprintPerTransportationType)
   }, [])
 
   useEffect(() => {
@@ -63,7 +68,7 @@ export default function App() {
           <Link
             to="/footprint-history"
             style={{ textDecoration: 'none' }}
-            onClick={animatedTransition}
+            onClick={startTransition}
           >
             <SumCarbonFootPrint
               sumCarbonFootprint={
@@ -107,7 +112,8 @@ export default function App() {
       })
     )
   }
-  function animatedTransition() {
-    console.log('Transition time')
+  function startTransition() {
+    setBubbleIsClicked(true)
+    console.log('Transition time', bubbleIsClicked)
   }
 }
