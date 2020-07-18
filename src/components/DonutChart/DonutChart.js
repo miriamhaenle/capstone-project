@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { VictoryPie } from 'victory'
-import { mapTripToCarbonActivityTypeToDonutChartLabel } from '../utils/mappings/mapTripToCarbonActivityTypeToDonutChartLabel'
+import { mapApiTransportationTypeToDonutChartLabel } from '../utils/mappings/mapApiTransportationTypeToDonutChartLabel'
 
 export default function DonutChart({ footprintData }) {
   const colors = [
@@ -12,7 +12,7 @@ export default function DonutChart({ footprintData }) {
   ]
 
   return (
-    <ChartContainer>
+    <ChartContainer data-testid="donut-chart">
       <VictoryPie
         data={footprintData}
         colorScale={colors}
@@ -27,9 +27,9 @@ export default function DonutChart({ footprintData }) {
         labelRadius={({ innerRadius }) => innerRadius + 65}
       />
       <ul>
-        {footprintData.map((data) => (
-          <FootprintLegendListItem key={data.label}>
-            {mapTripToCarbonActivityTypeToDonutChartLabel(data.label)}
+        {footprintData.map((data, index) => (
+          <FootprintLegendListItem key={index}>
+            {mapApiTransportationTypeToDonutChartLabel(data.label)}
           </FootprintLegendListItem>
         ))}
       </ul>
