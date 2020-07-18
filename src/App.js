@@ -42,7 +42,9 @@ export default function App() {
       localStorage.getItem('Footprint per Transportation Type')
     )
     setTotalCarbonFootprint(historicTotalCarbonFootprint)
-    setFootprintPerTransportationType(historyFootprintPerTransportationType)
+    setFootprintPerTransportationType(
+      historyFootprintPerTransportationType || []
+    )
   }, [])
 
   useEffect(() => {
