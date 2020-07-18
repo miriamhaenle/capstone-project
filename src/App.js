@@ -121,6 +121,7 @@ export default function App() {
       })
     )
   }
+
   function startTransition() {
     setBubbleStatus({ active: true, timestamp: Date.now() })
   }
@@ -131,6 +132,7 @@ export default function App() {
     }
     setBubbleStatus({ active: false, timestamp: Date.now() })
   }
+
   function shouldNavigate(timeButtonClicked) {
     return Date.now() - timeButtonClicked > 200
   }

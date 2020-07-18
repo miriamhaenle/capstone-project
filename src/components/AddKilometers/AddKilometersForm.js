@@ -18,7 +18,7 @@ export default function AddKilometersForm({
       case 'sportsType':
         return (
           <SportTypes
-            name="Selection of sport type"
+            name="sporType"
             updateSportsType={updateData}
           ></SportTypes>
         )
@@ -28,7 +28,7 @@ export default function AddKilometersForm({
           <TransportationTypes
             updateTransportationType={updateData}
             data-test="child"
-            name="Selection of transportation type"
+            name="transportationType"
           ></TransportationTypes>
         )
     }

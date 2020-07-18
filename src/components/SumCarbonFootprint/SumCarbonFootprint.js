@@ -37,8 +37,8 @@ const StyledSumCarbonFootprint = styled.section`
   justify-content: center;
   margin: 0 auto;
   margin-top: 30px;
-  width: 228px;
   overflow: hidden;
+  width: 228px;
 
   span {
     font-size: 47px;
@@ -54,8 +54,8 @@ const StyledSumCarbonFootprint = styled.section`
     props.bubbleClicked ? 'grow 1500ms forwards' : 'none'};
 
   :hover {
-    transform: scale(0.95);
     cursor: pointer;
+    transform: scale(0.95);
   }
   :hover::before {
     content: 'Tap and hold to see your footprint history';
@@ -78,9 +78,9 @@ const StyledSumCarbonFootprint = styled.section`
     }
 
     100% {
-      transform: scale(15);
       background: var(--sand);
       color: var(--sand);
+      transform: scale(15);
     }
   }
 `
