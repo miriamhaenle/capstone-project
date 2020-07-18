@@ -36,9 +36,28 @@ const StyledSumCarbonFootprint = styled.section`
   margin-top: 30px;
   width: 228px;
   overflow: hidden;
+  :hover {
+    transform: scale(0.95);
+    cursor: pointer;
+  }
+
+  :active {
+    animation: grow 1500ms forwards;
+  }
 
   span {
     font-size: 47px;
     margin: 0;
+  }
+
+  @keyframes grow {
+    0% {
+      background: var(--sunset);
+    }
+
+    100% {
+      transform: scale(5);
+      background: var(--sand);
+    }
   }
 `

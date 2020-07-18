@@ -57,11 +57,7 @@ export default function App() {
   return (
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
-      <Route path="/footprint-history">
-        <FootprintHistoryPage
-          footprintPerTransportationType={footprintPerTransportationType}
-        />
-      </Route>
+
       {location.pathname !== '/footprint-history' && (
         <>
           <Link
@@ -90,6 +86,11 @@ export default function App() {
         </Route>
         <Route path="/add-activity">
           <SportsActivitiesPage />
+        </Route>
+        <Route path="/footprint-history">
+          <FootprintHistoryPage
+            footprintPerTransportationType={footprintPerTransportationType}
+          />
         </Route>
       </Switch>
     </main>
