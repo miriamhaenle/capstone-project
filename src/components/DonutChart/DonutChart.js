@@ -39,7 +39,7 @@ export default function DonutChart({ footprintData }) {
   )
 }
 DonutChart.propTypes = {
-  footprintData: PropTypes.object,
+  footprintData: PropTypes.array,
 }
 
 const ChartContainer = styled.div`
