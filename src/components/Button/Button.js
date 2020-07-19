@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 export default function Button({ text, disabled }) {
   return (
@@ -7,6 +8,10 @@ export default function Button({ text, disabled }) {
       {text}
     </StyledButton>
   )
+}
+Button.propTypes = {
+  text: PropTypes.string,
+  disabled: PropTypes.bool,
 }
 
 const StyledButton = styled.button`
