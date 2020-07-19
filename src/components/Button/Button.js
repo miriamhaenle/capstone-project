@@ -26,6 +26,9 @@ const StyledButton = styled.button`
   }
   :hover {
     cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   :active {

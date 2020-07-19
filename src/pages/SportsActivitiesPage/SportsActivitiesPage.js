@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export default function SportsActivitiesPage() {
   const [sportsType, setSportsType] = useState('swim')
-  const [footPrintSaved, setfootPrintSaved] = useState(0)
+  const [footPrintSaved, setFootPrintSaved] = useState(0)
   const Msg = () => (
     <div data-cy="toast">
       <StyledToastHeader>Woho! </StyledToastHeader>
@@ -46,7 +46,7 @@ export default function SportsActivitiesPage() {
 
   async function calculateCarbonSaved({ distance }) {
     const carbonFootprint = await calculateCarbonEmission(distance, 'anyCar')
-    setfootPrintSaved(carbonFootprint)
+    setFootPrintSaved(carbonFootprint)
   }
 }
 

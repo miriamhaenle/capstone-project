@@ -72,7 +72,6 @@ export default function App() {
       {location.pathname !== '/footprint-history' && (
         <>
           <Link
-            to="/footprint-history"
             style={{ textDecoration: 'none' }}
             onClick={(event) => event.preventDefault()}
             onTouchStart={startTransition}
