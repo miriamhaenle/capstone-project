@@ -5,6 +5,7 @@ import styled from 'styled-components'
 export default function SumCarbonFootprint({
   sumCarbonFootprint,
   bubbleStatus,
+  isMobile,
 }) {
   const springProps = useSpring({
     number: Number(sumCarbonFootprint),
@@ -19,6 +20,7 @@ export default function SumCarbonFootprint({
         )}
       </animated.span>
       <p>kg CO2</p>
+      {isMobile ? <StyledP>Tab for history</StyledP> : ''}
     </StyledSumCarbonFootprint>
   )
 }
@@ -47,7 +49,7 @@ const StyledSumCarbonFootprint = styled.section`
 
   p {
     margin: 0;
-    padding: 0;
+    padding: 2px;
   }
 
   animation: ${(props) =>
@@ -83,4 +85,12 @@ const StyledSumCarbonFootprint = styled.section`
       transform: scale(15);
     }
   }
+`
+const StyledP = styled.p`
+  font-size: 0.4em;
+  text-align: center;
+  color: var(--woodland);
+  background-color: var(--orange-yellow);
+  border: solid 1px var(--orange-yellow);
+  border-radius: 3px;
 `

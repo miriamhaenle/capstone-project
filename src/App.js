@@ -88,6 +88,7 @@ export default function App() {
                 totalCarbonFootprint.toFixed(2) || initialFootprintValue
               }
               bubbleStatus={bubbleStatus}
+              isMobile={isMobile}
             />
           </Link>
           <Navigation />
