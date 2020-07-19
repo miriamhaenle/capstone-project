@@ -53,7 +53,7 @@ export default function SportsActivitiesPage() {
 const StyledToastHeader = styled.h6`
   margin: 0;
   font-size: 15px;
-  color: hotpink;
+  color: var(--woodland);
 `
 
 const StyledToastText = styled.p`
