@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
 import useDeviceDetect from './components/utils/useDeviceDetect'
+import { saveToStorage, getFromStorage } from './components/utils/handleStorage'
 
 export default function App() {
   const { isMobile } = useDeviceDetect()
@@ -33,16 +34,17 @@ export default function App() {
   const history = useHistory()
 
   useEffect(() => {
-    const historicCarbonFootprint = JSON.parse(
-      localStorage.getItem('Carbon Footprint History')
-    )
+    const historicCarbonFootprint = getFromStorage('Carbon Footprint History')
     historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
-    const historicTotalCarbonFootprint = JSON.parse(
-      localStorage.getItem('Total Carbon Footprint')
+
+    const historicTotalCarbonFootprint = getFromStorage(
+      'Total Carbon Footprint'
     )
-    const historyFootprintPerTransportationType = JSON.parse(
-      localStorage.getItem('Footprint per Transportation Type')
+
+    const historyFootprintPerTransportationType = getFromStorage(
+      'Footprint per Transportation Type'
     )
+
     setTotalCarbonFootprint(historicTotalCarbonFootprint)
     setFootprintPerTransportationType(
       historyFootprintPerTransportationType || []
@@ -50,20 +52,14 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(
-      'Carbon Footprint History',
-      JSON.stringify(carbonFootprint)
-    )
+    saveToStorage('Carbon Footprint History', carbonFootprint)
     setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
 
-    localStorage.setItem(
-      'Total Carbon Footprint',
-      JSON.stringify(totalCarbonFootprint)
-    )
+    saveToStorage('Total Carbon Footprint', totalCarbonFootprint)
 
-    localStorage.setItem(
+    saveToStorage(
       'Footprint per Transportation Type',
-      JSON.stringify(footprintPerTransportationType)
+      footprintPerTransportationType
     )
   }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
 

@@ -21,7 +21,7 @@ export default function SumCarbonFootprint({
         )}
       </animated.span>
       <p>kg CO2</p>
-      {isMobile ? <StyledP>Tab for history</StyledP> : ''}
+      {isMobile ? <StyledP>Tap to see history</StyledP> : ''}
     </StyledSumCarbonFootprint>
   )
 }
