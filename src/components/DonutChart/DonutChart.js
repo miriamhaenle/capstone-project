@@ -6,9 +6,9 @@ import { mapApiTransportationTypeToDonutChartLabel } from '../utils/mappings/map
 export default function DonutChart({ footprintData }) {
   const colors = [
     'var(--seafoam)',
-    'var(-dusk)',
     'var(--sunset)',
     'var(--woodland)',
+    'var(--orange-yellow)',
   ]
 
   return (
@@ -65,14 +65,13 @@ const FootprintLegendListItem = styled.li`
     background: var(--seafoam);
   }
   :nth-child(2) {
-    background: var(--dusk);
-    color: var(--sand);
-  }
-  :nth-child(3) {
     background: var(--sunset);
   }
-  :nth-child(4) {
+  :nth-child(3) {
     background: var(--woodland);
     color: var(--sand);
+  }
+  :nth-child(4) {
+    background: var(--orange-yellow);
   }
 `
