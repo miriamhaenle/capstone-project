@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import Button from '../Button/Button'
 import useForm from '../utils/useForm'
 import TransportationTypes from '../TransportationTypes/TransportationTypes'
@@ -61,6 +62,14 @@ export default function AddKilometersForm({
     </>
   )
 }
+AddKilometersForm.propTypes = {
+  paragraph: PropTypes.element,
+  type: PropTypes.string,
+  updateData: PropTypes.func,
+  getKilometers: PropTypes.func,
+  transportationType: PropTypes.string,
+  sportsType: PropTypes.string,
+}
 
 const StyledForm = styled.form`
   padding: 0 30px;
@@ -82,7 +91,6 @@ const StyledForm = styled.form`
     padding-bottom: 10px;
   }
 `
-
 const KilometerInput = styled.input`
   border: none;
   border-radius: 3px;
