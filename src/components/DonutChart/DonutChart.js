@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
 import { VictoryPie } from 'victory'
 import { mapApiTransportationTypeToDonutChartLabel } from '../utils/mappings/mapApiTransportationTypeToDonutChartLabel'
 
@@ -35,6 +37,9 @@ export default function DonutChart({ footprintData }) {
       </ul>
     </ChartContainer>
   )
+}
+DonutChart.propTypes = {
+  footprintData: PropTypes.object,
 }
 
 const ChartContainer = styled.div`
