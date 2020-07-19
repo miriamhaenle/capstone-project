@@ -24,4 +24,14 @@ const StyledButton = styled.button`
     cursor: not-allowed;
     opacity: 50%;
   }
+  :hover {
+    cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  :active {
+    transform: scale(0.9);
+  }
 `

@@ -10,6 +10,8 @@ export default function AddKilometersForm({
   type,
   updateData,
   getKilometers,
+  transportationType,
+  sportsType,
 }) {
   const [values, handleChange, handleSubmit] = useForm(getKilometers)
 
@@ -18,8 +20,9 @@ export default function AddKilometersForm({
       case 'sportsType':
         return (
           <SportTypes
-            name="Selection of sport type"
+            name="sportsType"
             updateSportsType={updateData}
+            sportsType={sportsType}
           ></SportTypes>
         )
 
@@ -28,7 +31,8 @@ export default function AddKilometersForm({
           <TransportationTypes
             updateTransportationType={updateData}
             data-test="child"
-            name="Selection of transportation type"
+            name="transportationType"
+            transportationType={transportationType}
           ></TransportationTypes>
         )
     }
@@ -50,7 +54,7 @@ export default function AddKilometersForm({
           ></KilometerInput>
         </label>
         <Button
-          disabled={values.distance >= 1 ? false : true}
+          disabled={values.distance >= 0.1 ? false : true}
           text="Add"
         ></Button>
       </StyledForm>

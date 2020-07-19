@@ -6,7 +6,7 @@ export default function TripsPage({
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
 }) {
-  const [transportationType, setTransportationType] = useState('')
+  const [transportationType, setTransportationType] = useState('anyCar')
 
   return (
     <AddKilometersForm
@@ -16,6 +16,7 @@ export default function TripsPage({
       type="transportation"
       updateData={updateTransportationType}
       getKilometers={calculateAndUpdateCarbonEmission}
+      transportationType={transportationType}
     ></AddKilometersForm>
   )
   function updateTransportationType(value) {
