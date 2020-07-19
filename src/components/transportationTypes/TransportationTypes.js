@@ -99,6 +99,9 @@ const Container = styled.section`
     align-items: center;
     height: 61px;
     width: 61px;
+    :hover {
+      cursor: pointer;
+    }
   }
 
   input[type='radio']:checked + label {

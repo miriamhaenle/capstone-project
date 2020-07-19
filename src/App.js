@@ -71,7 +71,6 @@ export default function App() {
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
 
-      {isMobile ? <h1>I'm Mobile</h1> : <h1>Not mobile</h1>}
       {location.pathname !== '/footprint-history' && (
         <>
           <Link
@@ -140,6 +139,9 @@ export default function App() {
   }
 
   function shouldNavigate(timeButtonClicked) {
+    if (isMobile) {
+      return Date.now()
+    }
     return Date.now() - timeButtonClicked > 200
   }
 }
