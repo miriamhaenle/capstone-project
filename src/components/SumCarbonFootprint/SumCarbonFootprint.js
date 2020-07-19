@@ -1,6 +1,7 @@
 import React from 'react'
 import { animated, useSpring } from 'react-spring'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 export default function SumCarbonFootprint({
   sumCarbonFootprint,
@@ -23,6 +24,12 @@ export default function SumCarbonFootprint({
       {isMobile ? <StyledP>Tab for history</StyledP> : ''}
     </StyledSumCarbonFootprint>
   )
+}
+
+SumCarbonFootprint.propTypes = {
+  sumCarbonFootprint: PropTypes.number,
+  bubbleStatus: PropTypes.bool,
+  isMobile: PropTypes.bool,
 }
 
 const StyledSumCarbonFootprint = styled.section`
