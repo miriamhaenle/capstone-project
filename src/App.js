@@ -10,6 +10,7 @@ import { calculateTotalFootprintSum } from './components/utils/calculateTotalFoo
 import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
 import useDeviceDetect from './components/utils/useDeviceDetect'
 import { saveToStorage, getFromStorage } from './components/utils/handleStorage'
+import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
 
 export default function App() {
   const { isMobile } = useDeviceDetect()
@@ -34,16 +35,18 @@ export default function App() {
   const history = useHistory()
 
   useEffect(() => {
-    const historicCarbonFootprint = getFromStorage('Carbon Footprint History')
+    const historicCarbonFootprint = getFromStorage(
+      APP_STORAGE_KEYS.footprintHistory
+    )
 
     historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
 
     const historicTotalCarbonFootprint = getFromStorage(
-      'Total Carbon Footprint'
+      APP_STORAGE_KEYS.footprintTotal
     )
 
     const historyFootprintPerTransportationType = getFromStorage(
-      'Footprint per Transportation Type'
+      APP_STORAGE_KEYS.footprintPerTransportType
     )
 
     setTotalCarbonFootprint(historicTotalCarbonFootprint)
@@ -53,13 +56,13 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    saveToStorage('Carbon Footprint History', carbonFootprint)
+    saveToStorage(APP_STORAGE_KEYS.footprintHistory, carbonFootprint)
     setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
 
-    saveToStorage('Total Carbon Footprint', totalCarbonFootprint)
+    saveToStorage(APP_STORAGE_KEYS.footprintTotal, totalCarbonFootprint)
 
     saveToStorage(
-      'Footprint per Transportation Type',
+      APP_STORAGE_KEYS.footprintPerTransportType,
       footprintPerTransportationType
     )
   }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
