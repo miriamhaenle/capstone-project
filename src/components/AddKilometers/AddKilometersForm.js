@@ -63,7 +63,7 @@ export default function AddKilometersForm({
   )
 }
 AddKilometersForm.propTypes = {
-  paragraph: PropTypes.element,
+  paragraph: PropTypes.string,
   type: PropTypes.string,
   updateData: PropTypes.func,
   getKilometers: PropTypes.func,

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import car from '../../images/car.svg'
 import bus from '../../images/bus.svg'
@@ -69,6 +70,11 @@ export default function TransportationType({
   function handleChange(event) {
     updateTransportationType(event.target.value)
   }
+}
+
+TransportationType.propTypes = {
+  updateTransportationType: PropTypes.func,
+  transportationType: PropTypes.string,
 }
 
 const Container = styled.section`

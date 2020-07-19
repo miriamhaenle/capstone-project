@@ -27,8 +27,8 @@ export default function SumCarbonFootprint({
 }
 
 SumCarbonFootprint.propTypes = {
-  sumCarbonFootprint: PropTypes.number,
-  bubbleStatus: PropTypes.bool,
+  sumCarbonFootprint: PropTypes.string,
+  bubbleStatus: PropTypes.object,
   isMobile: PropTypes.bool,
 }
 
