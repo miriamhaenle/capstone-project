@@ -3,5 +3,5 @@ export function saveToStorage(key, dataSet) {
 }
 
 export function getFromStorage(key) {
-  JSON.parse(localStorage.getItem(key))
+  return JSON.parse(localStorage.getItem(key))
 }

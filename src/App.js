@@ -35,6 +35,7 @@ export default function App() {
 
   useEffect(() => {
     const historicCarbonFootprint = getFromStorage('Carbon Footprint History')
+
     historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
 
     const historicTotalCarbonFootprint = getFromStorage(
