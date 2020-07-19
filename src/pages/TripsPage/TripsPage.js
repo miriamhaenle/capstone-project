@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import AddKilometersForm from '../../components/AddKilometers/AddKilometersForm'
 import { calculateCarbonEmission } from '../../components/utils/calculateCarbonEmission'
 
@@ -31,4 +32,9 @@ export default function TripsPage({
     updateCarbonFootprint(carbonFootprint)
     updateFootprintPerTransportationType(transportationType, carbonFootprint)
   }
+}
+
+TripsPage.propTypes = {
+  updateCarbonFootprint: PropTypes.func,
+  updateFootprintPerTransportationType: PropTypes.func,
 }
