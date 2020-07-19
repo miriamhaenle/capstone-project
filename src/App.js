@@ -8,8 +8,10 @@ import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
+import useDeviceDetect from './components/utils/useDeviceDetect'
 
 export default function App() {
+  const { isMobile } = useDeviceDetect()
   const initialFootprintValue = 0
 
   const [carbonFootprint, setCarbonFootprint] = useState([
@@ -69,9 +71,11 @@ export default function App() {
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
 
+      {isMobile ? <h1>I'm Mobile</h1> : <h1>Not mobile</h1>}
       {location.pathname !== '/footprint-history' && (
         <>
           <Link
+            to=""
             style={{ textDecoration: 'none' }}
             onClick={(event) => event.preventDefault()}
             onTouchStart={startTransition}
