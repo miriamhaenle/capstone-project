@@ -1,12 +1,27 @@
 import { saveToStorage, getFromStorage } from './handleStorage'
 import { render, fireEvent, waitForElement } from '@testing-library/react'
 
-describe('get data from storage', () => {
+describe('save to storage', () => {
   beforeEach(() => {
-    window.localStorage = localStorage
+    localStorage.clear()
   })
-  it('should return null if no dataset is present', () => {
-    const foo = getFromStorage('foo')
-    expect(foo).toBe(null)
+  it('should save dataset to storage', () => {
+    const KEY = 'foo',
+      DATASET = { foo: 'bar' }
+
+    saveToStorage(KEY, DATASET)
+    expect(localStorage.setItem).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('get from storage', () => {
+  beforeEach(() => {
+    localStorage.clear()
+  })
+  it('should get dataset from storage', () => {
+    const KEY = 'foo'
+    const DATASET = ''
+    getFromStorage(KEY)
+    expect(localStorage.getItem).toHaveBeenCalledTimes(1)
   })
 })
