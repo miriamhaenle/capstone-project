@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export function calculateFootprintPerTransportionType(oldState, { type, sum }) {
   if (transportationTypeExists(oldState, type)) {
     return stateWithUpdatForExistingTransportationType(oldState, { type, sum })
@@ -22,4 +24,10 @@ function stateWithUpdatForExistingTransportationType(oldState, { type, sum }) {
 
 function stateWithAddedTransportationType(oldState, { type, sum }) {
   return [...oldState, { transportationType: type, sum }]
+}
+
+calculateFootprintPerTransportionType.propTypes = {
+  oldState: PropTypes.array,
+  type: PropTypes.string,
+  sum: PropTypes.number,
 }

@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
 import { VictoryPie } from 'victory'
 import { mapApiTransportationTypeToDonutChartLabel } from '../utils/mappings/mapApiTransportationTypeToDonutChartLabel'
 
 export default function DonutChart({ footprintData }) {
   const colors = [
     'var(--seafoam)',
-    'var(-dusk)',
     'var(--sunset)',
     'var(--woodland)',
+    'var(--orange-yellow)',
   ]
 
   return (
@@ -35,6 +37,9 @@ export default function DonutChart({ footprintData }) {
       </ul>
     </ChartContainer>
   )
+}
+DonutChart.propTypes = {
+  footprintData: PropTypes.array,
 }
 
 const ChartContainer = styled.div`
@@ -65,14 +70,13 @@ const FootprintLegendListItem = styled.li`
     background: var(--seafoam);
   }
   :nth-child(2) {
-    background: var(--dusk);
-    color: var(--sand);
-  }
-  :nth-child(3) {
     background: var(--sunset);
   }
-  :nth-child(4) {
+  :nth-child(3) {
     background: var(--woodland);
     color: var(--sand);
+  }
+  :nth-child(4) {
+    background: var(--orange-yellow);
   }
 `

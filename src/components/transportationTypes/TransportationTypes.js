@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import car from '../../images/car.svg'
 import bus from '../../images/bus.svg'
@@ -71,6 +72,11 @@ export default function TransportationType({
   }
 }
 
+TransportationType.propTypes = {
+  updateTransportationType: PropTypes.func,
+  transportationType: PropTypes.string,
+}
+
 const Container = styled.section`
   padding: 0;
 
@@ -99,6 +105,9 @@ const Container = styled.section`
     align-items: center;
     height: 61px;
     width: 61px;
+    :hover {
+      cursor: pointer;
+    }
   }
 
   input[type='radio']:checked + label {

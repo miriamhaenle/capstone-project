@@ -1,4 +1,5 @@
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
 export async function calculateCarbonEmission(distance, transportationType) {
   const distanceInMiles = distance * 0.62
@@ -22,4 +23,9 @@ export async function calculateCarbonEmission(distance, transportationType) {
   } catch (error) {
     console.error(error)
   }
+}
+
+calculateCarbonEmission.propTypes = {
+  distance: PropTypes.string,
+  transportationType: PropTypes.string,
 }

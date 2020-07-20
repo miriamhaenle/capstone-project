@@ -8,8 +8,12 @@ import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
+import useDeviceDetect from './components/utils/useDeviceDetect'
+import { saveToStorage, getFromStorage } from './components/utils/handleStorage'
+import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
 
 export default function App() {
+  const { isMobile } = useDeviceDetect()
   const initialFootprintValue = 0
 
   const [carbonFootprint, setCarbonFootprint] = useState([
@@ -31,16 +35,20 @@ export default function App() {
   const history = useHistory()
 
   useEffect(() => {
-    const historicCarbonFootprint = JSON.parse(
-      localStorage.getItem('Carbon Footprint History')
+    const historicCarbonFootprint = getFromStorage(
+      APP_STORAGE_KEYS.footprintHistory
     )
+
     historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
-    const historicTotalCarbonFootprint = JSON.parse(
-      localStorage.getItem('Total Carbon Footprint')
+
+    const historicTotalCarbonFootprint = getFromStorage(
+      APP_STORAGE_KEYS.footprintTotal
     )
-    const historyFootprintPerTransportationType = JSON.parse(
-      localStorage.getItem('Footprint per Transportation Type')
+
+    const historyFootprintPerTransportationType = getFromStorage(
+      APP_STORAGE_KEYS.footprintPerTransportType
     )
+
     setTotalCarbonFootprint(historicTotalCarbonFootprint)
     setFootprintPerTransportationType(
       historyFootprintPerTransportationType || []
@@ -48,20 +56,14 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(
-      'Carbon Footprint History',
-      JSON.stringify(carbonFootprint)
-    )
+    saveToStorage(APP_STORAGE_KEYS.footprintHistory, carbonFootprint)
     setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
 
-    localStorage.setItem(
-      'Total Carbon Footprint',
-      JSON.stringify(totalCarbonFootprint)
-    )
+    saveToStorage(APP_STORAGE_KEYS.footprintTotal, totalCarbonFootprint)
 
-    localStorage.setItem(
-      'Footprint per Transportation Type',
-      JSON.stringify(footprintPerTransportationType)
+    saveToStorage(
+      APP_STORAGE_KEYS.footprintPerTransportType,
+      footprintPerTransportationType
     )
   }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
 
@@ -72,6 +74,7 @@ export default function App() {
       {location.pathname !== '/footprint-history' && (
         <>
           <Link
+            to=""
             style={{ textDecoration: 'none' }}
             onClick={(event) => event.preventDefault()}
             onTouchStart={startTransition}
@@ -84,6 +87,7 @@ export default function App() {
                 totalCarbonFootprint.toFixed(2) || initialFootprintValue
               }
               bubbleStatus={bubbleStatus}
+              isMobile={isMobile}
             />
           </Link>
           <Navigation />
@@ -135,6 +139,9 @@ export default function App() {
   }
 
   function shouldNavigate(timeButtonClicked) {
+    if (isMobile) {
+      return Date.now()
+    }
     return Date.now() - timeButtonClicked > 200
   }
 }

@@ -11,6 +11,7 @@ export default createGlobalStyle`
 --dusk: #091A1A;
 --sunset: #FF8C66;
 --sand: #F7EEDF;
+--orange-yellow: #F3C969;
 --headlineFont: 'Playfair Display', serif;
 }
 
