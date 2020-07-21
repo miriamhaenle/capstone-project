@@ -9,9 +9,13 @@ export default {
 }
 
 export const buttonWithText = () => (
-  <Button disabled={boolean('Disabled', false)} text="Add new trip" />
+  <Button disabled={boolean('Disabled', false)} text="Add new trip" color="" />
 )
 
 export const disabledButtonWithText = () => (
-  <Button disabled={boolean('Disabled', true)} text="Disabled button" />
+  <Button
+    disabled={boolean('Disabled', true)}
+    text="Disabled button"
+    color=""
+  />
 )
