@@ -4,6 +4,7 @@ import TripsPage from './pages/TripsPage/TripsPage'
 import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
 import Navigation from './components/Navigation/Navigation'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
+import Register from './components/auth/Register/Register'
 import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
@@ -110,6 +111,9 @@ export default function App() {
           <FootprintHistoryPage
             footprintPerTransportationType={footprintPerTransportationType}
           />
+        </Route>
+        <Route exact path="/register">
+          <Register />
         </Route>
       </Switch>
     </main>

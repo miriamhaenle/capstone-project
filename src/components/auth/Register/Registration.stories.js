@@ -1,5 +1,5 @@
 import React from 'react'
-import Registration from './Registration'
+import Registration from './Register'
 
 export default {
   title: 'Registration Form',
