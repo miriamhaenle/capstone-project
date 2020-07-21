@@ -21,6 +21,11 @@ describe('Registration form', () => {
     expect(screen.getByRole('button')).toBeInTheDocument()
   })
 
+  it('should render the terms and conditions text', () => {
+    render(<Registration />)
+    expect(screen.getByText('Terms and Conditions')).toBeInTheDocument()
+  })
+
   it('should have a disabled button by default', () => {
     render(<Registration />)
     expect(screen.getByText('Register').closest('button')).toBeInTheDocument()
