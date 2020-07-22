@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
-import TripsPage from './pages/TripsPage/TripsPage'
-import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
+import React, { useEffect, useState } from 'react'
+import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import * as ROUTES from '../src/constants/routes'
 import Navigation from './components/Navigation/Navigation'
+import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
+import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
+import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
+import { getFromStorage, saveToStorage } from './components/utils/handleStorage'
+import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
+import useDeviceDetect from './components/utils/useDeviceDetect'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
-import * as ROUTES from '../src/constants/routes'
-import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
-import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
-import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
-import useDeviceDetect from './components/utils/useDeviceDetect'
-import { saveToStorage, getFromStorage } from './components/utils/handleStorage'
-import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
+import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
+import TripsPage from './pages/TripsPage/TripsPage'
 
 export default function App() {
   const { isMobile } = useDeviceDetect()
@@ -95,7 +95,6 @@ export default function App() {
           <Navigation />
         </>
       )}
-
       <Switch>
         <Route exact path={ROUTES.HOME}>
           <TripsPage

@@ -18,6 +18,8 @@ export default function Register() {
 
   const [isRegistered, setIsRegistered] = useState(false)
   const [user, setUser] = useState(INITIAL_VALUE)
+  const [showPassword, setShowPassword] = useState(false)
+  console.log(showPassword)
 
   const isInvalid =
     user.passwordOne !== user.passwordTwo ||
@@ -46,65 +48,62 @@ export default function Register() {
 
   return (
     <>
-      {isRegistered ? (
-        'You are registered!'
-      ) : (
-        <StyledForm onSubmit={handleSubmit}>
-          <label>
-            Your name
-            <input
-              name="username"
-              value={user.username}
-              onChange={handleChange}
-              type="text"
-              required
-              autoComplete="username"
-            />
-          </label>
-          <label>
-            Your mail
-            <input
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-              type="text"
-              required
-              autoComplete="username"
-            />
-          </label>
-          <label>
-            Select a password
-            <img src={eyeIcon} alt="" />
-            <input
-              name="passwordOne"
-              value={user.passwordOne}
-              onChange={handleChange}
-              type="password"
-              required
-              autoComplete="new-password"
-            />
-          </label>
-          <label>
-            Confirm your password
-            <img src={eyeIcon} alt="" />
-            <input
-              name="passwordTwo"
-              value={user.passwordTwo}
-              onChange={handleChange}
-              type="password"
-              required
-              autoComplete="new-password"
-            />
-          </label>
-          {user.error && <p>{user.error.message}</p>}
-          <Button
-            text="Register"
-            color={'var(--woodland)'}
-            type="submit"
-            disabled={isInvalid}
+      {' '}
+      <StyledForm onSubmit={handleSubmit}>
+        <label>
+          Your name
+          <input
+            name="username"
+            value={user.username}
+            onChange={handleChange}
+            type="text"
+            required
+            autoComplete="username"
           />
-        </StyledForm>
-      )}
+        </label>
+        <label>
+          Your mail
+          <input
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+            type="text"
+            required
+            autoComplete="username"
+          />
+        </label>
+        <label>
+          Select a password
+          <img src={eyeIcon} alt="" onClick={togglePassword} />
+          <input
+            name="passwordOne"
+            value={user.passwordOne}
+            onChange={handleChange}
+            type={showPassword ? 'text' : 'password'}
+            required
+            autoComplete="new-password"
+          />
+        </label>
+        <label>
+          Confirm your password
+          <img src={eyeIcon} alt="" onClick={togglePassword} />
+          <input
+            name="passwordTwo"
+            value={user.passwordTwo}
+            onChange={handleChange}
+            type={showPassword ? 'text' : 'password'}
+            required
+            autoComplete="new-password"
+          />
+        </label>
+        {user.error && <p>{user.error.message}</p>}
+        <Button
+          text="Register"
+          color={'var(--woodland)'}
+          type="submit"
+          disabled={isInvalid}
+        />
+      </StyledForm>
     </>
   )
 
@@ -114,6 +113,9 @@ export default function Register() {
   }
   function handleChange(event) {
     setUser({ ...user, [event.target.name]: event.target.value })
+  }
+  function togglePassword() {
+    setShowPassword(!showPassword)
   }
 }
 
@@ -141,5 +143,6 @@ const StyledForm = styled.form`
     position: absolute;
     margin: 0 0 0 270px;
     padding-top: 23px;
+    cursor: pointer;
   }
 `
