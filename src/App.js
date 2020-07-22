@@ -2,20 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import * as ROUTES from '../src/constants/routes'
-import Navigation from './components/Navigation/Navigation'
-import SumCarbonFootPrint from './components/SumCarbonFootprint/SumCarbonFootprint'
-import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import { getFromStorage, saveToStorage } from './components/utils/handleStorage'
 import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
-import useDeviceDetect from './components/utils/useDeviceDetect'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
+import HomePage from './pages/HomePage/HomePage'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
 import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
-import TripsPage from './pages/TripsPage/TripsPage'
+import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
 
 export default function App() {
-  const { isMobile } = useDeviceDetect()
   const initialFootprintValue = 0
 
   const [carbonFootprint, setCarbonFootprint] = useState([
@@ -28,13 +24,6 @@ export default function App() {
     footprintPerTransportationType,
     setFootprintPerTransportationType,
   ] = useState([])
-
-  const [bubbleStatus, setBubbleStatus] = useState({
-    active: false,
-    timestamp: Date.now(),
-  })
-  const location = useLocation()
-  const history = useHistory()
 
   useEffect(() => {
     const historicCarbonFootprint = getFromStorage(
@@ -73,31 +62,13 @@ export default function App() {
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
 
-      {location.pathname !== '/footprint-history' && (
-        <>
-          <Link
-            to=""
-            style={{ textDecoration: 'none' }}
-            onClick={(event) => event.preventDefault()}
-            onTouchStart={startTransition}
-            onTouchEnd={endTransition}
-            onMouseDown={startTransition}
-            onMouseUp={endTransition}
-          >
-            <SumCarbonFootPrint
-              sumCarbonFootprint={
-                totalCarbonFootprint.toFixed(2) || initialFootprintValue
-              }
-              bubbleStatus={bubbleStatus}
-              isMobile={isMobile}
-            />
-          </Link>
-          <Navigation />
-        </>
-      )}
       <Switch>
         <Route exact path={ROUTES.HOME}>
-          <TripsPage
+          <HomePage
+            initialFootprintValue={initialFootprintValue}
+            totalCarbonFootprint={totalCarbonFootprint}
+            carbonFootprint={carbonFootprint}
+            footprintPerTransportationType={footprintPerTransportationType}
             updateCarbonFootprint={updateCarbonFootprint}
             updateFootprintPerTransportationType={
               updateFootprintPerTransportationType
@@ -127,7 +98,6 @@ export default function App() {
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
   }
-
   function updateFootprintPerTransportationType(type, sum) {
     setFootprintPerTransportationType(
       calculateFootprintPerTransportionType(footprintPerTransportationType, {
@@ -135,23 +105,5 @@ export default function App() {
         sum,
       })
     )
-  }
-
-  function startTransition() {
-    setBubbleStatus({ active: true, timestamp: Date.now() })
-  }
-
-  function endTransition() {
-    if (shouldNavigate(bubbleStatus.timestamp)) {
-      history.push('/footprint-history')
-    }
-    setBubbleStatus({ active: false, timestamp: Date.now() })
-  }
-
-  function shouldNavigate(timeButtonClicked) {
-    if (isMobile) {
-      return Date.now()
-    }
-    return Date.now() - timeButtonClicked > 200
   }
 }
