@@ -2,16 +2,19 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import firebaseApp from '../../../firebase'
 import Button from '../../Button/Button'
+import * as ROUTES from '../../../constants/routes'
 import triathlete from '../../../images/triathlete.svg'
 import eyeIcon from '../../../images/eye.svg'
-import { set } from 'lodash'
+import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
 
 export default function Register() {
+  let history = useHistory()
   const INITIAL_VALUE = {
     username: '',
     email: '',
     passwordOne: '',
     passwordTwo: '',
+    error: '',
   }
 
   const [isRegistered, setIsRegistered] = useState(false)
@@ -29,12 +32,16 @@ export default function Register() {
         email,
         passwordOne
       )
+      await setUser(INITIAL_VALUE)
       await newUser.user.updateProfile({
         displayName: username,
       })
+
+      history.push(ROUTES.HOME)
       return setIsRegistered(true)
     } catch (error) {
-      console.log(error)
+      console.error(error)
+      setUser({ ...user, error })
     }
   }
 
@@ -93,24 +100,23 @@ export default function Register() {
               autoComplete="new-password"
             />
           </label>
-
-          <Button text="Register" color={'var(--woodland)'} type="submit" />
+          {user.error && <p>{user.error.message}</p>}
+          <Button
+            text="Register"
+            color={'var(--woodland)'}
+            type="submit"
+            disabled={isInvalid}
+          />
         </StyledForm>
       )}
     </StyledMain>
   )
 
   function handleSubmit(event) {
-    console.log(user)
     event.preventDefault()
     registerToFirebase(user.username, user.email, user.passwordOne)
   }
   function handleChange(event) {
-    console.log({
-      name: event.target.name,
-      value: event.target.value,
-      user: user,
-    })
     setUser({ ...user, [event.target.name]: event.target.value })
   }
 }
