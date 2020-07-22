@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import * as ROUTES from '../../../constants/routes'
 import firebaseApp from '../../../firebase'
 import eyeIcon from '../../../images/eye.svg'
+import eyeIconHide from '../../../images/eyeIconHide.svg'
 import Button from '../../Button/Button'
 
 export default function Register() {
@@ -74,7 +75,11 @@ export default function Register() {
         </label>
         <label>
           Select a password
-          <img src={eyeIcon} alt="" onClick={togglePassword} />
+          {showPassword ? (
+            <img src={eyeIconHide} alt="" onClick={togglePassword} />
+          ) : (
+            <img src={eyeIcon} alt="" onClick={togglePassword} />
+          )}
           <input
             name="passwordOne"
             value={user.passwordOne}
@@ -86,7 +91,11 @@ export default function Register() {
         </label>
         <label>
           Confirm your password
-          <img src={eyeIcon} alt="" onClick={togglePassword} />
+          {showPassword ? (
+            <img src={eyeIconHide} alt="" onClick={togglePassword} />
+          ) : (
+            <img src={eyeIcon} alt="" onClick={togglePassword} />
+          )}
           <input
             name="passwordTwo"
             value={user.passwordTwo}
