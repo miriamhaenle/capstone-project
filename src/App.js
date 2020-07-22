@@ -76,7 +76,12 @@ export default function App() {
           />
         </Route>
         <Route path={ROUTES.ADD_ACTIVITY}>
-          <SportsActivitiesPage />
+          <SportsActivitiesPage
+            totalCarbonFootprint={totalCarbonFootprint}
+            initialFootprintValue={initialFootprintValue}
+            bubbleStatus
+            isMobile
+          />
         </Route>
         <Route path={ROUTES.FOOTPRINT_HISTORY}>
           <FootprintHistoryPage

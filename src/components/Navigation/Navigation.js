@@ -7,7 +7,7 @@ export default function Navigation() {
     <StyledNavigation>
       <ul>
         <li>
-          <NavLink exact to="/" activeClassName="selected" testid="trip">
+          <NavLink exact to="/home" activeClassName="selected" testid="trip">
             Add trip
           </NavLink>
         </li>
