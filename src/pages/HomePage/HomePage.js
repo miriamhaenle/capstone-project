@@ -1,5 +1,15 @@
 import React, { useState } from 'react'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import {
+  Route,
+  Redirect,
+  Link,
+  useHistory,
+  useLocation,
+  Switch,
+} from 'react-router-dom'
+import * as ROUTES from '../../constants/routes'
+import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
+
 import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
 import useDeviceDetect from '../../components/utils/useDeviceDetect'
@@ -43,12 +53,25 @@ export default function HomePage({
         />
       </Link>
       <Navigation />
-      <TripsPage
-        updateCarbonFootprint={updateCarbonFootprint}
-        updateFootprintPerTransportationType={
-          updateFootprintPerTransportationType
-        }
-      />
+
+      <Switch>
+        <Route path={ROUTES.ADD_TRIP}>
+          <TripsPage
+            updateCarbonFootprint={updateCarbonFootprint}
+            updateFootprintPerTransportationType={
+              updateFootprintPerTransportationType
+            }
+          />
+        </Route>
+        <Route path={ROUTES.ADD_ACTIVITY}>
+          <SportsActivitiesPage
+            totalCarbonFootprint={totalCarbonFootprint}
+            initialFootprintValue={initialFootprintValue}
+            bubbleStatus
+            isMobile
+          />
+        </Route>
+      </Switch>
     </>
   )
 

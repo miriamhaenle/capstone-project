@@ -7,7 +7,7 @@ import eyeIcon from '../../../images/eye.svg'
 import eyeIconHide from '../../../images/eyeIconHide.svg'
 import Button from '../../Button/Button'
 
-export default function Register() {
+export function SignUpForm() {
   let history = useHistory()
   const INITIAL_VALUE = {
     username: '',

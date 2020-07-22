@@ -8,7 +8,6 @@ import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
-import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
 import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
 
 export default function App() {
@@ -63,25 +62,8 @@ export default function App() {
       <ToastContainer autoClose={6000} draggablePercent={60} />
 
       <Switch>
-        <Route exact path={ROUTES.HOME}>
-          <HomePage
-            initialFootprintValue={initialFootprintValue}
-            totalCarbonFootprint={totalCarbonFootprint}
-            carbonFootprint={carbonFootprint}
-            footprintPerTransportationType={footprintPerTransportationType}
-            updateCarbonFootprint={updateCarbonFootprint}
-            updateFootprintPerTransportationType={
-              updateFootprintPerTransportationType
-            }
-          />
-        </Route>
-        <Route path={ROUTES.ADD_ACTIVITY}>
-          <SportsActivitiesPage
-            totalCarbonFootprint={totalCarbonFootprint}
-            initialFootprintValue={initialFootprintValue}
-            bubbleStatus
-            isMobile
-          />
+        <Route path={ROUTES.HOME}>
+          <HomePage totalCarbonFootprint={totalCarbonFootprint} />
         </Route>
         <Route path={ROUTES.FOOTPRINT_HISTORY}>
           <FootprintHistoryPage

@@ -19,7 +19,7 @@ export default function FootprintHistoryPage({
 
   return (
     <StyledSection>
-      <Link to="/">
+      <Link to="/home">
         <span>Go Back</span>
       </Link>
       <h2>Breakdown of your carbon footprint</h2>

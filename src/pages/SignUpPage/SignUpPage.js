@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import SignUpForm from '../../components/auth/SignUpForm/SignUpForm'
+import { SignUpForm } from '../../components/auth/SignUpForm'
 import triathlete from '../../images/triathlete.svg'
 
 export default function SignUpPage() {
