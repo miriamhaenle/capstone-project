@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import * as ROUTES from '../src/constants/routes'
+import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
 import { getFromStorage, saveToStorage } from './components/utils/handleStorage'
 import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
-import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
 
 export default function App() {
   const initialFootprintValue = 0

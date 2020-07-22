@@ -17,10 +17,8 @@ export function SignUpForm() {
     error: '',
   }
 
-  const [isRegistered, setIsRegistered] = useState(false)
   const [user, setUser] = useState(INITIAL_VALUE)
   const [showPassword, setShowPassword] = useState(false)
-  console.log(showPassword)
 
   const isInvalid =
     user.passwordOne !== user.passwordTwo ||
@@ -34,13 +32,12 @@ export function SignUpForm() {
         email,
         passwordOne
       )
-      await setUser(INITIAL_VALUE)
+      setUser(INITIAL_VALUE)
       await newUser.user.updateProfile({
         displayName: username,
       })
 
       history.push(ROUTES.HOME)
-      return setIsRegistered(true)
     } catch (error) {
       console.error(error)
       setUser({ ...user, error })

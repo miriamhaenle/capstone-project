@@ -1,18 +1,10 @@
 import React, { useState } from 'react'
-import {
-  Route,
-  Redirect,
-  Link,
-  useHistory,
-  useLocation,
-  Switch,
-} from 'react-router-dom'
-import * as ROUTES from '../../constants/routes'
-import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
-
+import { Link, Route, Switch, useHistory } from 'react-router-dom'
 import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
 import useDeviceDetect from '../../components/utils/useDeviceDetect'
+import * as ROUTES from '../../constants/routes'
+import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
 
 export default function HomePage({
@@ -30,7 +22,6 @@ export default function HomePage({
     timestamp: Date.now(),
   })
 
-  const location = useLocation()
   const history = useHistory()
 
   return (
@@ -81,7 +72,7 @@ export default function HomePage({
 
   function endTransition() {
     if (shouldNavigate(bubbleStatus.timestamp)) {
-      history.push('/footprint-history')
+      history.push(ROUTES.FOOTPRINT_HISTORY)
     }
     setBubbleStatus({ active: false, timestamp: Date.now() })
   }
