@@ -20,8 +20,8 @@ export default function FootprintHistoryPage({
 
   return (
     <StyledSection>
-      <Link to={ROUTES.ADD_ACTIVITY}>
-        <span>Go Back</span>
+      <Link to={ROUTES.ADD_TRIP}>
+        <span>Go back</span>
       </Link>
       <h2>Breakdown of your carbon footprint</h2>
       {donutData.length >= 1 ? (
