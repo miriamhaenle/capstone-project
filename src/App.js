@@ -63,7 +63,13 @@ export default function App() {
 
       <Switch>
         <Route path={ROUTES.HOME}>
-          <HomePage totalCarbonFootprint={totalCarbonFootprint} />
+          <HomePage
+            totalCarbonFootprint={totalCarbonFootprint}
+            updateCarbonFootprint={updateCarbonFootprint}
+            updateFootprintPerTransportationType={
+              updateFootprintPerTransportationType
+            }
+          />
         </Route>
         <Route path={ROUTES.FOOTPRINT_HISTORY}>
           <FootprintHistoryPage
