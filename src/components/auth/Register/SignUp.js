@@ -1,28 +1,41 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import firebaseApp from '../../../firebase'
 import Button from '../../Button/Button'
 import triathlete from '../../../images/triathlete.svg'
 import eyeIcon from '../../../images/eye.svg'
+import { set } from 'lodash'
 
 export default function Register() {
+  const INITIAL_VALUE = {
+    username: '',
+    email: '',
+    passwordOne: '',
+    passwordTwo: '',
+  }
+
   const [isRegistered, setIsRegistered] = useState(false)
+  const [user, setUser] = useState(INITIAL_VALUE)
 
-  const userName = useRef(null)
-  const userMail = useRef(null)
-  const userPassword = useRef(null)
+  const isInvalid =
+    user.passwordOne !== user.passwordTwo ||
+    user.passwordOne === '' ||
+    user.email === '' ||
+    user.username === ''
 
-  async function registerToFirebase(name, email, password) {
-    const newUser = await firebaseApp.createUserWithEmailAndPassword(
-      email.current.value,
-      password.current.value
-    )
-
-    await newUser.user.updateProfile({
-      displayName: name.current.value,
-    })
-
-    return setIsRegistered(true)
+  async function registerToFirebase(username, email, passwordOne) {
+    try {
+      const newUser = await firebaseApp.createUserWithEmailAndPassword(
+        email,
+        passwordOne
+      )
+      await newUser.user.updateProfile({
+        displayName: username,
+      })
+      return setIsRegistered(true)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -37,20 +50,22 @@ export default function Register() {
           <label>
             Your name
             <input
-              required
+              name="username"
+              value={user.username}
+              onChange={handleChange}
               type="text"
-              name="userName"
-              ref={userName}
+              required
               autoComplete="username"
             />
           </label>
           <label>
             Your mail
             <input
-              required
+              name="email"
+              value={user.email}
+              onChange={handleChange}
               type="text"
-              name="userMail"
-              ref={userMail}
+              required
               autoComplete="username"
             />
           </label>
@@ -58,10 +73,23 @@ export default function Register() {
             Select a password
             <img src={eyeIcon} alt="" />
             <input
-              required
+              name="passwordOne"
+              value={user.passwordOne}
+              onChange={handleChange}
               type="password"
-              name="userPassword"
-              ref={userPassword}
+              required
+              autoComplete="new-password"
+            />
+          </label>
+          <label>
+            Confirm your password
+            <img src={eyeIcon} alt="" />
+            <input
+              name="passwordTwo"
+              value={user.passwordTwo}
+              onChange={handleChange}
+              type="password"
+              required
               autoComplete="new-password"
             />
           </label>
@@ -73,8 +101,17 @@ export default function Register() {
   )
 
   function handleSubmit(event) {
+    console.log(user)
     event.preventDefault()
-    registerToFirebase(userName, userMail, userPassword)
+    registerToFirebase(user.username, user.email, user.passwordOne)
+  }
+  function handleChange(event) {
+    console.log({
+      name: event.target.name,
+      value: event.target.value,
+      user: user,
+    })
+    setUser({ ...user, [event.target.name]: event.target.value })
   }
 }
 
@@ -91,6 +128,8 @@ const StyledMain = styled.main`
     width: 76px;
     display: block;
     margin: 60px auto;
+  }
+  p {
   }
 `
 

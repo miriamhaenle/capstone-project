@@ -4,7 +4,8 @@ import TripsPage from './pages/TripsPage/TripsPage'
 import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
 import Navigation from './components/Navigation/Navigation'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
-import Register from './components/auth/Register/Register'
+import SignUp from './components/auth/Register/SignUp'
+import * as ROUTES from '../src/constants/routes'
 import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
@@ -96,7 +97,7 @@ export default function App() {
       )}
 
       <Switch>
-        <Route exact path="/">
+        <Route exact path={ROUTES.HOME}>
           <TripsPage
             updateCarbonFootprint={updateCarbonFootprint}
             updateFootprintPerTransportationType={
@@ -104,16 +105,22 @@ export default function App() {
             }
           />
         </Route>
-        <Route path="/add-activity">
+        <Route path={ROUTES.ADD_ACTIVITY}>
           <SportsActivitiesPage />
         </Route>
-        <Route path="/footprint-history">
+        <Route path={ROUTES.FOOTPRINT_HISTORY}>
           <FootprintHistoryPage
             footprintPerTransportationType={footprintPerTransportationType}
           />
         </Route>
-        <Route exact path="/signup">
-          <Register />
+        <Route path={ROUTES.SIGN_UP}>
+          <SignUp />
+        </Route>
+        <Route exact path={ROUTES.SIGN_IN}>
+          Login
+        </Route>
+        <Route exact path={ROUTES.PROFILE}>
+          Profile
         </Route>
       </Switch>
     </main>
