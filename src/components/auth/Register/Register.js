@@ -4,7 +4,6 @@ import firebaseApp from '../../../firebase'
 import Button from '../../Button/Button'
 import triathlete from '../../../images/triathlete.svg'
 import eyeIcon from '../../../images/eye.svg'
-//import eyeIconHide from '../../../images/eye.svg'
 
 export default function Register() {
   const [isRegistered, setIsRegistered] = useState(false)
@@ -29,29 +28,47 @@ export default function Register() {
   return (
     <StyledMain>
       <h2>Registration</h2>
+
       <img src={triathlete} alt="triathlete" />
-      {isRegistered ? 'You are registered!' : 'not registered'}
-      <StyledForm onSubmit={handleSubmit}>
-        <label>
-          Your name
-          <input required type="text" name="userName" ref={userName} />
-        </label>
-        <label>
-          Your mail
-          <input required type="text" name="userMail" ref={userMail} />
-        </label>
-        <label>
-          Password
-          <img src={eyeIcon} alt="" />
-          <input
-            required
-            type="password"
-            name="userPassword"
-            ref={userPassword}
-          />
-        </label>
-        <Button text="Register" color={'var(--woodland)'} type="submit" />
-      </StyledForm>
+      {isRegistered ? (
+        'You are registered!'
+      ) : (
+        <StyledForm onSubmit={handleSubmit}>
+          <label>
+            Your name
+            <input
+              required
+              type="text"
+              name="userName"
+              ref={userName}
+              autoComplete="username"
+            />
+          </label>
+          <label>
+            Your mail
+            <input
+              required
+              type="text"
+              name="userMail"
+              ref={userMail}
+              autoComplete="username"
+            />
+          </label>
+          <label>
+            Select a password
+            <img src={eyeIcon} alt="" />
+            <input
+              required
+              type="password"
+              name="userPassword"
+              ref={userPassword}
+              autoComplete="new-password"
+            />
+          </label>
+
+          <Button text="Register" color={'var(--woodland)'} type="submit" />
+        </StyledForm>
+      )}
     </StyledMain>
   )
 
@@ -91,7 +108,7 @@ const StyledForm = styled.form`
     height: 30px;
     background: var(--orange-yellow);
     color: var(--dusk);
-    margin: 25px 0;
+    margin: 20px 0;
     padding: 5px;
     font-size: 16px;
   }
@@ -100,6 +117,6 @@ const StyledForm = styled.form`
     width: 23px;
     position: absolute;
     margin: 0 0 0 270px;
-    padding-top: 27px;
+    padding-top: 23px;
   }
 `

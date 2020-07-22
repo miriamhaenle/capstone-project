@@ -112,7 +112,7 @@ export default function App() {
             footprintPerTransportationType={footprintPerTransportationType}
           />
         </Route>
-        <Route exact path="/register">
+        <Route exact path="/signup">
           <Register />
         </Route>
       </Switch>
