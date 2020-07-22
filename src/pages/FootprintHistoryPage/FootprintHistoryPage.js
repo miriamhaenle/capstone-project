@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import DonutChart from '../../components/DonutChart/DonutChart'
 import { Link } from 'react-router-dom'
 import { mapFootprintPerTransportTypeToDonutChartData } from '../../components/utils/mappings/mapFootprintPerTransportTypeToDonutChartData'
+import * as ROUTES from '../../constants/routes'
 
 export default function FootprintHistoryPage({
   footprintPerTransportationType,
@@ -19,7 +20,7 @@ export default function FootprintHistoryPage({
 
   return (
     <StyledSection>
-      <Link to="/home">
+      <Link to={ROUTES.ADD_ACTIVITY}>
         <span>Go Back</span>
       </Link>
       <h2>Breakdown of your carbon footprint</h2>
