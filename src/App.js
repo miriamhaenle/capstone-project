@@ -4,7 +4,7 @@ import TripsPage from './pages/TripsPage/TripsPage'
 import SportsActivitiesPage from './pages/SportsActivitiesPage/SportsActivitiesPage'
 import Navigation from './components/Navigation/Navigation'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
-import SignUp from './components/auth/Register/SignUp'
+import SignUpPage from './pages/SignUpPage/SignUpPage'
 import * as ROUTES from '../src/constants/routes'
 import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -114,7 +114,7 @@ export default function App() {
           />
         </Route>
         <Route path={ROUTES.SIGN_UP}>
-          <SignUp />
+          <SignUpPage />
         </Route>
         <Route exact path={ROUTES.SIGN_IN}>
           Login

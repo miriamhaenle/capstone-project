@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import firebaseApp from '../../../firebase'
-import Button from '../../Button/Button'
 import * as ROUTES from '../../../constants/routes'
-import triathlete from '../../../images/triathlete.svg'
+import firebaseApp from '../../../firebase'
 import eyeIcon from '../../../images/eye.svg'
-import { Switch, Route, Link, useLocation, useHistory } from 'react-router-dom'
+import Button from '../../Button/Button'
 
 export default function Register() {
   let history = useHistory()
@@ -46,10 +45,7 @@ export default function Register() {
   }
 
   return (
-    <StyledMain>
-      <h2>Registration</h2>
-
-      <img src={triathlete} alt="triathlete" />
+    <>
       {isRegistered ? (
         'You are registered!'
       ) : (
@@ -109,7 +105,7 @@ export default function Register() {
           />
         </StyledForm>
       )}
-    </StyledMain>
+    </>
   )
 
   function handleSubmit(event) {
@@ -120,24 +116,6 @@ export default function Register() {
     setUser({ ...user, [event.target.name]: event.target.value })
   }
 }
-
-const StyledMain = styled.main`
-  padding: 30px 30px;
-  background: var(--sand);
-  height: 100%;
-  color: var(--woodland);
-
-  h2 {
-    font-weight: 800;
-  }
-  img {
-    width: 76px;
-    display: block;
-    margin: 60px auto;
-  }
-  p {
-  }
-`
 
 const StyledForm = styled.form`
   padding: 0 30px;
@@ -158,7 +136,7 @@ const StyledForm = styled.form`
     font-size: 16px;
   }
 
-  img {
+  label > img {
     width: 23px;
     position: absolute;
     margin: 0 0 0 270px;
