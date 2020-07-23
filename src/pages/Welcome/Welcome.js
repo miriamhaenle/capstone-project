@@ -19,18 +19,10 @@ export default function WelcomePage() {
       <ButtonSection>
         <Link to={ROUTES.SIGN_UP}>
           {' '}
-          <Button
-            text="Sign up"
-            color={'var(--woodland)'}
-            data-testid="signUpButton"
-          />
+          <Button text="Sign up" color={'var(--woodland)'} />
         </Link>
         <Link to={ROUTES.SIGN_IN}>
-          <Button
-            text="Sign in"
-            color={'var(--sunset)'}
-            data-testid="signInButton"
-          />
+          <Button text="Sign in" color={'var(--sunset)'} />
         </Link>
       </ButtonSection>
     </StyledMain>
