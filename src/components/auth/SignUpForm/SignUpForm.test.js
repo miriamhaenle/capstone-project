@@ -35,7 +35,9 @@ describe('Sign up form renders correctly', () => {
   })
 
   it('should have a disabled sign up button by default', () => {
-    expect(screen.getByText('Sign up').closest('button')).toBeInTheDocument()
+    expect(screen.getByText('Sign up').closest('button')).toHaveAttribute(
+      'disabled'
+    )
   })
 
   it('should render the terms and conditions text', () => {
