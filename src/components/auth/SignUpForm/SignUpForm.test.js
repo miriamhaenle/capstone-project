@@ -15,12 +15,12 @@ describe('Sign up form renders correctly', () => {
 
   it('should render the name input field', () => {
     const nameInput = screen.findByRole('textbox', 'username')
-    expect(nameInput).toBeInTheDocument
+    expect(nameInput).toBeTruthy()
   })
 
   it('should render the email input field', () => {
     const mailInput = screen.findByRole('textbox', 'email')
-    expect(mailInput).toBeInTheDocument
+    expect(mailInput).toBeTruthy()
   })
 
   it('should render two password input fields', () => {

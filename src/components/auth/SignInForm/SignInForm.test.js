@@ -17,12 +17,12 @@ describe('Sign In form renders correctly', () => {
 
   it('should render the email input field', () => {
     const emailInput = screen.findByRole('textbox', 'email')
-    expect(nameInput).toBeInTheDocument()
+    expect(emailInput).toBeTruthy()
   })
 
   it('should render the password input field', () => {
     const passwordInput = screen.findByRole('textbox', 'password')
-    expect(passwordInput).toBeInTheDocument()
+    expect(passwordInput).toBeTruthy()
   })
 
   it('should render the sign in button', () => {
@@ -62,7 +62,7 @@ describe('Input tests', () => {
   })
 
   it('should have disabled button if email is not formatted correctly', async () => {
-    await userEvent.type(screen.getAllByRole('textbox')[1], 'jan@frodissimo')
+    await userEvent.type(screen.getAllByRole('textbox')[0], 'jan@frodissimo')
     expect(screen.getByRole('button')).toHaveAttribute
   })
 

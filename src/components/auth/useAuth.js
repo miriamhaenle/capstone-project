@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import firebaseApp from '../../firebase'
 
 export default function useAuth() {
