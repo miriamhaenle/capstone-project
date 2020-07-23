@@ -12,6 +12,8 @@ import HomePage from './pages/HomePage/HomePage'
 import SignInPage from './pages/SignIn/SignIn'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
 import WelcomePage from './pages/Welcome/Welcome'
+import LoginContext from './components/auth/LoginContext'
+import firebaseApp from '../src/firebase'
 
 export default function App() {
   const user = useAuth()
@@ -61,37 +63,38 @@ export default function App() {
   }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
 
   return (
-    <main>
-      <ToastContainer autoClose={6000} draggablePercent={60} />
+    <LoginContext.Provider value={{ user, firebaseApp }}>
+      <main>
+        <ToastContainer autoClose={6000} draggablePercent={60} />
 
-      <Switch>
-        <Route exact path={ROUTES.WELCOME}>
-          <WelcomePage />
-        </Route>
-        <Route path={ROUTES.HOME}>
-          <HomePage
-            user={user}
-            totalCarbonFootprint={totalCarbonFootprint}
-            updateCarbonFootprint={updateCarbonFootprint}
-            updateFootprintPerTransportationType={
-              updateFootprintPerTransportationType
-            }
-          />
-        </Route>
-        <Route path={ROUTES.FOOTPRINT_HISTORY}>
-          <FootprintHistoryPage
-            footprintPerTransportationType={footprintPerTransportationType}
-          />
-        </Route>
-        <Route path={ROUTES.SIGN_UP}>
-          <SignUpPage />
-        </Route>
-        <Route path={ROUTES.SIGN_IN}>
-          <SignInPage />
-        </Route>
-        <Route path={ROUTES.PROFILE}>Profile</Route>
-      </Switch>
-    </main>
+        <Switch>
+          <Route exact path={ROUTES.WELCOME}>
+            <WelcomePage />
+          </Route>
+          <Route path={ROUTES.HOME}>
+            <HomePage
+              totalCarbonFootprint={totalCarbonFootprint}
+              updateCarbonFootprint={updateCarbonFootprint}
+              updateFootprintPerTransportationType={
+                updateFootprintPerTransportationType
+              }
+            />
+          </Route>
+          <Route path={ROUTES.FOOTPRINT_HISTORY}>
+            <FootprintHistoryPage
+              footprintPerTransportationType={footprintPerTransportationType}
+            />
+          </Route>
+          <Route path={ROUTES.SIGN_UP}>
+            <SignUpPage />
+          </Route>
+          <Route path={ROUTES.SIGN_IN}>
+            <SignInPage />
+          </Route>
+          <Route path={ROUTES.PROFILE}>Profile</Route>
+        </Switch>
+      </main>
+    </LoginContext.Provider>
   )
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
