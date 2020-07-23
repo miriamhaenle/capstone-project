@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 export default function Button({ text, disabled, color }) {
   return (
-    <StyledButton disabled={disabled} data-cy="addTrip" color={color}>
+    <StyledButton disabled={disabled} data-cy="button" color={color}>
       {text}
     </StyledButton>
   )

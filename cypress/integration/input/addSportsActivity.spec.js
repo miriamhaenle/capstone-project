@@ -13,7 +13,7 @@ describe('user can add new activity', () => {
     cy.get('form').contains('Select sports type')
     cy.get('#swim').click({ force: true })
     cy.get('[name="distance"]').type('4')
-    cy.get('[data-cy="addTrip"]').click()
+    cy.get('[data-cy="button"]').click()
     cy.get('[data-cy="toast"]').contains('1.03kg CO2')
   })
 })
@@ -24,7 +24,7 @@ describe('No updates should happen', () => {
     cy.get('form').contains('Select sports type')
     cy.get('#swim').click({ force: true })
     cy.get('[name="distance"]').type('0')
-    cy.get('[data-cy="addTrip"]').should('be.disabled')
+    cy.get('[data-cy="button"]').should('be.disabled')
   })
 
   it('should have a disabled button if user enters a negative number', () => {
@@ -32,6 +32,6 @@ describe('No updates should happen', () => {
     cy.get('form').contains('Select sports type')
     cy.get('#swim').click({ force: true })
     cy.get('[name="distance"]').type('-3')
-    cy.get('[data-cy="addTrip"]').should('be.disabled')
+    cy.get('[data-cy="button"]').should('be.disabled')
   })
 })

@@ -97,6 +97,7 @@ export function SignUpForm() {
             src={showPassword ? eyeIconHide : eyeIcon}
             alt="show Password"
             onClick={togglePassword}
+            data-cy="eyeIcon"
           />
           <input
             name="passwordTwo"
@@ -108,8 +109,13 @@ export function SignUpForm() {
             autoComplete="new-password"
           />
         </label>
-        {userForm.error && <StyledError>{userForm.error.message}</StyledError>}
+        {userForm.error && (
+          <StyledError data-cy="errorMessage">
+            {userForm.error.message}
+          </StyledError>
+        )}
         <Button
+          data-cy="signUp"
           text="Sign up"
           color={'var(--woodland)'}
           type="submit"
