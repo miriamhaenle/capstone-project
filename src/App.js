@@ -9,6 +9,8 @@ import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
+import SignInPage from './pages/SignIn/SignIn'
+import useAuth from './components/auth/useAuth'
 
 export default function App() {
   const initialFootprintValue = 0
@@ -59,7 +61,7 @@ export default function App() {
   return (
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
-
+      {user ? <p>Welcome {user.displayName}</p> : null}
       <Switch>
         <Route path={ROUTES.HOME}>
           <HomePage
@@ -79,7 +81,7 @@ export default function App() {
           <SignUpPage />
         </Route>
         <Route exact path={ROUTES.SIGN_IN}>
-          Login
+          <SignInPage />
         </Route>
         <Route exact path={ROUTES.PROFILE}>
           Profile
