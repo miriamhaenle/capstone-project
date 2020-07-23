@@ -1,48 +1,103 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import Button from '../../Button/Button'
+
 import styled from 'styled-components'
-import firebaseApp from '../../../firebase'
 import * as ROUTES from '../../../constants/routes'
+import firebaseApp from '../../../firebase'
+import eyeIcon from '../../../images/eye.svg'
+import eyeIconHide from '../../../images/eyeIconHide.svg'
+import Button from '../../Button/Button'
 
 export default function SignInForm() {
   let history = useHistory()
-  const userMail = useRef(null)
-  const userPassword = useRef(null)
+
+  const INITIAL_VALUE = {
+    email: '',
+    password: '',
+    error: '',
+  }
+  const [userForm, setUserForm] = useState(INITIAL_VALUE)
+  const [showPassword, setShowPassword] = useState(false)
+
+  const isInvalid =
+    !userForm.password.length ||
+    !userForm.email.length ||
+    !/([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3})/.test(userForm.email)
+
+  const navigateTo = (path) => history.push(path)
+  const resetForm = () => setUserForm(INITIAL_VALUE)
 
   async function loginWithFirebase(email, password) {
-    await firebaseApp.signInWithEmailAndPassword(email, password)
-    return history.push(ROUTES.HOME)
+    console.log({ email, password })
+    try {
+      await firebaseApp.signInWithEmailAndPassword(email, password)
+
+      navigateTo(ROUTES.HOME)
+      resetForm()
+    } catch (error) {
+      console.error(error)
+      setUserForm({ ...userForm, error })
+    }
   }
 
   return (
     <StyledForm onSubmit={handleSubmit}>
       <label>
         Email
-        <input name="email" type="text" ref={userMail} />
+        <input
+          name="email"
+          value={userForm.email}
+          onChange={handleChange}
+          type="text"
+          required
+        />
       </label>
       <label>
         Password
-        <input name="password" type="password" ref={userPassword} />
+        <img
+          src={showPassword ? eyeIconHide : eyeIcon}
+          alt="show Password"
+          onClick={togglePassword}
+        />
+        <input
+          name="password"
+          value={userForm.password}
+          onChange={handleChange}
+          type={showPassword ? 'text' : 'password'}
+          data-testid="password"
+          required
+        />
       </label>
+      {userForm.error && (
+        <StyledError data-cy="errorMessage">
+          {userForm.error.message}
+        </StyledError>
+      )}
       <Button
         data-cy="signUp"
         text="Sign in"
         color={'var(--woodland)'}
         type="submit"
+        disabled={isInvalid}
       />
     </StyledForm>
   )
 
   function handleSubmit(event) {
     event.preventDefault()
-    loginWithFirebase(userMail.current.value, userPassword.current.value)
+    loginWithFirebase(userForm.email, userForm.password)
+  }
+
+  function handleChange(event) {
+    setUserForm({ ...userForm, [event.target.name]: event.target.value })
+  }
+  function togglePassword() {
+    setShowPassword(!showPassword)
   }
 }
 
 const StyledForm = styled.form`
   background: var(--sand);
-
   padding: 0 30px;
   display: flex;
   flex-direction: column;
@@ -76,4 +131,9 @@ const StyledForm = styled.form`
   p {
     font-size: 12px;
   }
+`
+const StyledError = styled.p`
+  font-size: 14px;
+  color: var(--sunset);
+  margin: 0 0 20px;
 `

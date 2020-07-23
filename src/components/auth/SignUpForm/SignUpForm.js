@@ -50,7 +50,6 @@ export function SignUpForm() {
 
   return (
     <>
-      {' '}
       <StyledForm onSubmit={handleSubmit}>
         <label>
           Your name
@@ -140,7 +139,6 @@ export function SignUpForm() {
 
 const StyledForm = styled.form`
   background: var(--sand);
-
   padding: 0 30px;
   display: flex;
   flex-direction: column;
