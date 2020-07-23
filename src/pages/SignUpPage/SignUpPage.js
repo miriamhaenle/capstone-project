@@ -28,6 +28,4 @@ const StyledMain = styled.main`
     display: block;
     margin: 60px auto;
   }
-  p {
-  }
 `

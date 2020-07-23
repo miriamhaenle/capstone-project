@@ -6,12 +6,14 @@ import useDeviceDetect from '../../components/utils/useDeviceDetect'
 import * as ROUTES from '../../constants/routes'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
+import styled from 'styled-components'
 
 export default function HomePage({
   initialFootprintValue,
   totalCarbonFootprint,
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
+  user,
 }) {
   const { isMobile } = useDeviceDetect()
   const [bubbleStatus, setBubbleStatus] = useState({
@@ -40,7 +42,9 @@ export default function HomePage({
         />
       </Link>
       <Navigation />
-
+      {user ? (
+        <StyledWelcomeMessage>Welcome {user.displayName}</StyledWelcomeMessage>
+      ) : null}
       <Switch>
         <Route path={ROUTES.ADD_TRIP}>
           <TripsPage
@@ -80,3 +84,8 @@ export default function HomePage({
     return Date.now() - timeButtonClicked > 200
   }
 }
+
+const StyledWelcomeMessage = styled.p`
+  color: var(--sand);
+  padding: 30px;
+`

@@ -13,6 +13,7 @@ import SignInPage from './pages/SignIn/SignIn'
 import useAuth from './components/auth/useAuth'
 
 export default function App() {
+  const user = useAuth()
   const initialFootprintValue = 0
   const [carbonFootprint, setCarbonFootprint] = useState([
     initialFootprintValue,
@@ -61,10 +62,11 @@ export default function App() {
   return (
     <main>
       <ToastContainer autoClose={6000} draggablePercent={60} />
-      {user ? <p>Welcome {user.displayName}</p> : null}
+
       <Switch>
         <Route path={ROUTES.HOME}>
           <HomePage
+            user={user}
             totalCarbonFootprint={totalCarbonFootprint}
             updateCarbonFootprint={updateCarbonFootprint}
             updateFootprintPerTransportationType={

@@ -16,7 +16,7 @@ export default function SignInPage() {
 const StyledMain = styled.main`
   padding: 30px 30px;
   background: var(--sand);
-  height: 100%;
+  height: 100vh;
   color: var(--woodland);
 
   h2 {

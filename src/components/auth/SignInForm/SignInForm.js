@@ -30,7 +30,6 @@ export default function SignInForm() {
         text="Sign in"
         color={'var(--woodland)'}
         type="submit"
-        disabled
       />
     </StyledForm>
   )
