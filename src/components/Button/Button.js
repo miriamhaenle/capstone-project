@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-export default function Button({ text, disabled }) {
+export default function Button({ text, disabled, color }) {
   return (
-    <StyledButton disabled={disabled} data-cy="addTrip">
+    <StyledButton disabled={disabled} data-cy="button" color={color}>
       {text}
     </StyledButton>
   )
@@ -12,10 +12,11 @@ export default function Button({ text, disabled }) {
 Button.propTypes = {
   text: PropTypes.string,
   disabled: PropTypes.bool,
+  color: PropTypes.string,
 }
 
 const StyledButton = styled.button`
-  background: var(--sunset);
+  background: ${(props) => (props.color ? props.color : 'var(--sunset)')};
   border: none;
   border-radius: 3px;
   color: var(--sand);

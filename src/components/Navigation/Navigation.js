@@ -1,20 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import * as ROUTES from '../../constants/routes'
 
 export default function Navigation() {
   return (
     <StyledNavigation>
       <ul>
         <li>
-          <NavLink exact to="/" activeClassName="selected" testid="trip">
+          <NavLink
+            exact
+            to={ROUTES.ADD_TRIP}
+            activeClassName="selected"
+            testid="trip"
+          >
             Add trip
           </NavLink>
         </li>
 
         <li>
           <NavLink
-            to="/add-activity"
+            to={ROUTES.ADD_ACTIVITY}
             activeClassName="selected"
             data-cy="activity"
           >
