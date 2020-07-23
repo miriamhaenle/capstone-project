@@ -10,8 +10,7 @@ import TripsPage from '../TripsPage/TripsPage'
 export default function HomePage({
   initialFootprintValue,
   totalCarbonFootprint,
-  carbonFootprint,
-  footprintPerTransportationType,
+
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
 }) {
