@@ -1,15 +1,11 @@
 import React from 'react'
-import Button from '../../components/Button/Button'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import triathlete from '../../images/triathlete.svg'
-import { useHistory } from 'react-router-dom'
+import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
+import triathlete from '../../images/triathlete.svg'
 
 export default function WelcomePage() {
-  let history = useHistory()
-
-  const navigateTo = (path) => history.push(path)
-
   return (
     <StyledMain>
       <h1>
@@ -21,8 +17,13 @@ export default function WelcomePage() {
         <p>Do the sport you love but don't damage the planet</p>
       </HighlightSection>
       <ButtonSection>
-        <Button text="Sign up" color={'var(--woodland)'} />
-        <Button text="Sign in" color={'var(--sunset)'} />
+        <Link to={ROUTES.SIGN_UP}>
+          {' '}
+          <Button text="Sign up" color={'var(--woodland)'} />
+        </Link>
+        <Link to={ROUTES.SIGN_IN}>
+          <Button text="Sign in" color={'var(--sunset)'} />
+        </Link>
       </ButtonSection>
     </StyledMain>
   )
@@ -66,8 +67,9 @@ const ButtonSection = styled.section`
   padding: 30px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  button {
+  a {
     margin: 10px;
   }
 `
