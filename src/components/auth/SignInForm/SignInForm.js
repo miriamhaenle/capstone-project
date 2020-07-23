@@ -58,6 +58,7 @@ export default function SignInForm() {
           src={showPassword ? eyeIconHide : eyeIcon}
           alt="show Password"
           onClick={togglePassword}
+          data-cy="eyeIcon"
         />
         <input
           name="password"
@@ -68,6 +69,7 @@ export default function SignInForm() {
           required
         />
       </label>
+      <p>Forgot password?</p>
       {userForm.error && (
         <StyledError data-cy="errorMessage">
           {userForm.error.message}

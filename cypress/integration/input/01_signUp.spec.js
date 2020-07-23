@@ -1,8 +1,8 @@
-beforeEach(() => {
-  cy.visit('/signup')
-})
-
 describe('user fills out register form', () => {
+  beforeEach(() => {
+    cy.visit('/signup')
+  })
+
   it('should register a new user if all data is entered correctly', () => {
     cy.get('[name="username"]').type('Jan Frodeno')
     cy.get('[name="email"]').type('jan@frodissimo.com')

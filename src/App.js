@@ -10,6 +10,7 @@ import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryP
 import HomePage from './pages/HomePage/HomePage'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
 import SignInPage from './pages/SignIn/SignIn'
+import WelcomePage from './pages/Welcome/Welcome'
 import useAuth from './components/auth/useAuth'
 
 export default function App() {
@@ -82,11 +83,12 @@ export default function App() {
         <Route path={ROUTES.SIGN_UP}>
           <SignUpPage />
         </Route>
-        <Route exact path={ROUTES.SIGN_IN}>
+        <Route path={ROUTES.SIGN_IN}>
           <SignInPage />
         </Route>
-        <Route exact path={ROUTES.PROFILE}>
-          Profile
+        <Route path={ROUTES.PROFILE}>Profile</Route>
+        <Route exact path={ROUTES.WELCOME}>
+          <WelcomePage />
         </Route>
       </Switch>
     </main>
