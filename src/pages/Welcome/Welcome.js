@@ -8,7 +8,7 @@ import triathlete from '../../images/triathlete.svg'
 export default function WelcomePage() {
   return (
     <StyledMain>
-      <h1>
+      <h1 data-testid="logoHeadline">
         Carbon & <span>Lactate</span>
       </h1>
       <img src={triathlete} alt="triathlete" />
@@ -19,10 +19,18 @@ export default function WelcomePage() {
       <ButtonSection>
         <Link to={ROUTES.SIGN_UP}>
           {' '}
-          <Button text="Sign up" color={'var(--woodland)'} />
+          <Button
+            text="Sign up"
+            color={'var(--woodland)'}
+            data-testid="signUpButton"
+          />
         </Link>
         <Link to={ROUTES.SIGN_IN}>
-          <Button text="Sign in" color={'var(--sunset)'} />
+          <Button
+            text="Sign in"
+            color={'var(--sunset)'}
+            data-testid="signInButton"
+          />
         </Link>
       </ButtonSection>
     </StyledMain>
