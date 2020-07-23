@@ -1,11 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import SignInForm from '../../components/auth/SignInForm/SignInForm'
 import triathlete from '../../images/triathlete.svg'
+import * as ROUTES from '../../constants/routes'
 
 export default function SignInPage() {
   return (
     <StyledMain>
+      <Link to={ROUTES.WELCOME}>
+        <span>Go back</span>
+      </Link>
       <h2>Login</h2>
       <img src={triathlete} alt="triathlete" />
       <SignInForm />
@@ -27,6 +32,8 @@ const StyledMain = styled.main`
     display: block;
     margin: 60px auto;
   }
-  p {
+
+  a {
+    color: var(--woodland);
   }
 `
