@@ -10,17 +10,14 @@ import TripsPage from '../TripsPage/TripsPage'
 export default function HomePage({
   initialFootprintValue,
   totalCarbonFootprint,
-
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
 }) {
   const { isMobile } = useDeviceDetect()
-
   const [bubbleStatus, setBubbleStatus] = useState({
     active: false,
     timestamp: Date.now(),
   })
-
   const history = useHistory()
 
   return (

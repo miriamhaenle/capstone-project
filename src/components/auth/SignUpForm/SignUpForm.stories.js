@@ -1,9 +1,9 @@
 import React from 'react'
-import SignUpForm from './SignUpForm'
+import { SignUpForm } from './SignUpForm'
 
 export default {
   title: 'SignUp Form',
-  component: Register,
+  component: SignUpForm,
 }
 
-export const signUpForm = () => <SignUp />
+export const signUpForm = () => <SignUpForm />

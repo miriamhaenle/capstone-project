@@ -12,7 +12,6 @@ import SignUpPage from './pages/SignUpPage/SignUpPage'
 
 export default function App() {
   const initialFootprintValue = 0
-
   const [carbonFootprint, setCarbonFootprint] = useState([
     initialFootprintValue,
   ])

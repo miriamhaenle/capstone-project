@@ -139,6 +139,8 @@ export function SignUpForm() {
 }
 
 const StyledForm = styled.form`
+  background: var(--sand);
+
   padding: 0 30px;
   display: flex;
   flex-direction: column;
@@ -156,13 +158,17 @@ const StyledForm = styled.form`
     padding: 5px;
     font-size: 16px;
   }
+  label {
+    position: relative;
+  }
 
   label > img {
+    margin: 0;
     width: 23px;
     position: absolute;
-    margin: 0 0 0 270px;
-    padding-top: 23px;
     cursor: pointer;
+    top: 47px;
+    right: 30px;
   }
 
   p {
