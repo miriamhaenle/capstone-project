@@ -10,7 +10,28 @@ const profileData = {
 }
 
 describe('Profile page renders correctly', () => {
+  let renderedPage
   beforeEach(() => {
-    render(<ProfilePage />)
+    renderedPage = render(<ProfilePage />)
+  })
+
+  it('should render the page', () => {
+    expect(renderedPage).toBeTruthy()
+  })
+
+  it('should render the image', () => {
+    expect(screen.getByRole('img')).toBeInTheDocument()
+  })
+
+  it('should render the profile data labels', () => {
+    expect(screen.getByText('Bob' && 'Email')).toBeInTheDocument()
+  })
+
+  it('should render the edit button', () => {
+    expect(screen.getByRole('button')).toBeInTheDocument()
+  })
+
+  it('should open the edit view by clicking on the edit button', () => {
+    screen.findByRole('button').click()
   })
 })

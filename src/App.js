@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage/HomePage'
 import SignInPage from './pages/SignIn/SignIn'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
 import WelcomePage from './pages/Welcome/Welcome'
+import ProfilePage from './pages/Profile/Profile'
 import LoginContext from './components/auth/LoginContext'
 import firebaseApp from '../src/firebase'
 
@@ -91,7 +92,9 @@ export default function App() {
           <Route path={ROUTES.SIGN_IN}>
             <SignInPage />
           </Route>
-          <Route path={ROUTES.PROFILE}>Profile</Route>
+          <Route path={ROUTES.PROFILE}>
+            <ProfilePage />
+          </Route>
         </Switch>
       </main>
     </LoginContext.Provider>

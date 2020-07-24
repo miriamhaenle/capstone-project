@@ -26,6 +26,7 @@ export default function HomePage({
 
   return (
     <>
+      <Link to={ROUTES.PROFILE}>Profile</Link>
       <Link
         to=""
         style={{ textDecoration: 'none' }}
