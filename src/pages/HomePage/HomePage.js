@@ -8,6 +8,7 @@ import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
 import styled from 'styled-components'
 import LoginContext from '../../components/auth/LoginContext'
+import profileIcon from '../../images/profileIcon.svg'
 
 export default function HomePage({
   initialFootprintValue,
@@ -26,7 +27,9 @@ export default function HomePage({
 
   return (
     <>
-      <Link to={ROUTES.PROFILE}>Profile</Link>
+      <Link to={ROUTES.PROFILE}>
+        <StyledImage src={profileIcon} alt="profile" />
+      </Link>
       <Link
         to=""
         style={{ textDecoration: 'none' }}
@@ -87,6 +90,13 @@ export default function HomePage({
     return Date.now() - timeButtonClicked > 200
   }
 }
+
+const StyledImage = styled.img`
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  width: 30px;
+`
 
 const StyledWelcomeMessage = styled.p`
   color: var(--sand);
