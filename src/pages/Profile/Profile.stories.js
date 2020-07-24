@@ -6,9 +6,4 @@ export default {
   component: ProfilePage,
 }
 
-const profileData = {
-  name: 'Bob Babbit',
-  email: 'bob@ironman.com',
-}
-
-export const profilePage = () => <ProfilePage user={profileData} />
+export const profilePage = () => <ProfilePage />

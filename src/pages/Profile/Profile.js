@@ -1,14 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import LoginContext from '../../components/auth/LoginContext'
-import * as ROUTES from '../../constants/routes'
-import { Link } from 'react-router-dom'
-import profileIcon from '../../images/profileIcon.svg'
 import Button from '../../components/Button/Button'
+import * as ROUTES from '../../constants/routes'
+import profileIcon from '../../images/profileIcon.svg'
 
 export default function ProfilePage() {
   const { user } = useContext(LoginContext)
-  console.log({ user })
+  const [editProfile, setEditProfile] = useState(false)
+  const disabled = false
+
   return (
     <StyledMain>
       <Link to={ROUTES.ADD_TRIP}>
@@ -18,24 +20,31 @@ export default function ProfilePage() {
       <ProfileIcon>
         <img src={profileIcon} alt="profile" />
       </ProfileIcon>
-      <StyledSection>
-        <div>
-          Name: <span>{user ? user.displayName : ''}</span>{' '}
-        </div>
-        <div>
-          Email: <span>{user ? user.email : ''}</span>
-        </div>
-      </StyledSection>
-
-      <Button text="Edit" color="var(--sunset)" />
-      <Button text="Log out" color="var(--woodland)" />
+      {editProfile ? (
+        'Profile Form'
+      ) : (
+        <StyledSection>
+          <div>
+            Name: <span>{user ? user.displayName : null}</span>{' '}
+          </div>
+          <div>
+            Email: <span>{user ? user.email : null}</span>
+          </div>
+        </StyledSection>
+      )}
+      <Button onClick={handleClick} text="Edit" />
     </StyledMain>
   )
+
+  function handleClick() {
+    console.log('click')
+    setEditProfile(!editProfile)
+  }
 }
 
 const StyledMain = styled.main`
   background: var(--sand);
-  height: 100vh;
+  height: 100%;
   padding: 30px;
   display: flex;
   flex-direction: column;

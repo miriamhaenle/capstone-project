@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, Route, Switch, useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+import LoginContext from '../../components/auth/LoginContext'
 import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
 import useDeviceDetect from '../../components/utils/useDeviceDetect'
 import * as ROUTES from '../../constants/routes'
+import profileIcon from '../../images/profileIcon.svg'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
-import styled from 'styled-components'
-import LoginContext from '../../components/auth/LoginContext'
-import profileIcon from '../../images/profileIcon.svg'
 
 export default function HomePage({
   initialFootprintValue,
