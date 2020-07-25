@@ -17,7 +17,7 @@ export default function PasswordResetPage() {
 
       {passwordResetted ? (
         <>
-          <p>We send you a link to reset your password</p>
+          <p>We send you a link to reset your password.</p>
           <Link to={ROUTES.SIGN_IN}>Cool! I want to log in again!</Link>
         </>
       ) : (

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
@@ -13,12 +13,16 @@ export default function ProfilePage() {
 
   const { user, firebaseApp } = useContext(AuthUserContext)
   const [userData, setUserData] = useState({
-    username: user ? user.displayName : '',
-    email: user ? user.email : '',
+    displayName: '',
+    email: '',
   })
   const [editProfile, setEditProfile] = useState(false)
-
   const navigateTo = (path) => history.push(path)
+
+  useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem('user'))
+    setUserData(localUser)
+  }, [])
 
   async function logoutFromFirebase() {
     try {
@@ -42,10 +46,10 @@ export default function ProfilePage() {
         <label>
           Name
           <input
-            name="username"
+            name="displayName"
             disabled={editProfile ? false : true}
             type="text"
-            value={userData.username}
+            value={userData.displayName}
             onChange={handleChange}
           />
         </label>
@@ -129,9 +133,9 @@ const StyledForm = styled.form`
     font-weight: 200;
     margin-left: 20px;
     border: none;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--dust);
-    width: 200px;
+    width: 220px;
   }
   input:disabled {
     background: var(--sand);
