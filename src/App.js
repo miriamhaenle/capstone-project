@@ -79,6 +79,7 @@ export default function App() {
               updateFootprintPerTransportationType={
                 updateFootprintPerTransportationType
               }
+              user={user}
             />
           </Route>
           <Route path={ROUTES.FOOTPRINT_HISTORY}>

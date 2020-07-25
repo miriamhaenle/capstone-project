@@ -15,9 +15,8 @@ export default function HomePage({
   totalCarbonFootprint,
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
+  user,
 }) {
-  const { user } = useContext(LoginContext)
-
   const { isMobile } = useDeviceDetect()
   const [bubbleStatus, setBubbleStatus] = useState({
     active: false,

@@ -1,8 +1,7 @@
-import React from 'react'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-import { addParameters, addDecorator } from '@storybook/react'
+import { addDecorator, addParameters } from '@storybook/react'
+import React from 'react'
 import GlobalStyles from '../src/components/GlobalStyles'
-import LoginContext from '../src/components/auth/LoginContext'
 
 addDecorator((storyFn) => (
   <>

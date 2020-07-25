@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import LoginContext from '../../components/auth/LoginContext'
@@ -7,10 +9,21 @@ import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
 
 export default function ProfilePage() {
-  const { user } = useContext(LoginContext)
-  const [editProfile, setEditProfile] = useState(false)
-  const disabled = false
+  let history = useHistory()
 
+  const { user, firebaseApp } = useContext(LoginContext)
+  const [userData, setUserData] = useState({
+    username: user ? user.displayName : '',
+    email: user ? user.email : '',
+  })
+  const [editProfile, setEditProfile] = useState(false)
+
+  const navigateTo = (path) => history.push(path)
+
+  async function logoutFromFirebase() {
+    await firebaseApp.signOut()
+    navigateTo(ROUTES.WELCOME)
+  }
   return (
     <StyledMain>
       <Link to={ROUTES.ADD_TRIP}>
@@ -20,24 +33,43 @@ export default function ProfilePage() {
       <ProfileIcon>
         <img src={profileIcon} alt="profile" />
       </ProfileIcon>
-      {editProfile ? (
-        'Profile Form'
-      ) : (
-        <StyledSection>
-          <div>
-            Name: <span>{user ? user.displayName : null}</span>{' '}
-          </div>
-          <div>
-            Email: <span>{user ? user.email : null}</span>
-          </div>
-        </StyledSection>
-      )}
-      <Button onClick={handleClick} text="Edit" />
+
+      <StyledForm>
+        <label>
+          Name
+          <input
+            name="username"
+            disabled={editProfile ? false : true}
+            type="text"
+            value={userData.username}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Email
+          <input
+            name="email"
+            disabled={editProfile ? false : true}
+            type="text"
+            value={userData.email}
+            onChange={handleChange}
+          />
+        </label>
+      </StyledForm>
+
+      <Button onClick={handleClick} text={editProfile ? 'Save' : 'Edit'} />
+      <Button
+        onClick={logoutFromFirebase}
+        text="Log out"
+        color="var(--woodland)"
+      />
     </StyledMain>
   )
 
+  function handleChange(event) {
+    setUserData({ ...userData, [event.target.name]: event.target.value })
+  }
   function handleClick() {
-    console.log('click')
     setEditProfile(!editProfile)
   }
 }
@@ -76,18 +108,28 @@ const ProfileIcon = styled.div`
     height: 120px;
   }
 `
-const StyledSection = styled.section`
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
   padding: 30px 0;
   font-family: var(--headlineFont);
   font-weight: 500;
   font-size: 18px;
 
-  div {
+  label {
     padding: 20px 0;
   }
-  span {
+  input {
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
-    padding-left: 20px;
+    margin-left: 20px;
+    border: none;
+    font-size: 18px;
+    color: var(--dust);
+    width: 200px;
+  }
+  input:disabled {
+    background: var(--sand);
   }
 `
