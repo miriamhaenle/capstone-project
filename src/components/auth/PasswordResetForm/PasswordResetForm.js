@@ -1,38 +1,22 @@
 import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-
 import styled from 'styled-components'
-import * as ROUTES from '../../../constants/routes'
 import firebaseApp from '../../../firebase'
-import eyeIcon from '../../../images/eye.svg'
-import eyeIconHide from '../../../images/eyeIconHide.svg'
 import Button from '../../Button/Button'
 
-export default function SignInForm() {
-  let history = useHistory()
-
+export default function PasswordResetForm({ passwordReset }) {
   const INITIAL_VALUE = {
     email: '',
-    password: '',
     error: '',
   }
+
   const [userForm, setUserForm] = useState(INITIAL_VALUE)
-  const [showPassword, setShowPassword] = useState(false)
-
-  const isInvalid =
-    !userForm.password.length ||
-    !userForm.email.length ||
-    !/([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3})/.test(userForm.email)
-
-  const navigateTo = (path) => history.push(path)
   const resetForm = () => setUserForm(INITIAL_VALUE)
 
-  async function loginWithFirebase(email, password) {
+  async function passwordResetWithFirebase() {
     try {
-      await firebaseApp.signInWithEmailAndPassword(email, password)
-
-      navigateTo(ROUTES.HOME)
+      await firebaseApp.sendPasswordResetEmail(userForm.email)
       resetForm()
+      passwordReset(true)
     } catch (error) {
       console.error(error)
       setUserForm({ ...userForm, error })
@@ -49,53 +33,24 @@ export default function SignInForm() {
           onChange={handleChange}
           type="text"
           required
-        />
+        ></input>
       </label>
-      <label>
-        Password
-        <img
-          src={showPassword ? eyeIconHide : eyeIcon}
-          alt="show Password"
-          onClick={togglePassword}
-          data-cy="eyeIcon"
-        />
-        <input
-          name="password"
-          value={userForm.password}
-          onChange={handleChange}
-          type={showPassword ? 'text' : 'password'}
-          data-testid="password"
-          required
-        />
-      </label>
-      <Link to={ROUTES.PASSWORD_FORGET}>
-        <p>Forgot password?</p>
-      </Link>
       {userForm.error && (
         <StyledError data-cy="errorMessage">
           {userForm.error.message}
         </StyledError>
       )}
-      <Button
-        data-cy="signUp"
-        text="Sign in"
-        color={'var(--woodland)'}
-        type="submit"
-        disabled={isInvalid}
-      />
+      <Button text="Reset password" color="var(--woodland)" />
     </StyledForm>
   )
 
   function handleSubmit(event) {
     event.preventDefault()
-    loginWithFirebase(userForm.email, userForm.password)
+    passwordResetWithFirebase(userForm.email)
   }
 
   function handleChange(event) {
     setUserForm({ ...userForm, [event.target.name]: event.target.value })
-  }
-  function togglePassword() {
-    setShowPassword(!showPassword)
   }
 }
 

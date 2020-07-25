@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link, Route, Switch, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import LoginContext from '../../components/auth/LoginContext'
+import AuthUserContext from '../../components/auth/AuthUserContext'
 import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
 import useDeviceDetect from '../../components/utils/useDeviceDetect'
@@ -15,8 +15,8 @@ export default function HomePage({
   totalCarbonFootprint,
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
-  user,
 }) {
+  const { user } = useContext(AuthUserContext)
   const { isMobile } = useDeviceDetect()
   const [bubbleStatus, setBubbleStatus] = useState({
     active: false,

@@ -11,5 +11,6 @@ export default function useAuth() {
 
     return () => unsubscribe()
   }, [])
+
   return authUser
 }

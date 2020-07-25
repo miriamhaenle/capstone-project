@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import LoginContext from '../../components/auth/LoginContext'
+import AuthUserContext from '../../components/auth/AuthUserContext'
 import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
@@ -11,7 +11,7 @@ import profileIcon from '../../images/profileIcon.svg'
 export default function ProfilePage() {
   let history = useHistory()
 
-  const { user, firebaseApp } = useContext(LoginContext)
+  const { user, firebaseApp } = useContext(AuthUserContext)
   const [userData, setUserData] = useState({
     username: user ? user.displayName : '',
     email: user ? user.email : '',
@@ -21,8 +21,12 @@ export default function ProfilePage() {
   const navigateTo = (path) => history.push(path)
 
   async function logoutFromFirebase() {
-    await firebaseApp.signOut()
-    navigateTo(ROUTES.WELCOME)
+    try {
+      await firebaseApp.signOut()
+      navigateTo(ROUTES.WELCOME)
+    } catch (error) {
+      console.error(error)
+    }
   }
   return (
     <StyledMain>

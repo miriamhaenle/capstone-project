@@ -13,8 +13,9 @@ import SignInPage from './pages/SignIn/SignIn'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
 import WelcomePage from './pages/Welcome/Welcome'
 import ProfilePage from './pages/Profile/Profile'
-import LoginContext from './components/auth/LoginContext'
+import AuthUserContext from './components/auth/AuthUserContext'
 import firebaseApp from '../src/firebase'
+import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
 
 export default function App() {
   const user = useAuth()
@@ -64,7 +65,7 @@ export default function App() {
   }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
 
   return (
-    <LoginContext.Provider value={{ user, firebaseApp }}>
+    <AuthUserContext.Provider value={{ user, firebaseApp }}>
       <main>
         <ToastContainer autoClose={6000} draggablePercent={60} />
 
@@ -96,9 +97,12 @@ export default function App() {
           <Route path={ROUTES.PROFILE}>
             <ProfilePage />
           </Route>
+          <Route path={ROUTES.PASSWORD_FORGET}>
+            <ResetPasswordPage />
+          </Route>
         </Switch>
       </main>
-    </LoginContext.Provider>
+    </AuthUserContext.Provider>
   )
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
