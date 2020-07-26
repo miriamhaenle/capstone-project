@@ -6,6 +6,8 @@ import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
 
+import * as firebase from 'firebase'
+
 export default function ProfilePage() {
   let history = useHistory()
 
@@ -15,6 +17,9 @@ export default function ProfilePage() {
     email: user.email,
   })
   const [editProfile, setEditProfile] = useState(false)
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
   const navigateTo = (path) => history.push(path)
 
   async function logoutFromFirebase() {
@@ -25,8 +30,75 @@ export default function ProfilePage() {
       console.error(error)
     }
   }
+
+  function openModal() {
+    setShowConfirmPassword(true)
+  }
+
+  function closeModal() {
+    updateEmailForm()
+    setShowConfirmPassword(false)
+  }
+
+  async function updateEmail() {
+    if (!confirmPassword) {
+      window.alert('Password Not Confirmed')
+      return
+    }
+
+    const credentials = firebase.auth.EmailAuthProvider.credential(
+      user.email,
+      confirmPassword
+    )
+    try {
+      await user.reauthenticateWithCredential(credentials)
+      await user.updateEmail(userData.email)
+    } catch (err) {
+      console.warn(`Error: Email Address could not be updated. Message: ${err}`)
+    } finally {
+      closeModal()
+    }
+  }
+
+  function updateEmailForm() {
+    const user = firebase.auth().currentUser
+    setUserData({ ...userData, email: user.email })
+    setConfirmPassword('')
+  }
+
+  async function updateUserProfileFirebase(userData) {
+    const user = firebase.auth().currentUser
+
+    try {
+      await user.updateProfile({
+        displayName: userData.displayName,
+      })
+      if (userData.email !== user.email) {
+        openModal()
+      }
+    } catch (err) {
+      console.error(
+        `Updating ${user.displayName} failed. Error Message: ${err}`
+      )
+    }
+  }
+
   return (
     <StyledMain>
+      {showConfirmPassword && (
+        <StyledModal>
+          <div>
+            Confirm your Password
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+            />
+            <button onClick={closeModal}>Close</button>
+            <button onClick={updateEmail}>Confirm</button>
+          </div>
+        </StyledModal>
+      )}
       <Link to={ROUTES.ADD_TRIP}>
         <span>Go back</span>
       </Link>
@@ -58,7 +130,10 @@ export default function ProfilePage() {
         </label>
       </StyledForm>
 
-      <Button onClick={handleClick} text={editProfile ? 'Save' : 'Edit'} />
+      <Button
+        onClick={() => handleClick(!!editProfile)}
+        text={editProfile ? 'Save' : 'Edit'}
+      />
       <Button
         onClick={logoutFromFirebase}
         text="Log out"
@@ -70,12 +145,35 @@ export default function ProfilePage() {
   function handleChange(event) {
     setUserData({ ...userData, [event.target.name]: event.target.value })
   }
-  function handleClick() {
+  function handleClick(shouldSave) {
     setEditProfile(!editProfile)
+    if (shouldSave) {
+      updateUserProfileFirebase(userData)
+    }
   }
 }
 
+const StyledModal = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+
+  div {
+    position: absolute;
+    background: white;
+    height: 50%;
+    width: 80%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`
+
 const StyledMain = styled.main`
+  position: relative;
   background: var(--sand);
   height: 100vh;
   padding: 30px;

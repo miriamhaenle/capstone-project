@@ -16,6 +16,7 @@ import ProfilePage from './pages/Profile/Profile'
 import AuthUserContext from './components/auth/AuthUserContext'
 import firebaseApp from '../src/firebase'
 import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
+import styled from 'styled-components'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
@@ -66,7 +67,7 @@ export default function App() {
   }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
 
   if (!authCompleted) {
-    return <div>...Loading</div>
+    return <LoadingScreen>...Loading</LoadingScreen>
   }
 
   return (
@@ -121,3 +122,8 @@ export default function App() {
     )
   }
 }
+
+const LoadingScreen = styled.div`
+  color: var(--sand);
+  padding: 30px;
+`

@@ -6,9 +6,9 @@ import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
 import useDeviceDetect from '../../components/utils/useDeviceDetect'
 import * as ROUTES from '../../constants/routes'
-import profileIcon from '../../images/profileIcon.svg'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
+import settings from '../../images/settings.svg'
 
 export default function HomePage({
   initialFootprintValue,
@@ -29,7 +29,7 @@ export default function HomePage({
     <>
       <StyledHeader>
         <Link to={ROUTES.PROFILE}>
-          <StyledImage src={profileIcon} alt="profile" />
+          <StyledImage src={settings} alt="profile" />
         </Link>
       </StyledHeader>
 
@@ -57,6 +57,7 @@ export default function HomePage({
         <StyledWelcomeMessage>
           Welcome {user.displayName}
           <p>Start tracking your trips and activities!</p>
+          <img />
         </StyledWelcomeMessage>
       ) : null}
       <Switch>
