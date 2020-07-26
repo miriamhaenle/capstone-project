@@ -25,14 +25,12 @@ export default function SignInForm() {
     !/([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3})/.test(userForm.email)
 
   const navigateTo = (path) => history.push(path)
-  const resetForm = () => setUserForm(INITIAL_VALUE)
 
   async function loginWithFirebase(email, password) {
     try {
       await firebaseApp.signInWithEmailAndPassword(email, password)
 
       navigateTo(ROUTES.HOME)
-      resetForm()
     } catch (error) {
       console.error(error)
       setUserForm({ ...userForm, error })

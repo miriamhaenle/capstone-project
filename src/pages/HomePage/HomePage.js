@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, Route, Switch, useHistory } from 'react-router-dom'
+import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import AuthUserContext from '../../components/auth/AuthUserContext'
 import Navigation from '../../components/Navigation/Navigation'
@@ -23,12 +23,16 @@ export default function HomePage({
     timestamp: Date.now(),
   })
   const history = useHistory()
+  let location = useLocation()
 
   return (
     <>
-      <Link to={ROUTES.PROFILE}>
-        <StyledImage src={profileIcon} alt="profile" />
-      </Link>
+      <StyledHeader>
+        <Link to={ROUTES.PROFILE}>
+          <StyledImage src={profileIcon} alt="profile" />
+        </Link>
+      </StyledHeader>
+
       <Link
         to=""
         style={{ textDecoration: 'none' }}
@@ -47,8 +51,13 @@ export default function HomePage({
         />
       </Link>
       <Navigation />
-      {user ? (
-        <StyledWelcomeMessage>Welcome {user.displayName}</StyledWelcomeMessage>
+      {location.pathname !== ROUTES.ADD_TRIP &&
+      location.pathname !== ROUTES.ADD_ACTIVITY &&
+      user ? (
+        <StyledWelcomeMessage>
+          Welcome {user.displayName}
+          <p>Start tracking your trips and activities!</p>
+        </StyledWelcomeMessage>
       ) : null}
       <Switch>
         <Route path={ROUTES.ADD_TRIP}>
@@ -90,10 +99,15 @@ export default function HomePage({
   }
 }
 
+const StyledHeader = styled.header`
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  a {
+    padding: 20px;
+  }
+`
 const StyledImage = styled.img`
-  position: absolute;
-  top: 12px;
-  right: 15px;
   width: 30px;
 `
 

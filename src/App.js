@@ -18,7 +18,8 @@ import firebaseApp from '../src/firebase'
 import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
 
 export default function App() {
-  const user = useAuth()
+  const [user, authCompleted] = useAuth()
+
   const initialFootprintValue = 0
   const [carbonFootprint, setCarbonFootprint] = useState([
     initialFootprintValue,
@@ -63,6 +64,10 @@ export default function App() {
       footprintPerTransportationType
     )
   }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
+
+  if (!authCompleted) {
+    return <div>...Loading</div>
+  }
 
   return (
     <AuthUserContext.Provider value={{ user, firebaseApp }}>

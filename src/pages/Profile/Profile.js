@@ -1,7 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import AuthUserContext from '../../components/auth/AuthUserContext'
 import Button from '../../components/Button/Button'
@@ -13,21 +11,16 @@ export default function ProfilePage() {
 
   const { user, firebaseApp } = useContext(AuthUserContext)
   const [userData, setUserData] = useState({
-    displayName: '',
-    email: '',
+    displayName: user.displayName,
+    email: user.email,
   })
   const [editProfile, setEditProfile] = useState(false)
   const navigateTo = (path) => history.push(path)
 
-  useEffect(() => {
-    const localUser = JSON.parse(localStorage.getItem('user'))
-    setUserData(localUser)
-  }, [])
-
   async function logoutFromFirebase() {
     try {
-      await firebaseApp.signOut()
       navigateTo(ROUTES.WELCOME)
+      await firebaseApp.signOut()
     } catch (error) {
       console.error(error)
     }
@@ -84,7 +77,7 @@ export default function ProfilePage() {
 
 const StyledMain = styled.main`
   background: var(--sand);
-  height: 100%;
+  height: 100vh;
   padding: 30px;
   display: flex;
   flex-direction: column;
