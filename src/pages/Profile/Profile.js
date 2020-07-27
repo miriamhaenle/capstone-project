@@ -1,3 +1,4 @@
+import * as firebase from 'firebase'
 import React, { useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
@@ -5,10 +6,11 @@ import AuthUserContext from '../../components/auth/AuthUserContext'
 import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
-import * as firebase from 'firebase'
+import ConfirmPasswordModal from '../../components/ConfirmPasswordModal/ConfirmPasswordModal'
 
 export default function ProfilePage() {
   const history = useHistory()
+  const navigateTo = (path) => history.push(path)
 
   const { user, firebaseApp } = useContext(AuthUserContext)
   const [userData, setUserData] = useState({
@@ -19,26 +21,22 @@ export default function ProfilePage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const navigateTo = (path) => history.push(path)
+  async function updateUserProfileFirebase(userData) {
+    const user = firebase.auth().currentUser
 
-  async function logoutFromFirebase() {
     try {
-      navigateTo(ROUTES.WELCOME)
-      await firebaseApp.signOut()
-    } catch (error) {
-      console.error(error)
+      await user.updateProfile({
+        displayName: userData.displayName,
+      })
+      if (userData.email !== user.email) {
+        openModal()
+      }
+    } catch (err) {
+      console.error(
+        `Updating ${user.displayName} failed. Error Message: ${err}`
+      )
     }
   }
-
-  function openModal() {
-    setShowConfirmPassword(true)
-  }
-
-  function closeModal() {
-    updateEmailForm()
-    setShowConfirmPassword(false)
-  }
-
   async function updateEmail() {
     if (!confirmPassword) {
       window.alert('Password not confirmed')
@@ -65,42 +63,24 @@ export default function ProfilePage() {
     setConfirmPassword('')
   }
 
-  async function updateUserProfileFirebase(userData) {
-    const user = firebase.auth().currentUser
-
+  async function logoutFromFirebase() {
     try {
-      await user.updateProfile({
-        displayName: userData.displayName,
-      })
-      if (userData.email !== user.email) {
-        openModal()
-      }
-    } catch (err) {
-      console.error(
-        `Updating ${user.displayName} failed. Error Message: ${err}`
-      )
+      navigateTo(ROUTES.WELCOME)
+      await firebaseApp.signOut()
+    } catch (error) {
+      console.error(error)
     }
   }
 
   return (
     <StyledMain>
       {showConfirmPassword && (
-        <StyledModal>
-          <div>
-            Please confirm your password to change your email address.
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
-            />
-            <Button
-              color="var(--woodland)"
-              text="Confirm"
-              onClick={updateEmail}
-            />
-            <Button text="Close" onClick={closeModal} />
-          </div>
-        </StyledModal>
+        <ConfirmPasswordModal
+          confirmPassword={confirmPassword}
+          updateEmail={updateEmail}
+          updateConfirmPassword={updateConfirmPassword}
+          closeModal={closeModal}
+        />
       )}
       <Link to={ROUTES.ADD_TRIP}>
         <span>Go back</span>
@@ -150,6 +130,19 @@ export default function ProfilePage() {
     if (shouldSave) {
       updateUserProfileFirebase(userData)
     }
+  }
+
+  function openModal() {
+    setShowConfirmPassword(true)
+  }
+
+  function closeModal() {
+    updateEmailForm()
+    setShowConfirmPassword(false)
+  }
+
+  function updateConfirmPassword(input) {
+    setConfirmPassword(input)
   }
 }
 

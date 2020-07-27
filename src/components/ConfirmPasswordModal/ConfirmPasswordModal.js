@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import Button from '../Button/Button'
 
 export default function ConfirmPasswordModal({
   confirmPassword,
   updateEmail,
+  updateConfirmPassword,
   closeModal,
 }) {
   return (
@@ -13,10 +15,10 @@ export default function ConfirmPasswordModal({
         <input
           type="password"
           value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
+          onChange={(event) => updateConfirmPassword(event.target.value)}
         />
-        <Button color="var(--woodland)" text="confirm" onClick={updateEmail} />
-        <Button text="close" onClick={closeModal} />
+        <Button color="var(--woodland)" text="Confirm" onClick={updateEmail} />
+        <Button text="Close" onClick={closeModal} />
       </div>
     </StyledModal>
   )
