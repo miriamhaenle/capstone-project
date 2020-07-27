@@ -9,16 +9,17 @@ import profileIcon from '../../images/profileIcon.svg'
 import ConfirmPasswordModal from '../../components/ConfirmPasswordModal/ConfirmPasswordModal'
 
 export default function ProfilePage() {
+  const { user, firebaseApp } = useContext(AuthUserContext)
+
   const history = useHistory()
   const navigateTo = (path) => history.push(path)
 
-  const { user, firebaseApp } = useContext(AuthUserContext)
   const [userData, setUserData] = useState({
     displayName: user.displayName,
     email: user.email,
   })
   const [editProfile, setEditProfile] = useState(false)
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmationPassword, setConfirmationPassword] = useState('')
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   async function updateUserProfileFirebase(userData) {
@@ -37,15 +38,15 @@ export default function ProfilePage() {
       )
     }
   }
-  async function updateEmail() {
-    if (!confirmPassword) {
+  async function updateEmailWithFirebase() {
+    if (!confirmationPassword) {
       window.alert('Password not confirmed')
       return
     }
 
     const credentials = firebase.auth.EmailAuthProvider.credential(
       user.email,
-      confirmPassword
+      confirmationPassword
     )
     try {
       await user.reauthenticateWithCredential(credentials)
@@ -60,7 +61,7 @@ export default function ProfilePage() {
   function updateEmailForm() {
     const user = firebase.auth().currentUser
     setUserData({ ...userData, email: user.email })
-    setConfirmPassword('')
+    setConfirmationPassword('')
   }
 
   async function logoutFromFirebase() {
@@ -76,9 +77,9 @@ export default function ProfilePage() {
     <StyledMain>
       {showConfirmPassword && (
         <ConfirmPasswordModal
-          confirmPassword={confirmPassword}
-          updateEmail={updateEmail}
-          updateConfirmPassword={updateConfirmPassword}
+          confirmationPassword={confirmationPassword}
+          updateEmailWithFirebase={updateEmailWithFirebase}
+          updateConfirmationPassword={updateConfirmationPassword}
           closeModal={closeModal}
         />
       )}
@@ -141,39 +142,10 @@ export default function ProfilePage() {
     setShowConfirmPassword(false)
   }
 
-  function updateConfirmPassword(input) {
-    setConfirmPassword(input)
+  function updateConfirmationPassword(input) {
+    setConfirmationPassword(input)
   }
 }
-
-const StyledModal = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.4);
-
-  div {
-    align-items: center;
-    border-radius: 2px;
-    position: absolute;
-    background: var(--sand);
-    height: 50%;
-    width: 80%;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    color: var(--dusk);
-  }
-
-  input {
-    margin: 20px;
-  }
-`
 
 const StyledMain = styled.main`
   position: relative;

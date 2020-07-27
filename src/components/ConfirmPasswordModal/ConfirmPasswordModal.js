@@ -4,8 +4,8 @@ import Button from '../Button/Button'
 
 export default function ConfirmPasswordModal({
   confirmPassword,
-  updateEmail,
-  updateConfirmPassword,
+  updateEmailWithFirebase,
+  updateConfirmationPassword,
   closeModal,
 }) {
   return (
@@ -15,9 +15,13 @@ export default function ConfirmPasswordModal({
         <input
           type="password"
           value={confirmPassword}
-          onChange={(event) => updateConfirmPassword(event.target.value)}
+          onChange={(event) => updateConfirmationPassword(event.target.value)}
         />
-        <Button color="var(--woodland)" text="Confirm" onClick={updateEmail} />
+        <Button
+          color="var(--woodland)"
+          text="Confirm"
+          onClick={updateEmailWithFirebase}
+        />
         <Button text="Close" onClick={closeModal} />
       </div>
     </StyledModal>
