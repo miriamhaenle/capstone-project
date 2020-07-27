@@ -39,9 +39,8 @@ export function SignUpForm() {
       await newUser.user.updateProfile({
         displayName: username,
       })
-
-      navigateTo(ROUTES.HOME)
       resetForm()
+      navigateTo(ROUTES.HOME)
     } catch (error) {
       console.error(error)
       setUserForm({ ...userForm, error })
