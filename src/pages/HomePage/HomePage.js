@@ -6,9 +6,10 @@ import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
 import useDeviceDetect from '../../components/utils/useDeviceDetect'
 import * as ROUTES from '../../constants/routes'
+import settings from '../../images/settings.svg'
+import homeIcon from '../../images/sustainable.svg'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
-import settings from '../../images/settings.svg'
 
 export default function HomePage({
   initialFootprintValue,
@@ -55,9 +56,12 @@ export default function HomePage({
       location.pathname !== ROUTES.ADD_ACTIVITY &&
       user ? (
         <StyledWelcomeMessage>
-          Welcome {user.displayName}
-          <p>Start tracking your trips and activities!</p>
-          <img />
+          <h4>Welcome {user.displayName}</h4>
+          <p>
+            Start tracking your travels for events or training camps and see how
+            they impact your carbon footprint.{' '}
+          </p>
+          <img src={homeIcon} alt="cyclist" />
         </StyledWelcomeMessage>
       ) : null}
       <Switch>
@@ -112,7 +116,14 @@ const StyledImage = styled.img`
   width: 30px;
 `
 
-const StyledWelcomeMessage = styled.p`
+const StyledWelcomeMessage = styled.div`
   color: var(--sand);
-  padding: 30px;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 80px;
+    align-self: center;
+  }
 `

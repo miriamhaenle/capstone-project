@@ -1,17 +1,19 @@
-import React, { useContext, render } from 'react'
+import { addDecorator } from '@storybook/react'
+import React from 'react'
+import AuthUserContext from '../../components/auth/AuthUserContext'
 import ProfilePage from './Profile'
-// import LoginContext from '../../components/auth/LoginContext'
-import WithContext from 'react-with-context'
 
-const LoginContext = { user: { username: 'test' } }
-
+addDecorator((storyFn) => {
+  const user = true
+  return (
+    <AuthUserContext.Provider value={user}>
+      {storyFn(user)}
+    </AuthUserContext.Provider>
+  )
+})
 export default {
   title: 'Profile Page',
   component: ProfilePage,
 }
 
-export const profilePage = () => (
-  <WithContext context={LoginContext}>
-    <ProfilePage />
-  </WithContext>
-)
+export const profilePage = () => <ProfilePage />

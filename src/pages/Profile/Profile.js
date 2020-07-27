@@ -5,11 +5,10 @@ import AuthUserContext from '../../components/auth/AuthUserContext'
 import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
-
 import * as firebase from 'firebase'
 
 export default function ProfilePage() {
-  let history = useHistory()
+  const history = useHistory()
 
   const { user, firebaseApp } = useContext(AuthUserContext)
   const [userData, setUserData] = useState({
@@ -42,7 +41,7 @@ export default function ProfilePage() {
 
   async function updateEmail() {
     if (!confirmPassword) {
-      window.alert('Password Not Confirmed')
+      window.alert('Password not confirmed')
       return
     }
 
@@ -88,14 +87,18 @@ export default function ProfilePage() {
       {showConfirmPassword && (
         <StyledModal>
           <div>
-            Confirm your Password
+            Please confirm your password to change your email address.
             <input
               type="password"
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
             />
-            <button onClick={closeModal}>Close</button>
-            <button onClick={updateEmail}>Confirm</button>
+            <Button
+              color="var(--woodland)"
+              text="Confirm"
+              onClick={updateEmail}
+            />
+            <Button text="Close" onClick={closeModal} />
           </div>
         </StyledModal>
       )}
@@ -133,12 +136,9 @@ export default function ProfilePage() {
       <Button
         onClick={() => handleClick(!!editProfile)}
         text={editProfile ? 'Save' : 'Edit'}
-      />
-      <Button
-        onClick={logoutFromFirebase}
-        text="Log out"
         color="var(--woodland)"
       />
+      <Button onClick={logoutFromFirebase} text="Log out" />
     </StyledMain>
   )
 
@@ -162,13 +162,23 @@ const StyledModal = styled.div`
   background: rgba(0, 0, 0, 0.4);
 
   div {
+    align-items: center;
+    border-radius: 2px;
     position: absolute;
-    background: white;
+    background: var(--sand);
     height: 50%;
     width: 80%;
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    color: var(--dusk);
+  }
+
+  input {
+    margin: 20px;
   }
 `
 
