@@ -1,17 +1,26 @@
 import React from 'react'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 import SignInForm from './SignInForm'
 import '@testing-library/jest-dom/extend-expect'
 
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
+const history = createMemoryHistory()
+
 describe('Sign In form renders correctly', () => {
+  let renderedComponent
+
   beforeEach(() => {
-    render(<SignInForm />)
+    renderedComponent = render(
+      <Router history={history}>
+        <SignInForm />
+      </Router>
+    )
   })
 
   it('should render the form', () => {
-    const renderedComponent = render(<SignInForm />)
     expect(renderedComponent).toBeTruthy()
   })
 
@@ -42,7 +51,11 @@ describe('Sign In form renders correctly', () => {
 
 describe('Input tests', () => {
   beforeEach(() => {
-    const { getAllByRole } = render(<SignInForm />)
+    const { getAllByRole } = render(
+      <Router history={history}>
+        <SignInForm />
+      </Router>
+    )
   })
 
   it('should be possible to write into the email field', async () => {

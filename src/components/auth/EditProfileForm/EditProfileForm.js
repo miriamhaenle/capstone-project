@@ -57,6 +57,7 @@ export default function EditProfileForm({
 }
 
 const StyledForm = styled.form`
+  background: var(--sand);
   display: flex;
   flex-direction: column;
   padding: 30px 0 0;

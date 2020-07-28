@@ -34,9 +34,7 @@ export default function ProfilePage() {
         openModal()
       }
     } catch (error) {
-      setErrorMessage(
-        `Updating ${user.displayName} failed. Error Message: ${error}`
-      )
+      setErrorMessage(`Updating ${user.displayName} failed. ${error}`)
     }
   }
 
@@ -55,9 +53,7 @@ export default function ProfilePage() {
       await user.updateEmail(userData.email)
     } catch (error) {
       console.log(error.message)
-      setErrorMessage(
-        `Error: Email Address could not be updated. Message: ${error}`
-      )
+      setErrorMessage(`Email Address could not be updated. ${error}`)
     } finally {
       closeModal()
     }
@@ -106,16 +102,6 @@ export default function ProfilePage() {
     </StyledMain>
   )
 
-  function handleChange(event) {
-    setUserData({ ...userData, [event.target.name]: event.target.value })
-  }
-  function handleClick(shouldSave) {
-    setEditProfile(!editProfile)
-    if (shouldSave) {
-      updateUserProfileFirebase(userData)
-    }
-  }
-
   function closeModal() {
     updateEmailForm()
     setShowConfirmPassword(false)
@@ -136,7 +122,7 @@ export default function ProfilePage() {
 const StyledMain = styled.main`
   position: relative;
   background: var(--sand);
-  height: 100%;
+  height: 100vh;
   padding: 30px;
   display: flex;
   flex-direction: column;
