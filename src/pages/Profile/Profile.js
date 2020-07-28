@@ -149,7 +149,7 @@ const ProfileIcon = styled.div`
   padding: 30px;
 
   img {
-    width: 120px;
-    height: 120px;
+    width: 115px;
+    height: 115px;
   }
 `

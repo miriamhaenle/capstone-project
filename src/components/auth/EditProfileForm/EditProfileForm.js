@@ -66,7 +66,7 @@ const StyledForm = styled.form`
   font-size: 18px;
 
   label {
-    padding: 20px 0;
+    padding: 0 0 20px;
   }
   input {
     font-family: 'Poppins', sans-serif;
@@ -76,6 +76,7 @@ const StyledForm = styled.form`
     font-size: 16px;
     color: var(--dust);
     width: 220px;
+    padding: 9px;
   }
   input:disabled {
     background: var(--sand);

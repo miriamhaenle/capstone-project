@@ -114,6 +114,9 @@ const StyledHeader = styled.header`
 `
 const StyledImage = styled.img`
   width: 30px;
+  &:hover {
+    transform: rotate(90deg);
+  }
 `
 
 const StyledWelcomeMessage = styled.div`

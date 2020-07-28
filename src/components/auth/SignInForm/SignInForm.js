@@ -113,7 +113,7 @@ const StyledForm = styled.form`
     background: var(--orange-yellow);
     color: var(--dusk);
     margin: 20px 0;
-    padding: 5px;
+    padding: 9px;
     font-size: 16px;
   }
   label {

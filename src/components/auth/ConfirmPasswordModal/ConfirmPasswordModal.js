@@ -61,6 +61,13 @@ const StyledModal = styled.div`
   }
 
   input {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
     margin: 20px;
+    border: none;
+    font-size: 16px;
+    color: var(--dust);
+    width: 220px;
+    padding: 9px;
   }
 `

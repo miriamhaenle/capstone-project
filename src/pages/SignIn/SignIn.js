@@ -30,7 +30,7 @@ const StyledMain = styled.main`
   img {
     width: 76px;
     display: block;
-    margin: 60px auto;
+    margin: 50px auto;
   }
 
   a {
