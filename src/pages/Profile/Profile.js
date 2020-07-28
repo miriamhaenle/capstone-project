@@ -19,7 +19,6 @@ export default function ProfilePage() {
     displayName: user.displayName,
     email: user.email,
   })
-  const [editProfile, setEditProfile] = useState(false)
   const [confirmationPassword, setConfirmationPassword] = useState('')
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
