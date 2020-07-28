@@ -4,16 +4,17 @@ import AuthUserContext from '../../components/auth/AuthUserContext'
 import ProfilePage from './Profile'
 
 addDecorator((storyFn) => {
-  const user = true
+  const user = { displayName: 'Bob', email: 'bob@babbit.com' }
   return (
     <AuthUserContext.Provider value={user}>
-      {storyFn(user)}
+      {storyFn({ user })}
     </AuthUserContext.Provider>
   )
 })
+
 export default {
   title: 'Profile Page',
   component: ProfilePage,
 }
 
-export const profilePage = () => <ProfilePage />
+export const profilePage = () => <ProfilePage value={{ user }} />
