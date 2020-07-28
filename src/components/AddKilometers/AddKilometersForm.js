@@ -57,10 +57,18 @@ export default function AddKilometersForm({
         <Button
           disabled={values.distance >= 0.1 ? false : true}
           text="Add"
-        ></Button>
+          onClick={scrollToTop}
+        />
       </StyledForm>
     </>
   )
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
 }
 AddKilometersForm.propTypes = {
   paragraph: PropTypes.string,
