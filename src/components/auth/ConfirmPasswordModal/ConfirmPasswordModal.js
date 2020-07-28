@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from '../Button/Button'
+import Button from '../../Button/Button'
+import PropTypes from 'prop-types'
 
 export default function ConfirmPasswordModal({
-  confirmPassword,
+  confirmationPassword,
   updateEmailWithFirebase,
   updateConfirmationPassword,
   closeModal,
@@ -14,7 +15,7 @@ export default function ConfirmPasswordModal({
         Please confirm your password to change your email address.
         <input
           type="password"
-          value={confirmPassword}
+          value={confirmationPassword}
           onChange={(event) => updateConfirmationPassword(event.target.value)}
         />
         <Button
@@ -26,6 +27,13 @@ export default function ConfirmPasswordModal({
       </div>
     </StyledModal>
   )
+}
+
+ConfirmPasswordModal.propTypes = {
+  confirmationPassword: PropTypes.string,
+  updateEmailWithFirebase: PropTypes.func,
+  updateConfirmationPassword: PropTypes.func,
+  closeModal: PropTypes.func,
 }
 
 const StyledModal = styled.div`

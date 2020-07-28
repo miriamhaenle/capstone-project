@@ -3,10 +3,11 @@ import React, { useContext, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import AuthUserContext from '../../components/auth/AuthUserContext'
+import ConfirmPasswordModal from '../../components/auth/ConfirmPasswordModal/ConfirmPasswordModal'
+import EditProfileForm from '../../components/auth/EditProfileForm/EditProfileForm'
 import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
-import ConfirmPasswordModal from '../../components/ConfirmPasswordModal/ConfirmPasswordModal'
 
 export default function ProfilePage() {
   const { user, firebaseApp } = useContext(AuthUserContext)
@@ -21,10 +22,10 @@ export default function ProfilePage() {
   const [editProfile, setEditProfile] = useState(false)
   const [confirmationPassword, setConfirmationPassword] = useState('')
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   async function updateUserProfileFirebase(userData) {
     const user = firebase.auth().currentUser
-
     try {
       await user.updateProfile({
         displayName: userData.displayName,
@@ -32,15 +33,16 @@ export default function ProfilePage() {
       if (userData.email !== user.email) {
         openModal()
       }
-    } catch (err) {
-      console.error(
-        `Updating ${user.displayName} failed. Error Message: ${err}`
+    } catch (error) {
+      setErrorMessage(
+        `Updating ${user.displayName} failed. Error Message: ${error}`
       )
     }
   }
+
   async function updateEmailWithFirebase() {
     if (!confirmationPassword) {
-      window.alert('Password not confirmed')
+      setErrorMessage('Password not confirmed!')
       return
     }
 
@@ -51,8 +53,11 @@ export default function ProfilePage() {
     try {
       await user.reauthenticateWithCredential(credentials)
       await user.updateEmail(userData.email)
-    } catch (err) {
-      console.warn(`Error: Email Address could not be updated. Message: ${err}`)
+    } catch (error) {
+      console.log(error.message)
+      setErrorMessage(
+        `Error: Email Address could not be updated. Message: ${error}`
+      )
     } finally {
       closeModal()
     }
@@ -69,7 +74,7 @@ export default function ProfilePage() {
       navigateTo(ROUTES.WELCOME)
       await firebaseApp.signOut()
     } catch (error) {
-      console.error(error)
+      setErrorMessage('error.message')
     }
   }
 
@@ -91,33 +96,11 @@ export default function ProfilePage() {
         <img src={profileIcon} alt="profile" />
       </ProfileIcon>
 
-      <StyledForm>
-        <label>
-          Name
-          <input
-            name="displayName"
-            disabled={editProfile ? false : true}
-            type="text"
-            value={userData.displayName}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Email
-          <input
-            name="email"
-            disabled={editProfile ? false : true}
-            type="text"
-            value={userData.email}
-            onChange={handleChange}
-          />
-        </label>
-      </StyledForm>
-
-      <Button
-        onClick={() => handleClick(!!editProfile)}
-        text={editProfile ? 'Save' : 'Edit'}
-        color="var(--woodland)"
+      <EditProfileForm
+        updateUserProfileFirebase={updateUserProfileFirebase}
+        userData={userData}
+        setUserData={updateUserData}
+        errorMessage={errorMessage}
       />
       <Button onClick={logoutFromFirebase} text="Log out" />
     </StyledMain>
@@ -133,24 +116,27 @@ export default function ProfilePage() {
     }
   }
 
-  function openModal() {
-    setShowConfirmPassword(true)
-  }
-
   function closeModal() {
     updateEmailForm()
     setShowConfirmPassword(false)
   }
+  function openModal() {
+    setShowConfirmPassword(true)
+  }
 
   function updateConfirmationPassword(input) {
     setConfirmationPassword(input)
+  }
+
+  function updateUserData(input) {
+    setUserData(input)
   }
 }
 
 const StyledMain = styled.main`
   position: relative;
   background: var(--sand);
-  height: 100vh;
+  height: 100%;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -180,30 +166,5 @@ const ProfileIcon = styled.div`
   img {
     width: 120px;
     height: 120px;
-  }
-`
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding: 30px 0;
-  font-family: var(--headlineFont);
-  font-weight: 500;
-  font-size: 18px;
-
-  label {
-    padding: 20px 0;
-  }
-  input {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-    margin-left: 20px;
-    border: none;
-    font-size: 16px;
-    color: var(--dust);
-    width: 220px;
-  }
-  input:disabled {
-    background: var(--sand);
   }
 `
