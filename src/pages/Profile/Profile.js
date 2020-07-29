@@ -33,7 +33,8 @@ export default function ProfilePage() {
         openModal()
       }
     } catch (error) {
-      setErrorMessage(`Updating ${user.displayName} failed. ${error}`)
+      console.error('error')
+      setErrorMessage(`Updating ${user.displayName} failed. `)
     }
   }
 
