@@ -15,9 +15,8 @@ export default function useAuth() {
       if (!user) {
         history.push(ROUTES.WELCOME)
       }
-      if (!isAuthCompleted) {
-        setIsAuthCompleted(true)
-      }
+
+      setIsAuthCompleted(true)
     })
 
     return () => unsubscribe()

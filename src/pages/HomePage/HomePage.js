@@ -10,6 +10,7 @@ import settings from '../../images/settings.svg'
 import homeIcon from '../../images/sustainable.svg'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
+import PropTypes from 'prop-types'
 
 export default function HomePage({
   initialFootprintValue,
@@ -59,7 +60,7 @@ export default function HomePage({
           <h4>Welcome {user.displayName}</h4>
           <p>
             Start tracking your travels for events or training camps and see how
-            they impact your carbon footprint.{' '}
+            they impact your carbon footprint.
           </p>
           <img src={homeIcon} alt="cyclist" />
         </StyledWelcomeMessage>
@@ -104,6 +105,13 @@ export default function HomePage({
   }
 }
 
+HomePage.propTypes = {
+  initialFootprintValue: PropTypes.number,
+  totalCarbonFootprint: PropTypes.number,
+  updateCarbonFootprint: PropTypes.func,
+  updateFootprintPerTransportationType: PropTypes.func,
+}
+
 const StyledHeader = styled.header`
   display: flex;
   justify-content: flex-end;
@@ -114,8 +122,11 @@ const StyledHeader = styled.header`
 `
 const StyledImage = styled.img`
   width: 30px;
-  &:hover {
+  :hover {
     transform: rotate(90deg);
+  }
+  :active {
+    transform: rotate(180deg);
   }
 `
 

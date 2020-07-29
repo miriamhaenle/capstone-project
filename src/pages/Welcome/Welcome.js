@@ -58,7 +58,6 @@ const HighlightSection = styled.section`
   text-align: end;
 
   h2 {
-    font-family: var(--headlineFont);
     font-weight: 100;
   }
 `

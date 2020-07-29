@@ -81,12 +81,12 @@ export default function App() {
           </Route>
           <Route path={ROUTES.HOME}>
             <HomePage
+              initialFootprintValue={initialFootprintValue}
               totalCarbonFootprint={totalCarbonFootprint}
               updateCarbonFootprint={updateCarbonFootprint}
               updateFootprintPerTransportationType={
                 updateFootprintPerTransportationType
               }
-              user={user}
             />
           </Route>
           <Route path={ROUTES.FOOTPRINT_HISTORY}>

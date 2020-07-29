@@ -51,7 +51,7 @@ export default function ProfilePage() {
       await user.reauthenticateWithCredential(credentials)
       await user.updateEmail(userData.email)
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
       setErrorMessage(`Email Address could not be updated. ${error}`)
     } finally {
       closeModal()
@@ -69,7 +69,8 @@ export default function ProfilePage() {
       navigateTo(ROUTES.WELCOME)
       await firebaseApp.signOut()
     } catch (error) {
-      setErrorMessage('error.message')
+      console.error(error.message)
+      setErrorMessage('Ups! Something went wrong. Please try again.')
     }
   }
 
@@ -126,9 +127,6 @@ const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
 
-  h2 {
-    font-family: var(--headlineFont);
-  }
   a {
     color: var(--woodland);
   }

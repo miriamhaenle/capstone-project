@@ -16,6 +16,7 @@ export default function SumCarbonFootprint({
 
   useEffect(() => {
     setFootprintChanged(!footprintChanged)
+    // eslint-disable-next-line
   }, [sumCarbonFootprint])
 
   return (
