@@ -57,10 +57,18 @@ export default function AddKilometersForm({
         <Button
           disabled={values.distance >= 0.1 ? false : true}
           text="Add"
-        ></Button>
+          onClick={scrollToTop}
+        />
       </StyledForm>
     </>
   )
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
 }
 AddKilometersForm.propTypes = {
   paragraph: PropTypes.string,
@@ -88,7 +96,10 @@ const StyledForm = styled.form`
   p {
     width: 315px;
     margin: 0;
-    padding-bottom: 10px;
+  }
+
+  label {
+    padding: 30px 0;
   }
 `
 const KilometerInput = styled.input`
@@ -97,6 +108,6 @@ const KilometerInput = styled.input`
   width: 315px;
   background: var(--sand);
   color: var(--dusk);
-  margin: 25px 0;
-  padding: 5px;
+  margin: 10px 0;
+  padding: 9px;
 `

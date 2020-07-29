@@ -1,19 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SignUpForm } from '../../components/auth/SignUpForm'
-import * as ROUTES from '../../constants/routes'
+import SignInForm from '../../components/auth/SignInForm/SignInForm'
 import triathlete from '../../images/triathlete.svg'
+import * as ROUTES from '../../constants/routes'
 
-export default function SignUpPage() {
+export default function SignInPage() {
   return (
     <StyledMain>
       <Link to={ROUTES.WELCOME}>
         <span>Go back</span>
       </Link>
-      <h2>Registration</h2>
+      <h2>Login</h2>
       <img src={triathlete} alt="triathlete" />
-      <SignUpForm />
+      <SignInForm />
     </StyledMain>
   )
 }
@@ -21,7 +21,7 @@ export default function SignUpPage() {
 const StyledMain = styled.main`
   padding: 30px 30px;
   background: var(--sand);
-  height: 100%;
+  height: 100vh;
   color: var(--woodland);
 
   h2 {
@@ -32,6 +32,7 @@ const StyledMain = styled.main`
     display: block;
     margin: 50px auto;
   }
+
   a {
     color: var(--woodland);
   }

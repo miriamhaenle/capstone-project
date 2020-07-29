@@ -6,16 +6,18 @@ import { Router } from 'react-router-dom'
 import SignUpPage from './SignUpPage'
 
 describe('Sign up page', () => {
-  let renderedPage
-
-  beforeEach(() => {
-    renderedPage = render(<SignUpPage />)
-  })
-
   it('should render the page', () => {
+    let history = createMemoryHistory()
+
+    const renderedPage = render(
+      <Router history={history}>
+        <SignUpPage />
+      </Router>
+    )
     expect(renderedPage).toBeTruthy()
   })
   it('should render the headline', () => {
-    expect(screen.getByRole('heading')).toBeInTheDocument()
+    const logoHeadline = screen.findByTestId('logoHeadline')
+    expect(logoHeadline).toBeTruthy()
   })
 })

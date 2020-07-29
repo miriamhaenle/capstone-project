@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
@@ -12,13 +12,21 @@ export default function SumCarbonFootprint({
     number: Number(sumCarbonFootprint),
     from: { number: 0 },
   })
+  const [footprintChanged, setFootprintChanged] = useState(false)
+
+  useEffect(() => {
+    setFootprintChanged(!footprintChanged)
+    // eslint-disable-next-line
+  }, [sumCarbonFootprint])
 
   return (
     <StyledSumCarbonFootprint bubbleClicked={bubbleStatus.active}>
       <animated.span data-cy="sumFootprint" role="note">
-        {springProps.number.interpolate((valueToInterpolate) =>
-          valueToInterpolate.toFixed(2)
-        )}
+        {footprintChanged
+          ? sumCarbonFootprint
+          : springProps.number.interpolate((valueToInterpolate) =>
+              valueToInterpolate.toFixed(2)
+            )}
       </animated.span>
       <p>kg CO2</p>
       {isMobile ? <StyledP>Tap to see history</StyledP> : ''}

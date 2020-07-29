@@ -39,9 +39,8 @@ export function SignUpForm() {
       await newUser.user.updateProfile({
         displayName: username,
       })
-
-      navigateTo(ROUTES.HOME)
       resetForm()
+      navigateTo(ROUTES.HOME)
     } catch (error) {
       console.error(error)
       setUserForm({ ...userForm, error })
@@ -50,7 +49,6 @@ export function SignUpForm() {
 
   return (
     <>
-      {' '}
       <StyledForm onSubmit={handleSubmit}>
         <label>
           Your name
@@ -140,7 +138,6 @@ export function SignUpForm() {
 
 const StyledForm = styled.form`
   background: var(--sand);
-
   padding: 0 30px;
   display: flex;
   flex-direction: column;
@@ -155,7 +152,7 @@ const StyledForm = styled.form`
     background: var(--orange-yellow);
     color: var(--dusk);
     margin: 20px 0;
-    padding: 5px;
+    padding: 9px;
     font-size: 16px;
   }
   label {

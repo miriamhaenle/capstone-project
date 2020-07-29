@@ -55,6 +55,7 @@
     "cypress": "^4.9.0",
     "jest-localstorage-mock": "^2.4.3",
     "msw": "^0.19.5",
+    "react-with-context": "^2.0.0",
     "storybook-react-router": "^1.0.8"
   }
 }

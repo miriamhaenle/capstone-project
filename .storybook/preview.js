@@ -1,12 +1,12 @@
-import React from 'react'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-import { addParameters, addDecorator } from '@storybook/react'
+import { addDecorator, addParameters } from '@storybook/react'
+import React from 'react'
 import GlobalStyles from '../src/components/GlobalStyles'
 
-addDecorator((s) => (
+addDecorator((storyFn) => (
   <>
     <GlobalStyles />
-    {s()}
+    {storyFn()}
   </>
 ))
 

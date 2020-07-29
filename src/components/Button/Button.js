@@ -2,9 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-export default function Button({ text, disabled, color }) {
+export default function Button({ text, disabled, color, onClick }) {
   return (
-    <StyledButton disabled={disabled} data-cy="button" color={color}>
+    <StyledButton
+      disabled={disabled}
+      data-cy="button"
+      color={color}
+      onClick={onClick}
+    >
       {text}
     </StyledButton>
   )
@@ -13,6 +18,7 @@ Button.propTypes = {
   text: PropTypes.string,
   disabled: PropTypes.bool,
   color: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 const StyledButton = styled.button`
