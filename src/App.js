@@ -17,6 +17,8 @@ import AuthUserContext from './components/auth/AuthUserContext'
 import firebaseApp from '../src/firebase'
 import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
 import styled from 'styled-components'
+import { db } from './firebase/index'
+import firebase from 'firebase'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
@@ -49,22 +51,37 @@ export default function App() {
     )
 
     setTotalCarbonFootprint(historicTotalCarbonFootprint)
-    setFootprintPerTransportationType(
-      historyFootprintPerTransportationType || []
-    )
+    historyFootprintPerTransportationType &&
+      setFootprintPerTransportationType(historyFootprintPerTransportationType)
   }, [])
 
   useEffect(() => {
-    saveToStorage(APP_STORAGE_KEYS.footprintHistory, carbonFootprint)
+    if (user) {
+      saveToFirebase(
+        user.uid,
+        APP_STORAGE_KEYS.footprintHistory,
+        carbonFootprint
+      )
+
+      saveToFirebase(
+        user.uid,
+        APP_STORAGE_KEYS.footprintTotal,
+        totalCarbonFootprint
+      )
+
+      saveToFirebase(
+        user.uid,
+        APP_STORAGE_KEYS.footprintPerTransportType,
+        footprintPerTransportationType
+      )
+    }
     setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
-
-    saveToStorage(APP_STORAGE_KEYS.footprintTotal, totalCarbonFootprint)
-
-    saveToStorage(
-      APP_STORAGE_KEYS.footprintPerTransportType,
-      footprintPerTransportationType
-    )
-  }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
+  }, [
+    carbonFootprint,
+    totalCarbonFootprint,
+    footprintPerTransportationType,
+    user,
+  ])
 
   if (!authCompleted) {
     return <LoadingScreen>...Loading</LoadingScreen>
@@ -120,6 +137,29 @@ export default function App() {
         sum,
       })
     )
+  }
+
+  async function saveToFirebase(userId, key, footprintData) {
+    const userDoc = db
+      .collection('Footprint Data')
+      .doc(userId)
+      .collection(key)
+      .doc(key)
+    const docSnapshot = await userDoc.get()
+
+    if (docSnapshot.exist) {
+      await userDoc.update({
+        key: firebase.firestore.update(JSON.stringify(footprintData)),
+      })
+      console.log('updated Firebase')
+    } else {
+      await userDoc.set({
+        key: footprintData,
+      })
+      console.log('saved to Firebase')
+    }
+
+    saveToStorage(key, footprintData)
   }
 }
 
