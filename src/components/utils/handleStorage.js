@@ -20,15 +20,11 @@ export async function saveToStorage(userId, key, dataSet) {
 export async function getFromStorage(userId, key) {
   const docRef = db.collection(key).doc(userId)
 
-  const storedData = await docRef
-    .get()
-    .then(function (doc) {
-      if (doc.exists) {
-        return doc.data().key
-      }
-    })
-    .catch(function (error) {
-      console.log('Error getting document:', error)
-    })
-  return storedData
+  try {
+    const doc = await docRef.get()
+    const storedData = doc.exists ? await doc.data().key : null
+    return storedData
+  } catch (error) {
+    console.log('Error getting document:', error)
+  }
 }
