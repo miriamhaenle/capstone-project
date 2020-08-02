@@ -45,9 +45,7 @@ export default function HomePage({
         onMouseUp={endTransition}
       >
         <SumCarbonFootPrint
-          sumCarbonFootprint={
-            totalCarbonFootprint.toFixed(2) || initialFootprintValue
-          }
+          sumCarbonFootprint={totalCarbonFootprint.toFixed(2) || 0}
           bubbleStatus={bubbleStatus}
           isMobile={isMobile}
         />

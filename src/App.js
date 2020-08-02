@@ -85,7 +85,7 @@ export default function App() {
           <Route path={ROUTES.HOME}>
             <HomePage
               initialFootprintValue={initialFootprintValue}
-              totalCarbonFootprint={totalCarbonFootprint}
+              totalCarbonFootprint={totalCarbonFootprint || 0}
               updateCarbonFootprint={updateCarbonFootprint}
               updateFootprintPerTransportationType={
                 updateFootprintPerTransportationType
@@ -127,6 +127,9 @@ export default function App() {
 
   async function updateStateFromDB(userId, key) {
     const dataFromDB = await getFromStorage(userId, key)
+    if (!dataFromDB) {
+      return
+    }
 
     if (key === APP_STORAGE_KEYS.footprintHistory) {
       setCarbonFootprint(dataFromDB)
