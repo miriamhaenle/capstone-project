@@ -36,11 +36,16 @@ export default function App() {
   ] = useState([])
 
   useEffect(() => {
-    const historicCarbonFootprint = getFromStorage(
-      APP_STORAGE_KEYS.footprintHistory
-    )
+    if (user) {
+      getFromFirebase(user.uid, APP_STORAGE_KEYS.footprintHistory)
 
-    historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
+      getFromFirebase(user.uid, APP_STORAGE_KEYS.footprintTotal)
+      getFromFirebase(user.uid, APP_STORAGE_KEYS.footprintPerTransportType)
+    }
+
+    /*  const historicCarbonFootprint = getFromStorage(
+      APP_STORAGE_KEYS.footprintHistory
+    ) */
 
     const historicTotalCarbonFootprint = getFromStorage(
       APP_STORAGE_KEYS.footprintTotal
@@ -49,11 +54,12 @@ export default function App() {
     const historyFootprintPerTransportationType = getFromStorage(
       APP_STORAGE_KEYS.footprintPerTransportType
     )
+    /* historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
 
     setTotalCarbonFootprint(historicTotalCarbonFootprint)
     historyFootprintPerTransportationType &&
-      setFootprintPerTransportationType(historyFootprintPerTransportationType)
-  }, [])
+      setFootprintPerTransportationType(historyFootprintPerTransportationType) */
+  }, [user])
 
   useEffect(() => {
     if (user) {
@@ -140,26 +146,52 @@ export default function App() {
   }
 
   async function saveToFirebase(userId, key, footprintData) {
-    const userDoc = db
-      .collection('Footprint Data')
-      .doc(userId)
-      .collection(key)
-      .doc(key)
+    const userDoc = db.collection(key).doc(userId)
+
     const docSnapshot = await userDoc.get()
 
     if (docSnapshot.exist) {
       await userDoc.update({
-        key: firebase.firestore.update(JSON.stringify(footprintData)),
+        key: firebase.firestore.update(footprintData),
       })
-      console.log('updated Firebase')
     } else {
       await userDoc.set({
         key: footprintData,
       })
-      console.log('saved to Firebase')
     }
 
     saveToStorage(key, footprintData)
+  }
+
+  async function getFromFirebase(userId, key) {
+    const docRef = db.collection(key).doc(userId)
+
+    docRef
+      .get()
+      .then(function (doc) {
+        if (doc.exists) {
+          const data = doc.data().key
+          saveToStorage(key, data)
+          console.log({ data })
+          if (doc.exists && key === APP_STORAGE_KEYS.footprintHistory) {
+            setCarbonFootprint(doc.data().key)
+          }
+
+          if (doc.exists && key === APP_STORAGE_KEYS.totalCarbonFootprint) {
+            setTotalCarbonFootprint(doc.data().key)
+          }
+
+          if (
+            doc.exists &&
+            key === APP_STORAGE_KEYS.footprintPerTransportType
+          ) {
+            setFootprintPerTransportationType(doc.data().key)
+          }
+        }
+      })
+      .catch(function (error) {
+        console.log('Error getting document:', error)
+      })
   }
 }
 
