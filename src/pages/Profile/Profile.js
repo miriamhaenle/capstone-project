@@ -68,7 +68,6 @@ export default function ProfilePage() {
   async function logoutFromFirebase() {
     try {
       navigateTo(ROUTES.WELCOME)
-      localStorage.clear()
       await firebaseApp.signOut()
     } catch (error) {
       console.error(error.message)

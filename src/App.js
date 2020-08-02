@@ -42,23 +42,6 @@ export default function App() {
       getFromFirebase(user.uid, APP_STORAGE_KEYS.footprintTotal)
       getFromFirebase(user.uid, APP_STORAGE_KEYS.footprintPerTransportType)
     }
-
-    /*  const historicCarbonFootprint = getFromStorage(
-      APP_STORAGE_KEYS.footprintHistory
-    ) */
-
-    const historicTotalCarbonFootprint = getFromStorage(
-      APP_STORAGE_KEYS.footprintTotal
-    )
-
-    const historyFootprintPerTransportationType = getFromStorage(
-      APP_STORAGE_KEYS.footprintPerTransportType
-    )
-    /* historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
-
-    setTotalCarbonFootprint(historicTotalCarbonFootprint)
-    historyFootprintPerTransportationType &&
-      setFootprintPerTransportationType(historyFootprintPerTransportationType) */
   }, [user])
 
   useEffect(() => {
@@ -159,8 +142,6 @@ export default function App() {
         key: footprintData,
       })
     }
-
-    saveToStorage(key, footprintData)
   }
 
   async function getFromFirebase(userId, key) {
@@ -169,24 +150,16 @@ export default function App() {
     docRef
       .get()
       .then(function (doc) {
-        if (doc.exists) {
-          const data = doc.data().key
-          saveToStorage(key, data)
-          console.log({ data })
-          if (doc.exists && key === APP_STORAGE_KEYS.footprintHistory) {
-            setCarbonFootprint(doc.data().key)
-          }
+        if (doc.exists && key === APP_STORAGE_KEYS.footprintHistory) {
+          setCarbonFootprint(doc.data().key)
+        }
 
-          if (doc.exists && key === APP_STORAGE_KEYS.totalCarbonFootprint) {
-            setTotalCarbonFootprint(doc.data().key)
-          }
+        if (doc.exists && key === APP_STORAGE_KEYS.totalCarbonFootprint) {
+          setTotalCarbonFootprint(doc.data().key)
+        }
 
-          if (
-            doc.exists &&
-            key === APP_STORAGE_KEYS.footprintPerTransportType
-          ) {
-            setFootprintPerTransportationType(doc.data().key)
-          }
+        if (doc.exists && key === APP_STORAGE_KEYS.footprintPerTransportType) {
+          setFootprintPerTransportationType(doc.data().key)
         }
       })
       .catch(function (error) {
