@@ -17,8 +17,6 @@ import AuthUserContext from './components/auth/AuthUserContext'
 import firebaseApp from '../src/firebase'
 import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
 import styled from 'styled-components'
-import { db } from './firebase/index'
-import firebase from 'firebase'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
@@ -37,28 +35,27 @@ export default function App() {
 
   useEffect(() => {
     if (user) {
-      getFromFirebase(user.uid, APP_STORAGE_KEYS.footprintHistory)
-
-      getFromFirebase(user.uid, APP_STORAGE_KEYS.footprintTotal)
-      getFromFirebase(user.uid, APP_STORAGE_KEYS.footprintPerTransportType)
+      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintHistory)
+      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintTotal)
+      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintPerTransportType)
     }
   }, [user])
 
   useEffect(() => {
     if (user) {
-      saveToFirebase(
+      saveToStorage(
         user.uid,
         APP_STORAGE_KEYS.footprintHistory,
         carbonFootprint
       )
 
-      saveToFirebase(
+      saveToStorage(
         user.uid,
         APP_STORAGE_KEYS.footprintTotal,
         totalCarbonFootprint
       )
 
-      saveToFirebase(
+      saveToStorage(
         user.uid,
         APP_STORAGE_KEYS.footprintPerTransportType,
         footprintPerTransportationType
@@ -128,43 +125,18 @@ export default function App() {
     )
   }
 
-  async function saveToFirebase(userId, key, footprintData) {
-    const userDoc = db.collection(key).doc(userId)
+  async function updateStateFromDB(userId, key) {
+    const dataFromDB = await getFromStorage(userId, key)
 
-    const docSnapshot = await userDoc.get()
-
-    if (docSnapshot.exist) {
-      await userDoc.update({
-        key: firebase.firestore.update(footprintData),
-      })
-    } else {
-      await userDoc.set({
-        key: footprintData,
-      })
+    if (key === APP_STORAGE_KEYS.footprintHistory) {
+      setCarbonFootprint(dataFromDB)
     }
-  }
-
-  async function getFromFirebase(userId, key) {
-    const docRef = db.collection(key).doc(userId)
-
-    docRef
-      .get()
-      .then(function (doc) {
-        if (doc.exists && key === APP_STORAGE_KEYS.footprintHistory) {
-          setCarbonFootprint(doc.data().key)
-        }
-
-        if (doc.exists && key === APP_STORAGE_KEYS.totalCarbonFootprint) {
-          setTotalCarbonFootprint(doc.data().key)
-        }
-
-        if (doc.exists && key === APP_STORAGE_KEYS.footprintPerTransportType) {
-          setFootprintPerTransportationType(doc.data().key)
-        }
-      })
-      .catch(function (error) {
-        console.log('Error getting document:', error)
-      })
+    if (key === APP_STORAGE_KEYS.totalCarbonFootprint) {
+      setTotalCarbonFootprint(dataFromDB)
+    }
+    if (key === APP_STORAGE_KEYS.footprintPerTransportType) {
+      setFootprintPerTransportationType(dataFromDB)
+    }
   }
 }
 
