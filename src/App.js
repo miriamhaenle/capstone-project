@@ -3,10 +3,13 @@ import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import * as ROUTES from '../src/constants/routes'
 import useAuth from './components/auth/useAuth'
-import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
-import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
-import { getFromStorage, saveToStorage } from './components/utils/handleStorage'
-import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
+import { calculateFootprintPerTransportionType } from './components/services/calculateFootprintPerTransportationType'
+import { calculateTotalFootprintSum } from './components/services/calculateTotalFootprintSum'
+import {
+  getFromStorage,
+  saveToStorage,
+} from './components/services/handleStorage'
+import { APP_STORAGE_KEYS } from './components/services/storageKeys'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
 import SignInPage from './pages/SignIn/SignIn'
