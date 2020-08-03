@@ -48,6 +48,16 @@ const StyledMain = styled.main`
     width: 76px;
     display: block;
     margin: 60px auto 0;
+    animation: drive 2s cubic-bezier(0.23, 1, 0.23, 1);
+  }
+
+  @keyframes drive {
+    from {
+      transform: translateX(-225px);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 `
 
