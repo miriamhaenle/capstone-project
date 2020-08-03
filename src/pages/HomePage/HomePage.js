@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import AuthUserContext from '../../components/auth/AuthUserContext'
 import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
-import useDeviceDetect from '../../components/utils/useDeviceDetect'
+import useDeviceDetect from '../../components/services/useDeviceDetect'
 import * as ROUTES from '../../constants/routes'
 import settings from '../../images/settings.svg'
 import homeIcon from '../../images/sustainable.svg'
@@ -45,9 +45,7 @@ export default function HomePage({
         onMouseUp={endTransition}
       >
         <SumCarbonFootPrint
-          sumCarbonFootprint={
-            totalCarbonFootprint.toFixed(2) || initialFootprintValue
-          }
+          sumCarbonFootprint={totalCarbonFootprint.toFixed(2) || 0}
           bubbleStatus={bubbleStatus}
           isMobile={isMobile}
         />

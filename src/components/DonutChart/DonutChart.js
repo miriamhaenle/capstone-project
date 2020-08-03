@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { VictoryPie } from 'victory'
-import { mapApiTransportationTypeToDonutChartLabel } from '../utils/mappings/mapApiTransportationTypeToDonutChartLabel'
+import { mapApiTransportationTypeToDonutChartLabel } from '../services/mappings/mapApiTransportationTypeToDonutChartLabel'
 
 export default function DonutChart({ footprintData }) {
   const colors = [

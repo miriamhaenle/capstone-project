@@ -3,10 +3,13 @@ import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import * as ROUTES from '../src/constants/routes'
 import useAuth from './components/auth/useAuth'
-import { calculateFootprintPerTransportionType } from './components/utils/calculateFootprintPerTransportationType'
-import { calculateTotalFootprintSum } from './components/utils/calculateTotalFootprintSum'
-import { getFromStorage, saveToStorage } from './components/utils/handleStorage'
-import { APP_STORAGE_KEYS } from './components/utils/storageKeys'
+import { calculateFootprintPerTransportionType } from './components/services/calculateFootprintPerTransportationType'
+import { calculateTotalFootprintSum } from './components/services/calculateTotalFootprintSum'
+import {
+  getFromStorage,
+  saveToStorage,
+} from './components/services/handleStorage'
+import { APP_STORAGE_KEYS } from './components/services/storageKeys'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
 import SignInPage from './pages/SignIn/SignIn'
@@ -34,37 +37,40 @@ export default function App() {
   ] = useState([])
 
   useEffect(() => {
-    const historicCarbonFootprint = getFromStorage(
-      APP_STORAGE_KEYS.footprintHistory
-    )
-
-    historicCarbonFootprint && setCarbonFootprint(historicCarbonFootprint)
-
-    const historicTotalCarbonFootprint = getFromStorage(
-      APP_STORAGE_KEYS.footprintTotal
-    )
-
-    const historyFootprintPerTransportationType = getFromStorage(
-      APP_STORAGE_KEYS.footprintPerTransportType
-    )
-
-    setTotalCarbonFootprint(historicTotalCarbonFootprint)
-    setFootprintPerTransportationType(
-      historyFootprintPerTransportationType || []
-    )
-  }, [])
+    if (user) {
+      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintHistory)
+      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintTotal)
+      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintPerTransportType)
+    }
+  }, [user])
 
   useEffect(() => {
-    saveToStorage(APP_STORAGE_KEYS.footprintHistory, carbonFootprint)
+    if (user) {
+      saveToStorage(
+        user.uid,
+        APP_STORAGE_KEYS.footprintHistory,
+        carbonFootprint
+      )
+
+      saveToStorage(
+        user.uid,
+        APP_STORAGE_KEYS.footprintTotal,
+        totalCarbonFootprint
+      )
+
+      saveToStorage(
+        user.uid,
+        APP_STORAGE_KEYS.footprintPerTransportType,
+        footprintPerTransportationType
+      )
+    }
     setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
-
-    saveToStorage(APP_STORAGE_KEYS.footprintTotal, totalCarbonFootprint)
-
-    saveToStorage(
-      APP_STORAGE_KEYS.footprintPerTransportType,
-      footprintPerTransportationType
-    )
-  }, [carbonFootprint, totalCarbonFootprint, footprintPerTransportationType])
+  }, [
+    carbonFootprint,
+    totalCarbonFootprint,
+    footprintPerTransportationType,
+    user,
+  ])
 
   if (!authCompleted) {
     return <LoadingScreen>...Loading</LoadingScreen>
@@ -82,7 +88,7 @@ export default function App() {
           <Route path={ROUTES.HOME}>
             <HomePage
               initialFootprintValue={initialFootprintValue}
-              totalCarbonFootprint={totalCarbonFootprint}
+              totalCarbonFootprint={totalCarbonFootprint || 0}
               updateCarbonFootprint={updateCarbonFootprint}
               updateFootprintPerTransportationType={
                 updateFootprintPerTransportationType
@@ -120,6 +126,23 @@ export default function App() {
         sum,
       })
     )
+  }
+
+  async function updateStateFromDB(userId, key) {
+    const dataFromDB = await getFromStorage(userId, key)
+    if (!dataFromDB) {
+      return
+    }
+
+    if (key === APP_STORAGE_KEYS.footprintHistory) {
+      setCarbonFootprint(dataFromDB)
+    }
+    if (key === APP_STORAGE_KEYS.totalCarbonFootprint) {
+      setTotalCarbonFootprint(dataFromDB)
+    }
+    if (key === APP_STORAGE_KEYS.footprintPerTransportType) {
+      setFootprintPerTransportationType(dataFromDB)
+    }
   }
 }
 
