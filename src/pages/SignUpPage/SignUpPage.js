@@ -31,6 +31,25 @@ const StyledMain = styled.main`
     width: 76px;
     display: block;
     margin: 50px auto;
+    animation: shake 0.2s cubic-bezier(0.23, 1, 0.23, 1);
+  }
+
+  @keyframes shake {
+    0% {
+      transform: rotate(2deg);
+    }
+    20% {
+      transform: rotate(2deg);
+    }
+    50% {
+      transform: rotate(2deg);
+    }
+    70% {
+      transform: rotate(-2deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
   }
   a {
     color: var(--woodland);

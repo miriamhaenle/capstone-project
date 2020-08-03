@@ -18,7 +18,8 @@ const Circle = styled.div`
   width: 40px;
   height: 40px;
   position: relative;
-  animation: circle 2.5s infinite linear both;
+  margin: 40vh auto;
+  animation: circle 1.5s infinite linear both;
 `
 
 const Dot = styled.div`
@@ -28,16 +29,6 @@ const Dot = styled.div`
   left: 0;
   top: 0;
   animation: chasing-dots 2s infinite ease-in-out both;
-
-  &:before {
-    content: '';
-    display: block;
-    width: 25%;
-    height: 25%;
-    background-color: #fff;
-    border-radius: 100%;
-    animation: chasing-dots-before 2s infinite ease-in-out both;
-  }
 
   :nth-child(1) {
     animation-delay: -1.1s;
@@ -57,6 +48,17 @@ const Dot = styled.div`
   :nth-child(6) {
     animation-delay: -0.6s;
   }
+
+  &:before {
+    content: '';
+    display: block;
+    width: 25%;
+    height: 25%;
+    background-color: #fff;
+    border-radius: 100%;
+    animation: chasing-dots-before 2s infinite ease-in-out both;
+  }
+
   :nth-child(1):before {
     animation-delay: -1.1s;
   }
