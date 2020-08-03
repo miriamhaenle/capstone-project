@@ -15,6 +15,14 @@ describe('Mapping function api data structure to donut chart data structure', ()
         transportationType: '',
         sum: 22,
       })
-    ).toEqual({ label: '', y: 22 })
+    ).toEqual({ label: '', y: '' })
+  })
+  it('should also map if transportation sum is empty', () => {
+    expect(
+      mapFootprintPerTransportTypeToDonutChartData({
+        transportationType: 'car',
+        sum: '',
+      })
+    ).toEqual({ label: '', y: '' })
   })
 })
