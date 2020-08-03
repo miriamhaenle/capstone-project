@@ -20,6 +20,7 @@ import AuthUserContext from './components/auth/AuthUserContext'
 import firebaseApp from '../src/firebase'
 import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
 import styled from 'styled-components'
+import LoadingScreen from './components/LoadingScreen/LoadingScreen'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
@@ -73,7 +74,7 @@ export default function App() {
   ])
 
   if (!authCompleted) {
-    return <LoadingScreen>...Loading</LoadingScreen>
+    return <LoadingScreen />
   }
 
   return (
@@ -145,8 +146,3 @@ export default function App() {
     }
   }
 }
-
-const LoadingScreen = styled.div`
-  color: var(--sand);
-  padding: 30px;
-`
