@@ -71,11 +71,11 @@ const StyledForm = styled.form`
   input {
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
-    margin-left: 20px;
+    margin-left: 15px;
     border: none;
     font-size: 16px;
     color: var(--dust);
-    width: 220px;
+    width: 80%;
     padding: 9px;
   }
   input:disabled {
