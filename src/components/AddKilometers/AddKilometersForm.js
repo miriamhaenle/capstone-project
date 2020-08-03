@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Button from '../Button/Button'
-import useForm from '../utils/useForm'
+import useForm from '../services/useForm'
 import TransportationTypes from '../TransportationTypes/TransportationTypes'
 import SportTypes from '../SportTypes/SportTypes'
 

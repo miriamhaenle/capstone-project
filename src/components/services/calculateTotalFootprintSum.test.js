@@ -1,4 +1,4 @@
-import { calculateTotalFootprintSum } from '../utils/calculateTotalFootprintSum'
+import { calculateTotalFootprintSum } from '../services/calculateTotalFootprintSum'
 
 test('adding up numbers of array', () => {
   expect(calculateTotalFootprintSum([3, 2, 1])).toBe(6)
