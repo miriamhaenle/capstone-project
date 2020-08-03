@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { db } from '../../firebase/index'
+import { db } from '../firebase/index'
 
 export async function saveToStorage(userId, key, dataSet) {
   const userDoc = db.collection(key).doc(userId)

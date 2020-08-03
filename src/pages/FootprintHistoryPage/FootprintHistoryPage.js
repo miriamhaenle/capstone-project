@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import DonutChart from '../../components/DonutChart/DonutChart'
 import { Link } from 'react-router-dom'
-import { mapFootprintPerTransportTypeToDonutChartData } from '../../components/services/mappings/mapFootprintPerTransportTypeToDonutChartData'
+import { mapFootprintPerTransportTypeToDonutChartData } from '../../services/mappings/mapFootprintPerTransportTypeToDonutChartData'
 import * as ROUTES from '../../constants/routes'
 
 export default function FootprintHistoryPage({
