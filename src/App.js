@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import * as ROUTES from '../src/constants/routes'
+import firebaseApp from '../src/firebase'
+import AuthUserContext from './components/auth/AuthUserContext'
 import useAuth from './components/auth/useAuth'
+import LoadingScreen from './components/LoadingScreen/LoadingScreen'
 import { calculateFootprintPerTransportionType } from './components/services/calculateFootprintPerTransportationType'
 import { calculateTotalFootprintSum } from './components/services/calculateTotalFootprintSum'
 import {
@@ -12,15 +15,11 @@ import {
 import { APP_STORAGE_KEYS } from './components/services/storageKeys'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
+import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
+import ProfilePage from './pages/Profile/Profile'
 import SignInPage from './pages/SignIn/SignIn'
 import SignUpPage from './pages/SignUpPage/SignUpPage'
 import WelcomePage from './pages/Welcome/Welcome'
-import ProfilePage from './pages/Profile/Profile'
-import AuthUserContext from './components/auth/AuthUserContext'
-import firebaseApp from '../src/firebase'
-import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
-import styled from 'styled-components'
-import LoadingScreen from './components/LoadingScreen/LoadingScreen'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
