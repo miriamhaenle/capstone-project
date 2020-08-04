@@ -9,7 +9,18 @@ describe('save to storage', () => {
     const DATASET = { foo: 'bar' }
 
     mockSaveToStorage(USERID, KEY, DATASET)
-    expect(mockSaveToStorage).toHaveBeenCalledTimes(1)
+    expect(mockSaveToStorage.mock.calls.length).toBe(1)
+  })
+
+  it('should call function with correct arguments', () => {
+    const mockSaveToStorage = jest.fn(saveToStorage)
+
+    const USERID = 'huha72hjkasz1'
+    const KEY = 'foo'
+    const DATASET = { foo: 'bar' }
+
+    mockSaveToStorage(USERID, KEY, DATASET)
+    expect(mockSaveToStorage).toHaveBeenCalledWith(USERID, KEY, DATASET)
   })
 })
 
@@ -20,6 +31,15 @@ describe('get from storage', () => {
     const KEY = 'foo'
 
     mockGetFromStorage(USERID, KEY)
-    expect(mockGetFromStorage).toHaveBeenCalledTimes(1)
+    expect(mockGetFromStorage.mock.calls.length).toBe(1)
+  })
+
+  it('should call function with correct arguments', () => {
+    const mockGetFromStorage = jest.fn(getFromStorage)
+    const USERID = 'huha72hjkasz1'
+    const KEY = 'foo'
+
+    mockGetFromStorage(USERID, KEY)
+    expect(mockGetFromStorage).toHaveBeenCalledWith(USERID, KEY)
   })
 })
