@@ -12,7 +12,7 @@ describe('save to storage', () => {
     expect(mockSaveToStorage.mock.calls.length).toBe(1)
   })
 
-  it('should call function with correct arguments', () => {
+  it('should call function with all arguments', () => {
     const mockSaveToStorage = jest.fn(saveToStorage)
 
     const USERID = 'huha72hjkasz1'
@@ -34,7 +34,7 @@ describe('get from storage', () => {
     expect(mockGetFromStorage.mock.calls.length).toBe(1)
   })
 
-  it('should call function with correct arguments', () => {
+  it('should call function with all arguments', () => {
     const mockGetFromStorage = jest.fn(getFromStorage)
     const USERID = 'huha72hjkasz1'
     const KEY = 'foo'
