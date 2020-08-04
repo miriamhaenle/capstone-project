@@ -6,13 +6,10 @@ import firebaseApp from '../src/firebase'
 import AuthUserContext from './components/auth/AuthUserContext'
 import useAuth from './components/auth/useAuth'
 import LoadingScreen from './components/LoadingScreen/LoadingScreen'
-import { calculateFootprintPerTransportionType } from './components/services/calculateFootprintPerTransportationType'
-import { calculateTotalFootprintSum } from './components/services/calculateTotalFootprintSum'
-import {
-  getFromStorage,
-  saveToStorage,
-} from './components/services/handleStorage'
-import { APP_STORAGE_KEYS } from './components/services/storageKeys'
+import { calculateFootprintPerTransportionType } from './services/calculateFootprintPerTransportationType'
+import { calculateTotalFootprintSum } from './services/calculateTotalFootprintSum'
+import { getFromStorage, saveToStorage } from './services/handleStorage'
+import { APP_STORAGE_KEYS } from './services/storageKeys'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
 import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
@@ -119,11 +116,14 @@ export default function App() {
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
   }
-  function updateFootprintPerTransportationType(type, sum) {
+  function updateFootprintPerTransportationType(
+    transportationTypeToUpdate,
+    footprintSum
+  ) {
     setFootprintPerTransportationType(
       calculateFootprintPerTransportionType(footprintPerTransportationType, {
-        type,
-        sum,
+        transportationTypeToUpdate,
+        footprintSum,
       })
     )
   }
