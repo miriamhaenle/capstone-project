@@ -5,28 +5,28 @@ describe('Calculate footprint per transportation type', () => {
     expect(
       calculateFootprintPerTransportionType([], {
         transportationTypeToUpdate: 'car',
-        sum: 200,
+        footprintSum: 200,
       })
-    ).toEqual([{ transportationType: 'car', sum: 200 }])
+    ).toEqual([{ transportationType: 'car', footprintSum: 200 }])
   })
   it('should update existing state', () => {
     expect(
       calculateFootprintPerTransportionType(
-        [{ transportationType: 'car', sum: 200 }],
-        { transportationTypeToUpdate: 'car', sum: 200 }
+        [{ transportationType: 'car', footprintSum: 200 }],
+        { transportationTypeToUpdate: 'car', footprintSum: 200 }
       )
-    ).toEqual([{ transportationType: 'car', sum: 400 }])
+    ).toEqual([{ transportationType: 'car', footprintSum: 400 }])
   })
 
   it('should add a new state for additional transportation type (one existing)', () => {
     expect(
       calculateFootprintPerTransportionType(
-        [{ transportationType: 'car', sum: 200 }],
-        { transportationTypeToUpdate: 'bus', sum: 400 }
+        [{ transportationType: 'car', footprintSum: 200 }],
+        { transportationTypeToUpdate: 'bus', footprintSum: 400 }
       )
     ).toEqual([
-      { transportationType: 'car', sum: 200 },
-      { transportationType: 'bus', sum: 400 },
+      { transportationType: 'car', footprintSum: 200 },
+      { transportationType: 'bus', footprintSum: 400 },
     ])
   })
 
@@ -34,15 +34,15 @@ describe('Calculate footprint per transportation type', () => {
     expect(
       calculateFootprintPerTransportionType(
         [
-          { transportationType: 'car', sum: 200 },
-          { transportationType: 'bus', sum: 400 },
+          { transportationType: 'car', footprintSum: 200 },
+          { transportationType: 'bus', footprintSum: 400 },
         ],
-        { transportationTypeToUpdate: 'train', sum: 300 }
+        { transportationTypeToUpdate: 'train', footprintSum: 300 }
       )
     ).toEqual([
-      { transportationType: 'car', sum: 200 },
-      { transportationType: 'bus', sum: 400 },
-      { transportationType: 'train', sum: 300 },
+      { transportationType: 'car', footprintSum: 200 },
+      { transportationType: 'bus', footprintSum: 400 },
+      { transportationType: 'train', footprintSum: 300 },
     ])
   })
 
@@ -50,17 +50,17 @@ describe('Calculate footprint per transportation type', () => {
     expect(
       calculateFootprintPerTransportionType(
         [
-          { transportationType: 'car', sum: 200 },
-          { transportationType: 'bus', sum: 400 },
-          { transportationType: 'train', sum: 300 },
+          { transportationType: 'car', footprintSum: 200 },
+          { transportationType: 'bus', footprintSum: 400 },
+          { transportationType: 'train', footprintSum: 300 },
         ],
-        { transportationTypeToUpdate: 'plane', sum: 1000 }
+        { transportationTypeToUpdate: 'plane', footprintSum: 1000 }
       )
     ).toEqual([
-      { transportationType: 'car', sum: 200 },
-      { transportationType: 'bus', sum: 400 },
-      { transportationType: 'train', sum: 300 },
-      { transportationType: 'plane', sum: 1000 },
+      { transportationType: 'car', footprintSum: 200 },
+      { transportationType: 'bus', footprintSum: 400 },
+      { transportationType: 'train', footprintSum: 300 },
+      { transportationType: 'plane', footprintSum: 1000 },
     ])
   })
 
@@ -68,18 +68,18 @@ describe('Calculate footprint per transportation type', () => {
     expect(
       calculateFootprintPerTransportionType(
         [
-          { transportationType: 'car', sum: 200 },
-          { transportationType: 'bus', sum: 400 },
-          { transportationType: 'train', sum: 300 },
-          { transportationType: 'plane', sum: 1000 },
+          { transportationType: 'car', footprintSum: 200 },
+          { transportationType: 'bus', footprintSum: 400 },
+          { transportationType: 'train', footprintSum: 300 },
+          { transportationType: 'plane', footprintSum: 1000 },
         ],
-        { transportationTypeToUpdate: 'car', sum: 300 }
+        { transportationTypeToUpdate: 'car', footprintSum: 300 }
       )
     ).toEqual([
-      { transportationType: 'car', sum: 500 },
-      { transportationType: 'bus', sum: 400 },
-      { transportationType: 'train', sum: 300 },
-      { transportationType: 'plane', sum: 1000 },
+      { transportationType: 'car', footprintSum: 500 },
+      { transportationType: 'bus', footprintSum: 400 },
+      { transportationType: 'train', footprintSum: 300 },
+      { transportationType: 'plane', footprintSum: 1000 },
     ])
   })
 
@@ -89,15 +89,15 @@ describe('Calculate footprint per transportation type', () => {
         [
           {
             transportationType: 'car',
-            sum: 200,
+            footprintSum: 200,
           },
-          { transportationType: 'bus', sum: 400 },
+          { transportationType: 'bus', footprintSum: 400 },
         ],
-        { transportationTypeToUpdate: '', sum: '' }
+        { transportationTypeToUpdate: '', footprintSum: '' }
       )
     ).toEqual([
-      { transportationType: 'car', sum: 200 },
-      { transportationType: 'bus', sum: 400 },
+      { transportationType: 'car', footprintSum: 200 },
+      { transportationType: 'bus', footprintSum: 400 },
     ])
   })
 
@@ -107,15 +107,15 @@ describe('Calculate footprint per transportation type', () => {
         [
           {
             transportationType: 'car',
-            sum: 200,
+            footprintSum: 200,
           },
-          { transportationType: 'bus', sum: 400 },
+          { transportationType: 'bus', footprintSum: 400 },
         ],
         { transportationTypeToUpdate: '' }
       )
     ).toEqual([
-      { transportationType: 'car', sum: 200 },
-      { transportationType: 'bus', sum: 400 },
+      { transportationType: 'car', footprintSum: 200 },
+      { transportationType: 'bus', footprintSum: 400 },
     ])
   })
 
@@ -125,15 +125,15 @@ describe('Calculate footprint per transportation type', () => {
         [
           {
             transportationType: 'car',
-            sum: 200,
+            footprintSum: 200,
           },
-          { transportationType: 'bus', sum: 400 },
+          { transportationType: 'bus', footprintSum: 400 },
         ],
         [{ transportationTypeToUpdate: 20 }]
       )
     ).toEqual([
-      { transportationType: 'car', sum: 200 },
-      { transportationType: 'bus', sum: 400 },
+      { transportationType: 'car', footprintSum: 200 },
+      { transportationType: 'bus', footprintSum: 400 },
     ])
   })
 
@@ -143,15 +143,15 @@ describe('Calculate footprint per transportation type', () => {
         [
           {
             transportationType: 'car',
-            sum: 200,
+            footprintSum: 200,
           },
-          { transportationType: 'bus', sum: 400 },
+          { transportationType: 'bus', footprintSum: 400 },
         ],
         20
       )
     ).toEqual([
-      { transportationType: 'car', sum: 200 },
-      { transportationType: 'bus', sum: 400 },
+      { transportationType: 'car', footprintSum: 200 },
+      { transportationType: 'bus', footprintSum: 400 },
     ])
   })
 
@@ -161,15 +161,15 @@ describe('Calculate footprint per transportation type', () => {
         [
           {
             transportationType: 'car',
-            sum: 200,
+            footprintSum: 200,
           },
-          { transportationType: 'bus', sum: 400 },
+          { transportationType: 'bus', footprintSum: 400 },
         ],
         'foo'
       )
     ).toEqual([
-      { transportationType: 'car', sum: 200 },
-      { transportationType: 'bus', sum: 400 },
+      { transportationType: 'car', footprintSum: 200 },
+      { transportationType: 'bus', footprintSum: 400 },
     ])
   })
 })

@@ -1,11 +1,11 @@
 import { mapFootprintPerTransportTypeToDonutChartData } from './mapFootprintPerTransportTypeToDonutChartData'
 
 describe('Mapping function api data structure to donut chart data structure', () => {
-  it('should map the transportation type to label and sum to y', () => {
+  it('should map the transportation type to label and footprintSum to y', () => {
     expect(
       mapFootprintPerTransportTypeToDonutChartData({
         transportationType: 'car',
-        sum: 200,
+        footprintSum: 200,
       })
     ).toEqual({ label: 'car', y: 200 })
   })
@@ -13,7 +13,7 @@ describe('Mapping function api data structure to donut chart data structure', ()
     expect(
       mapFootprintPerTransportTypeToDonutChartData({
         transportationType: '',
-        sum: 22,
+        footprintSum: 22,
       })
     ).toEqual({ label: '', y: '' })
   })
@@ -21,7 +21,7 @@ describe('Mapping function api data structure to donut chart data structure', ()
     expect(
       mapFootprintPerTransportTypeToDonutChartData({
         transportationType: 'car',
-        sum: '',
+        footprintSum: '',
       })
     ).toEqual({ label: '', y: '' })
   })
@@ -35,7 +35,7 @@ describe('Mapping function api data structure to donut chart data structure', ()
   it('should map empty strings if no transportation Type is send', () => {
     expect(
       mapFootprintPerTransportTypeToDonutChartData({
-        sum: '',
+        footprintSum: '',
       })
     ).toEqual({ label: '', y: '' })
   })

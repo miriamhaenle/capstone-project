@@ -1,12 +1,12 @@
 export function mapFootprintPerTransportTypeToDonutChartData({
   transportationType,
-  sum,
+  footprintSum,
 }) {
   if (!transportationType) {
     return { label: '', y: '' }
   }
-  if (!sum) {
+  if (!footprintSum) {
     return { label: '', y: '' }
   }
-  return { label: transportationType, y: sum }
+  return { label: transportationType, y: footprintSum }
 }

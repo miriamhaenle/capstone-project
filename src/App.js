@@ -118,12 +118,12 @@ export default function App() {
   }
   function updateFootprintPerTransportationType(
     transportationTypeToUpdate,
-    sum
+    footprintSum
   ) {
     setFootprintPerTransportationType(
       calculateFootprintPerTransportionType(footprintPerTransportationType, {
         transportationTypeToUpdate,
-        sum,
+        footprintSum,
       })
     )
   }

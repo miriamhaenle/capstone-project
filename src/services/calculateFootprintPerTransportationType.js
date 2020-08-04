@@ -1,23 +1,23 @@
 export function calculateFootprintPerTransportionType(
   currentState,
-  { transportationTypeToUpdate, sum }
+  { transportationTypeToUpdate, footprintSum }
 ) {
   if (!transportationTypeToUpdate) {
     return currentState
   }
-  if (!sum) {
+  if (!footprintSum) {
     return currentState
   }
   if (transportationTypeExists(currentState, transportationTypeToUpdate)) {
     return stateWithUpdatForExistingTransportationType(currentState, {
       transportationTypeToUpdate,
-      sum,
+      footprintSum,
     })
   }
 
   return stateWithAddedTransportationType(currentState, {
     transportationTypeToUpdate,
-    sum,
+    footprintSum,
   })
 }
 
@@ -30,21 +30,24 @@ function transportationTypeExists(currentState, transportationTypeToUpdate) {
 
 function stateWithUpdatForExistingTransportationType(
   currentState,
-  { transportationTypeToUpdate, sum }
+  { transportationTypeToUpdate, footprintSum }
 ) {
   return currentState.map((transportationType) =>
     transportationType.transportationType === transportationTypeToUpdate
-      ? { ...transportationType, sum: transportationType.sum + sum }
+      ? {
+          ...transportationType,
+          footprintSum: transportationType.footprintSum + footprintSum,
+        }
       : transportationType
   )
 }
 
 function stateWithAddedTransportationType(
   currentState,
-  { transportationTypeToUpdate, sum }
+  { transportationTypeToUpdate, footprintSum }
 ) {
   return [
     ...currentState,
-    { transportationType: transportationTypeToUpdate, sum },
+    { transportationType: transportationTypeToUpdate, footprintSum },
   ]
 }
