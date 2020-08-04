@@ -1,31 +1,50 @@
-export function calculateFootprintPerTransportionType(oldState, { type, sum }) {
-  if (!type) {
-    return oldState
+export function calculateFootprintPerTransportionType(
+  currentState,
+  { transportationTypeToUpdate, sum }
+) {
+  if (!transportationTypeToUpdate) {
+    return currentState
   }
   if (!sum) {
-    return oldState
+    return currentState
   }
-  if (transportationTypeExists(oldState, type)) {
-    return stateWithUpdatForExistingTransportationType(oldState, { type, sum })
+  if (transportationTypeExists(currentState, transportationTypeToUpdate)) {
+    return stateWithUpdatForExistingTransportationType(currentState, {
+      transportationTypeToUpdate,
+      sum,
+    })
   }
 
-  return stateWithAddedTransportationType(oldState, { type, sum })
+  return stateWithAddedTransportationType(currentState, {
+    transportationTypeToUpdate,
+    sum,
+  })
 }
 
-function transportationTypeExists(oldState, type) {
-  return oldState.find(
-    (transportationType) => transportationType.transportationType === type
+function transportationTypeExists(currentState, transportationTypeToUpdate) {
+  return currentState.find(
+    (transportationType) =>
+      transportationType.transportationType === transportationTypeToUpdate
   )
 }
 
-function stateWithUpdatForExistingTransportationType(oldState, { type, sum }) {
-  return oldState.map((transportationType) =>
-    transportationType.transportationType === type
+function stateWithUpdatForExistingTransportationType(
+  currentState,
+  { transportationTypeToUpdate, sum }
+) {
+  return currentState.map((transportationType) =>
+    transportationType.transportationType === transportationTypeToUpdate
       ? { ...transportationType, sum: transportationType.sum + sum }
       : transportationType
   )
 }
 
-function stateWithAddedTransportationType(oldState, { type, sum }) {
-  return [...oldState, { transportationType: type, sum }]
+function stateWithAddedTransportationType(
+  currentState,
+  { transportationTypeToUpdate, sum }
+) {
+  return [
+    ...currentState,
+    { transportationType: transportationTypeToUpdate, sum },
+  ]
 }

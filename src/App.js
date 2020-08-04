@@ -116,10 +116,13 @@ export default function App() {
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
   }
-  function updateFootprintPerTransportationType(type, sum) {
+  function updateFootprintPerTransportationType(
+    transportationTypeToUpdate,
+    sum
+  ) {
     setFootprintPerTransportationType(
       calculateFootprintPerTransportionType(footprintPerTransportationType, {
-        type,
+        transportationTypeToUpdate,
         sum,
       })
     )
