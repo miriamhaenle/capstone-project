@@ -1,4 +1,10 @@
 export function calculateFootprintPerTransportionType(oldState, { type, sum }) {
+  if (!type) {
+    return oldState
+  }
+  if (!sum) {
+    return oldState
+  }
   if (transportationTypeExists(oldState, type)) {
     return stateWithUpdatForExistingTransportationType(oldState, { type, sum })
   }

@@ -9,11 +9,30 @@ describe('Calculate footprint per transportation type', () => {
       )
     ).toEqual([{ transportationType: 'car', sum: 400 }])
   })
+
   it('should update add a new state', () => {
     expect(
       calculateFootprintPerTransportionType(
         [{ transportationType: 'car', sum: 200 }],
         { type: 'bus', sum: 400 }
+      )
+    ).toEqual([
+      { transportationType: 'car', sum: 200 },
+      { transportationType: 'bus', sum: 400 },
+    ])
+  })
+
+  it('should not update a state with wrong data', () => {
+    expect(
+      calculateFootprintPerTransportionType(
+        [
+          {
+            transportationType: 'car',
+            sum: 200,
+          },
+          { transportationType: 'bus', sum: 400 },
+        ],
+        { type: '', sum: '' }
       )
     ).toEqual([
       { transportationType: 'car', sum: 200 },
