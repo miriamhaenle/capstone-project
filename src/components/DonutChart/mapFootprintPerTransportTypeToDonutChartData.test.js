@@ -25,17 +25,17 @@ describe('Mapping function api data structure to donut chart data structure', ()
       })
     ).toEqual({ label: '', y: '' })
   })
-  it('should map empty stringsp if no sum is send', () => {
+  it('should map empty strings if no sum is send', () => {
     expect(
       mapFootprintPerTransportTypeToDonutChartData({
-        transportationType: '',
+        transportationType: 'car',
       })
     ).toEqual({ label: '', y: '' })
   })
   it('should map empty strings if no transportation Type is send', () => {
     expect(
       mapFootprintPerTransportTypeToDonutChartData({
-        footprintSum: '',
+        footprintSum: '30',
       })
     ).toEqual({ label: '', y: '' })
   })

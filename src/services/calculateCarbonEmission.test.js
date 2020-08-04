@@ -133,4 +133,17 @@ describe('GET /my-carbon-footprint', () => {
     })
     expect(carbonFootprint).toEqual(0)
   })
+
+  it('should return 0 on request with not existing transportationType', async () => {
+    axios.get.mockResolvedValue({
+      data: {
+        carbonFootprint: '',
+      },
+    })
+    const carbonFootprint = await calculateCarbonEmission({
+      distance: '30',
+      transportationType: 'boat',
+    })
+    expect(carbonFootprint).toEqual(0)
+  })
 })
