@@ -3,6 +3,13 @@ import styled from 'styled-components'
 import Button from '../../Button/Button'
 import PropTypes from 'prop-types'
 
+ConfirmPasswordModal.propTypes = {
+  confirmationPassword: PropTypes.string,
+  updateEmailWithFirebase: PropTypes.func,
+  updateConfirmationPassword: PropTypes.func,
+  closeModal: PropTypes.func,
+}
+
 export default function ConfirmPasswordModal({
   confirmationPassword,
   updateEmailWithFirebase,
@@ -27,13 +34,6 @@ export default function ConfirmPasswordModal({
       </div>
     </StyledModal>
   )
-}
-
-ConfirmPasswordModal.propTypes = {
-  confirmationPassword: PropTypes.string,
-  updateEmailWithFirebase: PropTypes.func,
-  updateConfirmationPassword: PropTypes.func,
-  closeModal: PropTypes.func,
 }
 
 const StyledModal = styled.div`
