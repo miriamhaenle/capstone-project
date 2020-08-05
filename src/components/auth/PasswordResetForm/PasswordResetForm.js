@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import firebaseApp from '../../../firebase'
 import Button from '../../Button/Button'
+import passwordResetWithFirebase from '../passwordResetWithFirebase'
 
 export default function PasswordResetForm({ passwordReset }) {
   const INITIAL_VALUE = {
@@ -11,17 +12,6 @@ export default function PasswordResetForm({ passwordReset }) {
 
   const [userForm, setUserForm] = useState(INITIAL_VALUE)
   const resetForm = () => setUserForm(INITIAL_VALUE)
-
-  async function passwordResetWithFirebase() {
-    try {
-      await firebaseApp.sendPasswordResetEmail(userForm.email)
-      resetForm()
-      passwordReset(true)
-    } catch (error) {
-      console.error(error)
-      setUserForm({ ...userForm, error })
-    }
-  }
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -46,7 +36,7 @@ export default function PasswordResetForm({ passwordReset }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    passwordResetWithFirebase(userForm.email)
+    passwordResetWithFirebase(userForm, setUserForm, resetForm, passwordReset)
   }
 
   function handleChange(event) {
