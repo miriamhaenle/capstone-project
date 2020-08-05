@@ -8,6 +8,7 @@ import EditProfileForm from '../../components/auth/EditProfileForm/EditProfileFo
 import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
+import logoutFromFirebase from '../../components/auth/logoutFromFirebase'
 
 export default function ProfilePage() {
   const { user, firebaseApp } = useContext(AuthUserContext)
@@ -65,7 +66,7 @@ export default function ProfilePage() {
     setConfirmationPassword('')
   }
 
-  async function logoutFromFirebase() {
+  /*  async function logoutFromFirebase() {
     try {
       navigateTo(ROUTES.WELCOME)
       await firebaseApp.signOut()
@@ -73,7 +74,7 @@ export default function ProfilePage() {
       console.error(error.message)
       setErrorMessage('Ups! Something went wrong. Please try again.')
     }
-  }
+  } */
 
   return (
     <StyledMain>
@@ -99,7 +100,12 @@ export default function ProfilePage() {
         setUserData={updateUserData}
         errorMessage={errorMessage}
       />
-      <Button onClick={logoutFromFirebase} text="Log out" />
+      <Button
+        onClick={() =>
+          logoutFromFirebase(history, firebaseApp, setErrorMessage)
+        }
+        text="Log out"
+      />
     </StyledMain>
   )
 
