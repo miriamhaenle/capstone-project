@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import * as ROUTES from '../../../constants/routes'
-import firebaseApp from '../../../firebase'
 import eyeIcon from '../../../images/eye.svg'
 import eyeIconHide from '../../../images/eyeIconHide.svg'
 import Button from '../../Button/Button'

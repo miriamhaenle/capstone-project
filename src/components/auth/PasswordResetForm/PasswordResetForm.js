@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import firebaseApp from '../../../firebase'
 import Button from '../../Button/Button'
 import passwordResetWithFirebase from '../passwordResetWithFirebase'
 
