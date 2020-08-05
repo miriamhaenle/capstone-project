@@ -9,12 +9,12 @@ import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
 import logoutFromFirebase from '../../components/auth/logoutFromFirebase'
+import updateEmailWithFirebase from '../../components/auth/updateEmailWithFirebase'
 
 export default function ProfilePage() {
   const { user, firebaseApp } = useContext(AuthUserContext)
 
   const history = useHistory()
-  const navigateTo = (path) => history.push(path)
 
   const [userData, setUserData] = useState({
     displayName: user.displayName,
@@ -38,7 +38,7 @@ export default function ProfilePage() {
       setErrorMessage(`Updating ${user.displayName} failed. `)
     }
   }
-
+  /*
   async function updateEmailWithFirebase() {
     if (!confirmationPassword) {
       setErrorMessage('Password not confirmed!')
@@ -58,7 +58,7 @@ export default function ProfilePage() {
     } finally {
       closeModal()
     }
-  }
+  }*/
 
   function updateEmailForm() {
     const user = firebase.auth().currentUser
@@ -66,22 +66,21 @@ export default function ProfilePage() {
     setConfirmationPassword('')
   }
 
-  /*  async function logoutFromFirebase() {
-    try {
-      navigateTo(ROUTES.WELCOME)
-      await firebaseApp.signOut()
-    } catch (error) {
-      console.error(error.message)
-      setErrorMessage('Ups! Something went wrong. Please try again.')
-    }
-  } */
-
   return (
     <StyledMain>
       {showConfirmPassword && (
         <ConfirmPasswordModal
           confirmationPassword={confirmationPassword}
-          updateEmailWithFirebase={updateEmailWithFirebase}
+          updateEmailWithFirebase={() =>
+            updateEmailWithFirebase(
+              firebase,
+              user,
+              userData,
+              confirmationPassword,
+              setErrorMessage,
+              closeModal
+            )
+          }
           updateConfirmationPassword={updateConfirmationPassword}
           closeModal={closeModal}
         />
