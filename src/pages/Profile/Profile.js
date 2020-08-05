@@ -11,6 +11,8 @@ import profileIcon from '../../images/profileIcon.svg'
 import logoutFromFirebase from '../../components/auth/logoutFromFirebase'
 import updateEmailWithFirebase from '../../components/auth/updateEmailWithFirebase'
 import updateEmailForm from '../../components/auth/updateEmailForm'
+import updateUserProfileFirebase from '../../components/auth/updateUserProfileFirebase.js'
+
 export default function ProfilePage() {
   const { user, firebaseApp } = useContext(AuthUserContext)
 
@@ -24,7 +26,7 @@ export default function ProfilePage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
-  async function updateUserProfileFirebase(userData) {
+  /*  async function updateUserProfileFirebase(userData) {
     const user = firebase.auth().currentUser
     try {
       await user.updateProfile({
@@ -37,12 +39,6 @@ export default function ProfilePage() {
       console.error('error')
       setErrorMessage(`Updating ${user.displayName} failed. `)
     }
-  }
-
-  /*   function updateEmailForm() {
-    const user = firebase.auth().currentUser
-    setUserData({ ...userData, email: user.email })
-    setConfirmationPassword('')
   } */
 
   return (
@@ -73,7 +69,14 @@ export default function ProfilePage() {
       </ProfileIcon>
 
       <EditProfileForm
-        updateUserProfileFirebase={updateUserProfileFirebase}
+        updateUserProfileFirebase={() =>
+          updateUserProfileFirebase(
+            firebase,
+            userData,
+            openModal,
+            setErrorMessage
+          )
+        }
         userData={userData}
         setUserData={updateUserData}
         errorMessage={errorMessage}
