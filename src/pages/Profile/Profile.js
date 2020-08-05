@@ -5,13 +5,13 @@ import styled from 'styled-components'
 import AuthUserContext from '../../components/auth/AuthUserContext'
 import ConfirmPasswordModal from '../../components/auth/ConfirmPasswordModal/ConfirmPasswordModal'
 import EditProfileForm from '../../components/auth/EditProfileForm/EditProfileForm'
+import logoutFromFirebase from '../../components/auth/logoutFromFirebase'
+import updateEmailForm from '../../components/auth/updateEmailForm'
+import updateEmailWithFirebase from '../../components/auth/updateEmailWithFirebase'
+import updateUserProfileFirebase from '../../components/auth/updateUserProfileFirebase.js'
 import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
-import logoutFromFirebase from '../../components/auth/logoutFromFirebase'
-import updateEmailWithFirebase from '../../components/auth/updateEmailWithFirebase'
-import updateEmailForm from '../../components/auth/updateEmailForm'
-import updateUserProfileFirebase from '../../components/auth/updateUserProfileFirebase.js'
 
 export default function ProfilePage() {
   const { user, firebaseApp } = useContext(AuthUserContext)
@@ -25,21 +25,6 @@ export default function ProfilePage() {
   const [confirmationPassword, setConfirmationPassword] = useState('')
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-
-  /*  async function updateUserProfileFirebase(userData) {
-    const user = firebase.auth().currentUser
-    try {
-      await user.updateProfile({
-        displayName: userData.displayName,
-      })
-      if (userData.email !== user.email) {
-        openModal()
-      }
-    } catch (error) {
-      console.error('error')
-      setErrorMessage(`Updating ${user.displayName} failed. `)
-    }
-  } */
 
   return (
     <StyledMain>
