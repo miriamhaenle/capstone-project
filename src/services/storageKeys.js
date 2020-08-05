@@ -1,5 +1,5 @@
 export const APP_STORAGE_KEYS = {
-  footprintTotal: 'Total Carbon Footprint',
-  footprintHistory: 'Carbon Footprint History',
-  footprintPerTransportType: 'Footprint per Transportation Type',
+  footprintTotal: 'total-carbon-footprint',
+  footprintHistory: 'carbon-footprint-history',
+  footprintPerTransportType: 'footprint-per-transportation-type',
 }
