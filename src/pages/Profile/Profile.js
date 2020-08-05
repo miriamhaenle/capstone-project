@@ -10,7 +10,7 @@ import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
 import logoutFromFirebase from '../../components/auth/logoutFromFirebase'
 import updateEmailWithFirebase from '../../components/auth/updateEmailWithFirebase'
-
+import updateEmailForm from '../../components/auth/updateEmailForm'
 export default function ProfilePage() {
   const { user, firebaseApp } = useContext(AuthUserContext)
 
@@ -38,33 +38,12 @@ export default function ProfilePage() {
       setErrorMessage(`Updating ${user.displayName} failed. `)
     }
   }
-  /*
-  async function updateEmailWithFirebase() {
-    if (!confirmationPassword) {
-      setErrorMessage('Password not confirmed!')
-      return
-    }
 
-    const credentials = firebase.auth.EmailAuthProvider.credential(
-      user.email,
-      confirmationPassword
-    )
-    try {
-      await user.reauthenticateWithCredential(credentials)
-      await user.updateEmail(userData.email)
-    } catch (error) {
-      console.error(error.message)
-      setErrorMessage(`Email Address could not be updated. ${error}`)
-    } finally {
-      closeModal()
-    }
-  }*/
-
-  function updateEmailForm() {
+  /*   function updateEmailForm() {
     const user = firebase.auth().currentUser
     setUserData({ ...userData, email: user.email })
     setConfirmationPassword('')
-  }
+  } */
 
   return (
     <StyledMain>
@@ -109,7 +88,7 @@ export default function ProfilePage() {
   )
 
   function closeModal() {
-    updateEmailForm()
+    updateEmailForm(firebase, userData, setUserData, setConfirmationPassword)
     setShowConfirmPassword(false)
   }
   function openModal() {
