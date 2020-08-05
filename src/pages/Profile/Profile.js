@@ -15,7 +15,6 @@ import profileIcon from '../../images/profileIcon.svg'
 
 export default function ProfilePage() {
   const { user, firebaseApp } = useContext(AuthUserContext)
-
   const history = useHistory()
 
   const [userData, setUserData] = useState({

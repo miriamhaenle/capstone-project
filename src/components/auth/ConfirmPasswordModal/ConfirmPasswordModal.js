@@ -17,8 +17,8 @@ export default function ConfirmPasswordModal({
   closeModal,
 }) {
   return (
-    <StyledModal>
-      <div>
+    <OverlayContainer>
+      <StyledModal>
         Please confirm your password to change your email address.
         <input
           type="password"
@@ -31,33 +31,45 @@ export default function ConfirmPasswordModal({
           onClick={updateEmailWithFirebase}
         />
         <Button text="Close" onClick={closeModal} />
-      </div>
-    </StyledModal>
+      </StyledModal>
+    </OverlayContainer>
   )
 }
 
-const StyledModal = styled.div`
+const OverlayContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
+`
+const StyledModal = styled.div`
+  align-items: center;
+  border-radius: 5px;
+  position: absolute;
+  background: var(--sand);
+  height: 50%;
+  width: 80%;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: slide-in 0.2s cubic-bezier(0.55, 0.09, 0.68, 0.53);
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  color: var(--dusk);
 
-  div {
-    align-items: center;
-    border-radius: 2px;
-    position: absolute;
-    background: var(--sand);
-    height: 50%;
-    width: 80%;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    color: var(--dusk);
+  @keyframes slide-in {
+    0% {
+      transform: translateX(0);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(-50%);
+      opacity: 1;
+    }
   }
 
   input {
