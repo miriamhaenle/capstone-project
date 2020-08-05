@@ -7,6 +7,7 @@ import firebaseApp from '../../../firebase'
 import eyeIcon from '../../../images/eye.svg'
 import eyeIconHide from '../../../images/eyeIconHide.svg'
 import Button from '../../Button/Button'
+import loginWithFirebase from '../loginWithFirebase'
 
 export default function SignInForm() {
   let history = useHistory()
@@ -26,7 +27,7 @@ export default function SignInForm() {
 
   const navigateTo = (path) => history.push(path)
 
-  async function loginWithFirebase(email, password) {
+  /*   async function loginWithFirebase(email, password) {
     try {
       await firebaseApp.signInWithEmailAndPassword(email, password)
 
@@ -35,7 +36,7 @@ export default function SignInForm() {
       console.error(error)
       setUserForm({ ...userForm, error })
     }
-  }
+  } */
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -86,7 +87,13 @@ export default function SignInForm() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    loginWithFirebase(userForm.email, userForm.password)
+    loginWithFirebase(
+      history,
+      userForm.email,
+      userForm.password,
+      userForm,
+      setUserForm
+    )
   }
 
   function handleChange(event) {

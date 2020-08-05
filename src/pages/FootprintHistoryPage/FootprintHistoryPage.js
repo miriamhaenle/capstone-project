@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 import DonutChart from '../../components/DonutChart/DonutChart'
-import { Link, useHistory } from 'react-router-dom'
 import { mapFootprintPerTransportTypeToDonutChartData } from '../../components/DonutChart/mapFootprintPerTransportTypeToDonutChartData'
 import * as ROUTES from '../../constants/routes'
 
@@ -14,8 +14,6 @@ export default function FootprintHistoryPage({
   footprintPerTransportationType,
 }) {
   const [donutData, setDonutData] = useState([])
-
-  const history = useHistory()
 
   useEffect(() => {
     const donutData = (footprintPerTransportationType || []).map((footprint) =>
