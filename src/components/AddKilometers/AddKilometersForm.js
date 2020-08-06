@@ -8,7 +8,7 @@ import SportTypes from '../SportTypes/SportTypes'
 
 export default function AddKilometersForm({
   paragraph,
-  type,
+  templateType,
   updateData,
   getKilometers,
   transportationType,
@@ -16,8 +16,8 @@ export default function AddKilometersForm({
 }) {
   const [values, handleChange, handleSubmit] = useForm(getKilometers)
 
-  const getSelectionTemplate = (type) => {
-    switch (type) {
+  const getSelectionTemplate = (templateType) => {
+    switch (templateType) {
       case 'sportsType':
         return (
           <SportTypes
@@ -42,7 +42,7 @@ export default function AddKilometersForm({
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
-        {getSelectionTemplate(type)}
+        {getSelectionTemplate(templateType)}
         <p>{paragraph}</p>
         <label>
           Kilometers
@@ -72,7 +72,7 @@ export default function AddKilometersForm({
 }
 AddKilometersForm.propTypes = {
   paragraph: PropTypes.string,
-  type: PropTypes.string,
+  templateType: PropTypes.string,
   updateData: PropTypes.func,
   getKilometers: PropTypes.func,
   transportationType: PropTypes.string,

@@ -32,7 +32,7 @@ export default function SportsActivitiesPage() {
       headline="Add new activity"
       paragraph="How many kilometers did you move outside today?"
       updateData={updateSportsType}
-      type="sportsType"
+      templateType="sportsType"
       getKilometers={calculateCarbonSaved}
       sportsType={sportsType}
     ></AddKilometersForm>

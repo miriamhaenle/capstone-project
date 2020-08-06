@@ -14,7 +14,7 @@ export default function TripsPage({
       headline="Add new trip"
       paragraph="How many kilometers did it take you to get to your last race / training
         camp?"
-      type="transportation"
+      templateType="transportation"
       updateData={updateTransportationType}
       getKilometers={calculateAndUpdateCarbonEmission}
       transportationType={transportationType}
