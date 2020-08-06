@@ -24,6 +24,7 @@ export default function ConfirmPasswordModal({
           type="password"
           value={confirmationPassword}
           onChange={(event) => updateConfirmationPassword(event.target.value)}
+          data-testid="passwordInput"
         />
         <Button
           color="var(--woodland)"
