@@ -1,9 +1,7 @@
 import '@testing-library/jest-dom/extend-expect'
-
+import { render, screen } from '@testing-library/react'
 import React from 'react'
 import ConfirmPasswordModal from './ConfirmPasswordModal'
-import { render, screen } from '@testing-library/react'
-import { iteratee } from 'lodash'
 
 describe('Confirm Password Modal', () => {
   let renderedComponent
