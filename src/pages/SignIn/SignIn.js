@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import SignInForm from '../../components/auth/SignInForm/SignInForm'
+import SignInForm from '../../components/SignInForm/SignInForm'
 import * as ROUTES from '../../constants/routes'
 import triathlete from '../../images/triathlete.svg'
 

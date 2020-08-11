@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SignUpForm } from '../../components/auth/SignUpForm'
+import { SignUpForm } from '../../components/SignUpForm'
 import * as ROUTES from '../../constants/routes'
 import triathlete from '../../images/triathlete.svg'
 
