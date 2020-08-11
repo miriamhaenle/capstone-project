@@ -49,7 +49,7 @@ const StyledModal = styled.div`
   align-items: center;
   border-radius: 5px;
   position: absolute;
-  background: var(--sand);
+  background: ${({ theme }) => theme.backgroundProfileRelated};
   height: 50%;
   width: 80%;
   top: 20%;
@@ -59,7 +59,7 @@ const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
   padding: 30px;
-  color: var(--dusk);
+  color: ${({ theme }) => theme.textProfileRelated};
 
   @keyframes slide-in {
     0% {
@@ -79,8 +79,9 @@ const StyledModal = styled.div`
     margin: 20px;
     border: none;
     font-size: 16px;
-    color: var(--dust);
+    color: ${({ theme }) => theme.textProfileRelated};
     width: 220px;
     padding: 9px;
+    background: ${({ theme }) => theme.profileInputs};
   }
 `

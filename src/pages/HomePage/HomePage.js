@@ -11,7 +11,6 @@ import Header from '../../components/Header/Header'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
 import PropTypes from 'prop-types'
-import ThemeToggler from '../../components/ThemeToggler/ThemeToggler'
 
 export default function HomePage({
   initialFootprintValue,
@@ -110,7 +109,6 @@ HomePage.propTypes = {
 }
 
 const StyledWelcomeMessage = styled.div`
-  color: var(--sand);
   padding: 0 30px;
   display: flex;
   flex-direction: column;

@@ -93,7 +93,7 @@ export default function ProfilePage() {
 
 const StyledMain = styled.main`
   position: relative;
-  background: var(--sand);
+  background: ${({ theme }) => theme.backgroundProfileRelated};
   height: 100vh;
   padding: 30px;
   display: flex;
@@ -112,7 +112,7 @@ const ProfileIcon = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: var(--orange-yellow);
+  background: ${({ theme }) => theme.textProfileRelated};
   display: flex;
   justify-content: center;
   align-items: center;

@@ -4,6 +4,7 @@ import ThemeToggler from '../../components/ThemeToggler/ThemeToggler'
 import * as ROUTES from '../../constants/routes'
 import settings from '../../images/settings.svg'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 export default function Header({ toggleTheme, theme }) {
   return (
@@ -15,6 +16,11 @@ export default function Header({ toggleTheme, theme }) {
       </Link>
     </StyledHeader>
   )
+}
+
+Header.propTypes = {
+  toggleTheme: PropTypes.string,
+  theme: PropTypes.string,
 }
 
 const StyledHeader = styled.header`

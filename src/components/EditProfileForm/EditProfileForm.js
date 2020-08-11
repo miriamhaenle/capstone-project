@@ -57,7 +57,7 @@ export default function EditProfileForm({
 }
 
 const StyledForm = styled.form`
-  background: var(--sand);
+  background: ${({ theme }) => theme.backgroundProfileRelated};
   display: flex;
   flex-direction: column;
   padding: 30px 0 0;
@@ -74,18 +74,19 @@ const StyledForm = styled.form`
     margin-left: 15px;
     border: none;
     font-size: 16px;
-    color: var(--dust);
+    color: ${({ theme }) => theme.textProfileRelated};
+    background: ${({ theme }) => theme.profileInputs};
     width: 80%;
     padding: 9px;
   }
   input:disabled {
-    background: var(--sand);
+    background: ${({ theme }) => theme.profileInputs};
   }
 `
 
 const StyledErrorMessage = styled.p`
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  color: var(--sunset);
+  color: ${({ theme }) => theme.textError};
   margin: 10px 0 0;
 `
