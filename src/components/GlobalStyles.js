@@ -15,8 +15,11 @@ export default createGlobalStyle`
 --headlineFont: 'Playfair Display', serif;
 }
 
+ 
 body {
-  background: var(--woodland);
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+  transition: all 0.50s linear;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   margin: 0 auto;
@@ -25,6 +28,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(----headlineFont);
+  font-family: var(--headlineFont);
 }
+
 `

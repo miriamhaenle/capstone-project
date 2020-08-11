@@ -47,7 +47,6 @@ const StyledNavigation = styled.nav`
   li {
     list-style: none;
     margin: 0 20px;
-    color: var(--seafoam);
 
     .selected {
       padding: 0;

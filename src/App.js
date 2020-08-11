@@ -17,9 +17,16 @@ import { calculateFootprintPerTransportionType } from './services/calculateFootp
 import { calculateTotalFootprintSum } from './services/calculateTotalFootprintSum'
 import { getFromStorage, saveToStorage } from './services/handleStorage'
 import { APP_STORAGE_KEYS } from './services/storageKeys'
+import { ThemeProvider } from 'styled-components'
+import ThemeToggler from './components/ThemeToggler/ThemeToggler'
+import GlobaleStyles from './components/GlobalStyles'
+import { darkTheme, lightTheme } from './components/Themes'
+import useDarkMode from './services/useDarkMode'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
+  const [theme, toggleTheme, componentMounted] = useDarkMode()
+  const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   const initialFootprintValue = 0
   const [carbonFootprint, setCarbonFootprint] = useState([
@@ -72,46 +79,51 @@ export default function App() {
   if (!authCompleted) {
     return <LoadingScreen />
   }
+  if (!componentMounted) return <div />
 
   return (
-    <AuthUserContext.Provider value={{ user, firebaseApp }}>
-      <main>
-        <ToastContainer autoClose={6000} draggablePercent={60} />
+    <ThemeProvider theme={themeMode}>
+      <AuthUserContext.Provider value={{ user, firebaseApp }}>
+        <main>
+          <GlobaleStyles />
+          <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
+          <ToastContainer autoClose={6000} draggablePercent={60} />
 
-        <Switch>
-          <Route exact path={ROUTES.WELCOME}>
-            <WelcomePage />
-          </Route>
-          <Route path={ROUTES.HOME}>
-            <HomePage
-              initialFootprintValue={initialFootprintValue}
-              totalCarbonFootprint={totalCarbonFootprint || 0}
-              updateCarbonFootprint={updateCarbonFootprint}
-              updateFootprintPerTransportationType={
-                updateFootprintPerTransportationType
-              }
-            />
-          </Route>
-          <Route path={ROUTES.FOOTPRINT_HISTORY}>
-            <FootprintHistoryPage
-              footprintPerTransportationType={footprintPerTransportationType}
-            />
-          </Route>
-          <Route path={ROUTES.SIGN_UP}>
-            <SignUpPage />
-          </Route>
-          <Route path={ROUTES.SIGN_IN}>
-            <SignInPage />
-          </Route>
-          <Route path={ROUTES.PROFILE}>
-            <ProfilePage />
-          </Route>
-          <Route path={ROUTES.PASSWORD_FORGET}>
-            <ResetPasswordPage />
-          </Route>
-        </Switch>
-      </main>
-    </AuthUserContext.Provider>
+          <Switch>
+            <Route exact path={ROUTES.WELCOME}>
+              <WelcomePage />
+            </Route>
+            <Route path={ROUTES.HOME}>
+              <HomePage
+                initialFootprintValue={initialFootprintValue}
+                totalCarbonFootprint={totalCarbonFootprint || 0}
+                updateCarbonFootprint={updateCarbonFootprint}
+                updateFootprintPerTransportationType={
+                  updateFootprintPerTransportationType
+                }
+              />
+            </Route>
+            <Route path={ROUTES.FOOTPRINT_HISTORY}>
+              <FootprintHistoryPage
+                footprintPerTransportationType={footprintPerTransportationType}
+              />
+            </Route>
+            <Route path={ROUTES.SIGN_UP}>
+              <SignUpPage />
+            </Route>
+            <Route path={ROUTES.SIGN_IN}>
+              <SignInPage />
+            </Route>
+            <Route path={ROUTES.PROFILE}>
+              <ProfilePage />
+            </Route>
+            <Route path={ROUTES.PASSWORD_FORGET}>
+              <ResetPasswordPage />
+            </Route>
+          </Switch>
+        </main>
+      </AuthUserContext.Provider>
+    </ThemeProvider>
   )
   function updateCarbonFootprint(value) {
     setCarbonFootprint([...carbonFootprint, value])
