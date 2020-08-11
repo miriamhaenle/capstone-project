@@ -7,7 +7,12 @@ export const lightTheme = {
   button: 'var(--sunset)',
   radioButtons: 'var(--sand)',
   radioButtonsChecked: 'var(--sunset)',
-
+  headline: 'var(--sand)',
+  link: 'var(--sand)',
+  linkSelected: 'var(--seafoam)',
+  sumCarbon: 'var(--sunset)',
+  sumCarbonText: 'var(--sand)',
+  historyBackground: 'var(--sand)',
   backgroundProfileRelated: 'var(--sand)',
   profileInputs: '#F3C969',
   textProfileRelated: '#091A1A',
@@ -15,16 +20,21 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-  body: '#121212',
+  body: '#000',
   text: '#BB86FC',
-  background: '#121212',
-  input: '#BB86FC',
+  background: '#000',
+  input: '#121212',
   inputColor: '#000',
   button: '#03DAC6',
-  radioButtons: '#000',
-
+  radioButtons: '#121212',
   radioButtonsChecked: '#03DAC6',
+  headline: '#BB86FC',
+  link: '#BB86FC',
 
+  linkSelected: '#CF6679',
+  sumCarbon: '#03DAC6',
+  sumCarbonText: '#121212',
+  historyBackground: '#000',
   backgroundProfileRelated: '#000',
   profileInputs: '#121212',
   textProfileRelated: '#BB86FC',

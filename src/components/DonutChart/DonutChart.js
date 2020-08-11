@@ -43,7 +43,7 @@ DonutChart.propTypes = {
 }
 
 const ChartContainer = styled.div`
-  background: var(--sand);
+  background: ${({ theme }) => theme.historyBackground};
 
   height: 228px;
   margin: 0 auto;
@@ -54,7 +54,7 @@ const ChartContainer = styled.div`
     justify-content: center;
     margin: 0 auto;
     padding: 0;
-    background: var(--sand);
+    background: ${({ theme }) => theme.historyBackground};
   }
 `
 const FootprintLegendListItem = styled.li`

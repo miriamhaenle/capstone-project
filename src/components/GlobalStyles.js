@@ -37,4 +37,8 @@ input {
   color: ${({ theme }) => theme.inputColor};
 }
 
+a {
+  color: ${({ theme }) => theme.link};
+
+}
 `

@@ -50,13 +50,13 @@ const StyledNavigation = styled.nav`
 
     .selected {
       padding: 0;
-      color: var(--seafoam);
+      color: ${({ theme }) => theme.linkSelected};
+
       font-size: 34px;
       animation: breathe 1500ms forwards;
     }
   }
   a {
-    color: var(--sand);
     font-variation-settings: 'wght' 100, 'wdth' 85;
     font-family: var(--headlineFont);
     font-size: 20px;

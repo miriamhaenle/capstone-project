@@ -42,10 +42,11 @@ SumCarbonFootprint.propTypes = {
 
 const StyledSumCarbonFootprint = styled.section`
   align-items: center;
-  background: var(--sunset);
+  background: ${({ theme }) => theme.sumCarbon};
   border: none;
   border-radius: 50%;
-  color: var(--sand);
+  color: ${({ theme }) => theme.sumCarbonText};
+
   display: flex;
   flex-direction: column;
   font-family: var(--headlineFont);
@@ -90,8 +91,8 @@ const StyledSumCarbonFootprint = styled.section`
 
   @keyframes grow {
     0% {
-      background: var(--sunset);
-      color: var(--sunset);
+      background: ${({ theme }) => theme.sumCarbon};
+      color: ${({ theme }) => theme.sumCarbon};
     }
 
     100% {
