@@ -20,12 +20,15 @@ export default function ThemeToggler({ theme, toggleTheme }) {
 
 const ToggleButton = styled.button`
   background: ${({ theme }) => theme.background};
-  border: 2px solid ${({ theme }) => theme.toggleBorder};
-  color: ${({ theme }) => theme.text};
+  border: none;
   border-radius: 50%;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  font-size: 0.8rem;
-  padding: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 `
 const ToggleIcon = styled.img`
   width: 30px;

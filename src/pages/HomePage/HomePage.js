@@ -117,8 +117,8 @@ HomePage.propTypes = {
 
 const StyledHeader = styled.header`
   display: flex;
-  justify-content: flex-end;
-  height: 40px;
+  justify-content: space-between;
+
   a {
     padding: 20px;
   }
