@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import eyeIcon from '../../../images/eye.svg'
 import eyeIconHide from '../../../images/eyeIconHide.svg'
-import Button from '../../Button/Button'
-import registerToFirebase from '../registerToFirebase'
+import Button from '../Button/Button'
+import registerToFirebase from '../auth/registerToFirebase'
 
 export function SignUpForm() {
   let history = useHistory()

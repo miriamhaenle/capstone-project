@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-import Button from '../../Button/Button'
+import Button from '../Button/Button'
 
 ConfirmPasswordModal.propTypes = {
   confirmationPassword: PropTypes.string,

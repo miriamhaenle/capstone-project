@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Button from '../../Button/Button'
-import passwordResetWithFirebase from '../passwordResetWithFirebase'
+import Button from '../Button/Button'
+import passwordResetWithFirebase from '../auth/passwordResetWithFirebase'
 
 export default function PasswordResetForm({ passwordReset }) {
   const INITIAL_VALUE = {
