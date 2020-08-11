@@ -11,12 +11,15 @@ import homeIcon from '../../images/sustainable.svg'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
 import PropTypes from 'prop-types'
+import ThemeToggler from '../../components/ThemeToggler/ThemeToggler'
 
 export default function HomePage({
   initialFootprintValue,
   totalCarbonFootprint,
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
+  toggleTheme,
+  theme,
 }) {
   const { user } = useContext(AuthUserContext)
   const { isMobile } = useDeviceDetect()
@@ -30,6 +33,8 @@ export default function HomePage({
   return (
     <>
       <StyledHeader>
+        <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
+
         <Link to={ROUTES.PROFILE}>
           <StyledImage src={settings} alt="profile" />
         </Link>

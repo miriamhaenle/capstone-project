@@ -18,7 +18,6 @@ import { calculateTotalFootprintSum } from './services/calculateTotalFootprintSu
 import { getFromStorage, saveToStorage } from './services/handleStorage'
 import { APP_STORAGE_KEYS } from './services/storageKeys'
 import { ThemeProvider } from 'styled-components'
-import ThemeToggler from './components/ThemeToggler/ThemeToggler'
 import GlobaleStyles from './components/GlobalStyles'
 import { darkTheme, lightTheme } from './components/Themes'
 import useDarkMode from './services/useDarkMode'
@@ -86,7 +85,6 @@ export default function App() {
       <AuthUserContext.Provider value={{ user, firebaseApp }}>
         <main>
           <GlobaleStyles />
-          <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
           <ToastContainer autoClose={6000} draggablePercent={60} />
 
           <Switch>
@@ -101,6 +99,8 @@ export default function App() {
                 updateFootprintPerTransportationType={
                   updateFootprintPerTransportationType
                 }
+                toggleTheme={toggleTheme}
+                theme={theme}
               />
             </Route>
             <Route path={ROUTES.FOOTPRINT_HISTORY}>

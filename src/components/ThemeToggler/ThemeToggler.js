@@ -22,12 +22,12 @@ const ToggleButton = styled.button`
   background: ${({ theme }) => theme.background};
   border: 2px solid ${({ theme }) => theme.toggleBorder};
   color: ${({ theme }) => theme.text};
-  border-radius: 30px;
+  border-radius: 50%;
   cursor: pointer;
   font-size: 0.8rem;
   padding: 0.6rem;
 `
 const ToggleIcon = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 `
