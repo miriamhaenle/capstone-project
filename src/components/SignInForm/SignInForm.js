@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-
+import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import * as ROUTES from '../../../constants/routes'
-import firebaseApp from '../../../firebase'
+import * as ROUTES from '../../constants/routes'
 import eyeIcon from '../../../images/eye.svg'
 import eyeIconHide from '../../../images/eyeIconHide.svg'
-import Button from '../../Button/Button'
+import Button from '../Button/Button'
+import loginWithFirebase from '../auth/loginWithFirebase'
 
 export default function SignInForm() {
   let history = useHistory()
@@ -23,19 +22,6 @@ export default function SignInForm() {
     !userForm.password.length ||
     !userForm.email.length ||
     !/([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3})/.test(userForm.email)
-
-  const navigateTo = (path) => history.push(path)
-
-  async function loginWithFirebase(email, password) {
-    try {
-      await firebaseApp.signInWithEmailAndPassword(email, password)
-
-      navigateTo(ROUTES.HOME)
-    } catch (error) {
-      console.error(error)
-      setUserForm({ ...userForm, error })
-    }
-  }
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -86,7 +72,13 @@ export default function SignInForm() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    loginWithFirebase(userForm.email, userForm.password)
+    loginWithFirebase(
+      history,
+      userForm.email,
+      userForm.password,
+      userForm,
+      setUserForm
+    )
   }
 
   function handleChange(event) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Button from '../../Button/Button'
+import Button from '../Button/Button'
 
 export default function EditProfileForm({
   updateUserProfileFirebase,

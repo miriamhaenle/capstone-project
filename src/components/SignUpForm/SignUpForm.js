@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import * as ROUTES from '../../../constants/routes'
-import firebaseApp from '../../../firebase'
 import eyeIcon from '../../../images/eye.svg'
 import eyeIconHide from '../../../images/eyeIconHide.svg'
-import Button from '../../Button/Button'
+import Button from '../Button/Button'
+import registerToFirebase from '../auth/registerToFirebase'
 
 export function SignUpForm() {
   let history = useHistory()
@@ -22,30 +21,12 @@ export function SignUpForm() {
 
   const isInvalid =
     userForm.passwordOne !== userForm.passwordTwo ||
-    !userForm.passwordOne.length ||
+    userForm.passwordOne.length < 6 ||
     !userForm.email.length ||
     !/([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3})/.test(userForm.email) ||
     !userForm.username.length
 
   const resetForm = () => setUserForm(INITIAL_VALUE)
-  const navigateTo = (path) => history.push(path)
-
-  async function registerToFirebase(username, email, passwordOne) {
-    try {
-      const newUser = await firebaseApp.createUserWithEmailAndPassword(
-        email,
-        passwordOne
-      )
-      await newUser.user.updateProfile({
-        displayName: username,
-      })
-      resetForm()
-      navigateTo(ROUTES.HOME)
-    } catch (error) {
-      console.error(error)
-      setUserForm({ ...userForm, error })
-    }
-  }
 
   return (
     <>
@@ -126,7 +107,15 @@ export function SignUpForm() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    registerToFirebase(userForm.username, userForm.email, userForm.passwordOne)
+    registerToFirebase(
+      history,
+      userForm.username,
+      userForm.email,
+      userForm.passwordOne,
+      resetForm,
+      userForm,
+      setUserForm
+    )
   }
   function handleChange(event) {
     setUserForm({ ...userForm, [event.target.name]: event.target.value })

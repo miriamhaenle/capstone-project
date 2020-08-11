@@ -9,13 +9,13 @@ export default function SportsActivitiesPage() {
   const [sportsType, setSportsType] = useState('swim')
   const [footPrintSaved, setFootPrintSaved] = useState(0)
   const Msg = () => (
-    <div data-cy="toast">
-      <StyledToastHeader>Woho! </StyledToastHeader>
-      <StyledToastText>
+    <ToastMessage data-cy="toast">
+      <h6>Woho! </h6>
+      <p>
         You saved <b>{footPrintSaved}kg CO2</b> through pure muscle strength in
         your {sportsType} session!
-      </StyledToastText>
-    </div>
+      </p>
+    </ToastMessage>
   )
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function SportsActivitiesPage() {
       headline="Add new activity"
       paragraph="How many kilometers did you move outside today?"
       updateData={updateSportsType}
-      type="sportsType"
+      templateType="sportsType"
       getKilometers={calculateCarbonSaved}
       sportsType={sportsType}
     ></AddKilometersForm>
@@ -48,13 +48,16 @@ export default function SportsActivitiesPage() {
   }
 }
 
-const StyledToastHeader = styled.h6`
-  margin: 0;
-  font-size: 15px;
-  color: var(--woodland);
-`
-
-const StyledToastText = styled.p`
-  margin: 0;
-  font-size: 12px;
+const ToastMessage = styled.div`
+  padding: 2px;
+  h6 {
+    margin: 0;
+    font-size: 15px;
+    color: var(--woodland);
+    padding: 5px 0;
+  }
+  p {
+    margin: 0;
+    font-size: 12px;
+  }
 `

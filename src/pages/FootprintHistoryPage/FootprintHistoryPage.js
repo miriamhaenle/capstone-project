@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import DonutChart from '../../components/DonutChart/DonutChart'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import DonutChart from '../../components/DonutChart/DonutChart'
 import { mapFootprintPerTransportTypeToDonutChartData } from '../../components/DonutChart/mapFootprintPerTransportTypeToDonutChartData'
 import * as ROUTES from '../../constants/routes'
+
+FootprintHistoryPage.propTypes = {
+  footprintPerTransportationType: PropTypes.array,
+}
 
 export default function FootprintHistoryPage({
   footprintPerTransportationType,
@@ -31,10 +35,6 @@ export default function FootprintHistoryPage({
       )}
     </StyledSection>
   )
-}
-
-FootprintHistoryPage.propTypes = {
-  footprintPerTransportationType: PropTypes.array,
 }
 
 const StyledSection = styled.main`

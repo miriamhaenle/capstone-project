@@ -104,6 +104,7 @@ describe('Calculate footprint per transportation type', () => {
   it('should not update a state with missing data', () => {
     expect(
       calculateFootprintPerTransportionType(
+        [
           {
             transportationType: 'car',
             footprintSum: 200,

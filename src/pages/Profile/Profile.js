@@ -5,15 +5,17 @@ import styled from 'styled-components'
 import AuthUserContext from '../../components/auth/AuthUserContext'
 import ConfirmPasswordModal from '../../components/auth/ConfirmPasswordModal/ConfirmPasswordModal'
 import EditProfileForm from '../../components/auth/EditProfileForm/EditProfileForm'
+import logoutFromFirebase from '../../components/auth/logoutFromFirebase'
+import updateEmailForm from '../../components/auth/updateEmailForm'
+import updateEmailWithFirebase from '../../components/auth/updateEmailWithFirebase'
+import updateUserProfileFirebase from '../../components/auth/updateUserProfileFirebase.js'
 import Button from '../../components/Button/Button'
 import * as ROUTES from '../../constants/routes'
 import profileIcon from '../../images/profileIcon.svg'
 
 export default function ProfilePage() {
   const { user, firebaseApp } = useContext(AuthUserContext)
-
   const history = useHistory()
-  const navigateTo = (path) => history.push(path)
 
   const [userData, setUserData] = useState({
     displayName: user.displayName,
@@ -23,64 +25,21 @@ export default function ProfilePage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
-  async function updateUserProfileFirebase(userData) {
-    const user = firebase.auth().currentUser
-    try {
-      await user.updateProfile({
-        displayName: userData.displayName,
-      })
-      if (userData.email !== user.email) {
-        openModal()
-      }
-    } catch (error) {
-      console.error('error')
-      setErrorMessage(`Updating ${user.displayName} failed. `)
-    }
-  }
-
-  async function updateEmailWithFirebase() {
-    if (!confirmationPassword) {
-      setErrorMessage('Password not confirmed!')
-      return
-    }
-
-    const credentials = firebase.auth.EmailAuthProvider.credential(
-      user.email,
-      confirmationPassword
-    )
-    try {
-      await user.reauthenticateWithCredential(credentials)
-      await user.updateEmail(userData.email)
-    } catch (error) {
-      console.error(error.message)
-      setErrorMessage(`Email Address could not be updated. ${error}`)
-    } finally {
-      closeModal()
-    }
-  }
-
-  function updateEmailForm() {
-    const user = firebase.auth().currentUser
-    setUserData({ ...userData, email: user.email })
-    setConfirmationPassword('')
-  }
-
-  async function logoutFromFirebase() {
-    try {
-      navigateTo(ROUTES.WELCOME)
-      await firebaseApp.signOut()
-    } catch (error) {
-      console.error(error.message)
-      setErrorMessage('Ups! Something went wrong. Please try again.')
-    }
-  }
-
   return (
     <StyledMain>
       {showConfirmPassword && (
         <ConfirmPasswordModal
           confirmationPassword={confirmationPassword}
-          updateEmailWithFirebase={updateEmailWithFirebase}
+          updateEmailWithFirebase={() =>
+            updateEmailWithFirebase(
+              firebase,
+              user,
+              userData,
+              confirmationPassword,
+              setErrorMessage,
+              closeModal
+            )
+          }
           updateConfirmationPassword={updateConfirmationPassword}
           closeModal={closeModal}
         />
@@ -94,17 +53,29 @@ export default function ProfilePage() {
       </ProfileIcon>
 
       <EditProfileForm
-        updateUserProfileFirebase={updateUserProfileFirebase}
+        updateUserProfileFirebase={() =>
+          updateUserProfileFirebase(
+            firebase,
+            userData,
+            openModal,
+            setErrorMessage
+          )
+        }
         userData={userData}
         setUserData={updateUserData}
         errorMessage={errorMessage}
       />
-      <Button onClick={logoutFromFirebase} text="Log out" />
+      <Button
+        onClick={() =>
+          logoutFromFirebase(history, firebaseApp, setErrorMessage)
+        }
+        text="Log out"
+      />
     </StyledMain>
   )
 
   function closeModal() {
-    updateEmailForm()
+    updateEmailForm(firebase, userData, setUserData, setConfirmationPassword)
     setShowConfirmPassword(false)
   }
   function openModal() {
