@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import PasswordResetForm from '../../components/auth/PasswordResetForm/PasswordResetForm'
+import PasswordResetForm from '../../components/PasswordResetForm/PasswordResetForm'
 import * as ROUTES from '../../constants/routes'
 import triathlete from '../../images/triathlete.svg'
 
