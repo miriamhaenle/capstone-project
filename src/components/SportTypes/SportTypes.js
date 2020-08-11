@@ -73,7 +73,7 @@ const Container = styled.section`
   }
 
   label {
-    background: var(--sand);
+    background: ${({ theme }) => theme.radioButtons};
     border-radius: 50%;
     color: var(--woodland);
     display: flex;
@@ -93,6 +93,6 @@ const Container = styled.section`
   }
 
   input[type='radio']:checked + label {
-    background: var(--sunset);
+    background: ${({ theme }) => theme.radioButtonsChecked};
   }
 `

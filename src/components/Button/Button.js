@@ -25,7 +25,6 @@ const StyledButton = styled.button`
   background: ${(props) => (props.color ? props.color : 'var(--sunset)')};
   border: none;
   border-radius: 3px;
-  color: var(--sand);
   font-size: 18px;
   height: 36px;
   align-self: center;

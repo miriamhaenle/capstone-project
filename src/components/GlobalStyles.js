@@ -29,6 +29,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--headlineFont);
+  color: ${({ theme }) => theme.headline};
+}
+
+input {
+  background: ${({ theme }) => theme.input};
+  color: ${({ theme }) => theme.inputColor};
 }
 
 `

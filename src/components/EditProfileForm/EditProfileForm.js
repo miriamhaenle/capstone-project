@@ -67,6 +67,7 @@ const StyledForm = styled.form`
 
   label {
     padding: 0 0 20px;
+    color: ${({ theme }) => theme.textProfileRelated};
   }
   input {
     font-family: 'Poppins', sans-serif;

@@ -83,12 +83,9 @@ const StyledForm = styled.form`
   padding: 0 30px;
   display: flex;
   flex-direction: column;
-  color: var(--sand);
   margin-bottom: 50px;
 
   h2 {
-    color: var(--seafoam);
-    font-family: var(--headlineFont);
     font-size: 32px;
     padding: 25px 0 20px 0;
     margin: 0;
@@ -106,8 +103,6 @@ const KilometerInput = styled.input`
   border: none;
   border-radius: 3px;
   width: 315px;
-  background: var(--sand);
-  color: var(--dusk);
   margin: 10px 0;
   padding: 9px;
 `

@@ -1,8 +1,14 @@
 export const lightTheme = {
   body: '#164036',
-  text: '#F7EEDF',
+  text: 'var(--sand)',
   background: '#164036',
-  backgroundProfileRelated: '#F7EEDF',
+  input: 'var(--sand)',
+  inputColor: 'var(--dusk)',
+  button: 'var(--sunset)',
+  radioButtons: 'var(--sand)',
+  radioButtonsChecked: 'var(--sunset)',
+
+  backgroundProfileRelated: 'var(--sand)',
   profileInputs: '#F3C969',
   textProfileRelated: '#091A1A',
   textError: '#FF8C66',
@@ -12,6 +18,13 @@ export const darkTheme = {
   body: '#121212',
   text: '#BB86FC',
   background: '#121212',
+  input: '#BB86FC',
+  inputColor: '#000',
+  button: '#03DAC6',
+  radioButtons: '#000',
+
+  radioButtonsChecked: '#03DAC6',
+
   backgroundProfileRelated: '#000',
   profileInputs: '#121212',
   textProfileRelated: '#BB86FC',
