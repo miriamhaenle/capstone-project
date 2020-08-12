@@ -25,7 +25,7 @@ Header.propTypes = {
 
 const StyledHeader = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   a {
     padding: 20px;

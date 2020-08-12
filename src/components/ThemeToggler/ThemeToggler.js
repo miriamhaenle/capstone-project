@@ -87,7 +87,7 @@ const Crater = styled.span`
   border-radius: 100%;
 
   :first-child {
-    top: 18px;
+    top: 15px;
     left: 10px;
     width: 4px;
     height: 4px;
@@ -119,7 +119,7 @@ const Star = styled.span`
     height: ${(props) => (props.isDarkMode ? '2px' : '3px')};
   }
   :nth-child(2) {
-    top: 18px;
+    top: 13px;
     left: 28px;
     z-index: 1;
     width: ${(props) => (props.isDarkMode ? '4px' : '30px')};
@@ -137,7 +137,7 @@ const Star = styled.span`
   :nth-child(4) {
     opacity: ${(props) => (props.isDarkMode ? 1 : 0)};
     transition: all 300ms 0 cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    top: 16px;
+    top: 18px;
     left: 11px;
     z-index: 0;
     width: ${(props) => (props.isDarkMode ? '4px' : '2px')};
@@ -152,8 +152,8 @@ const Star = styled.span`
   :nth-child(5) {
     opacity: ${(props) => (props.isDarkMode ? 1 : 0)};
     transition: all 300ms 0 cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    top: 32px;
-    left: 17px;
+    top: 28px;
+    left: 20px;
     z-index: 0;
     width: 3px;
     height: 3px;
@@ -167,8 +167,8 @@ const Star = styled.span`
   :nth-child(6) {
     opacity: ${(props) => (props.isDarkMode ? 1 : 0)};
     transition: all 300ms 0 cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    top: 36px;
-    left: 28px;
+    top: 31px;
+    left: 36px;
     z-index: 0;
     width: 2px;
     height: 2px;
