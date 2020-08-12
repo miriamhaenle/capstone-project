@@ -13,6 +13,11 @@ export default createGlobalStyle`
 --sand: #F7EEDF;
 --orange-yellow: #F3C969;
 --headlineFont: 'Playfair Display', serif;
+
+--primaryDark: #212121;
+--secondaryBlue: #102A43;
+--textDark: #627D90;
+--seaGreen: #028FA3;
 }
 
  

@@ -180,20 +180,3 @@ const Star = styled.span`
         : ''};
   }
 `
-
-const ToggleButton = styled.button`
-  background: ${({ theme }) => theme.background};
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-`
-const ToggleIcon = styled.img`
-  width: 30px;
-  height: 30px;
-`
