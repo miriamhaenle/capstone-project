@@ -7,6 +7,7 @@ export const lightTheme = {
   inputColor: 'var(--dusk)',
   button: 'var(--sunset)',
   radioButtons: 'var(--sand)',
+  radioButtonsText: 'var(--woodland)',
   radioButtonsChecked: 'var(--sunset)',
   headline: 'var(--sand)',
   link: 'var(--sand)',
@@ -29,6 +30,8 @@ export const darkTheme = {
   inputColor: 'var(--textDark)',
   button: '#03DAC6',
   radioButtons: 'var(--secondaryBlue)',
+  radioButtonsText: 'var(--textDark)',
+
   radioButtonsChecked: 'var(--red)',
   headline: 'var(--textDark)',
   link: 'var(--textDark)',
@@ -39,7 +42,7 @@ export const darkTheme = {
   historyBackground: 'var(--primaryDark)',
   backgroundProfileRelated: 'var(--primaryDark)',
   textProfileRelated: 'var(--textDark)',
-  textError: '#CF6679',
+  textError: 'var(--red)',
 }
 
 /* 

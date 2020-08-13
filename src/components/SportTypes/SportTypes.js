@@ -71,14 +71,17 @@ const Container = styled.section`
     visibility: hidden;
     margin: 0;
   }
-  g {
-    fill: ${({ theme }) => theme.yellowBackground};
+
+  svg {
+    g {
+      fill: ${({ theme }) => theme.inputColor};
+    }
   }
 
   label {
-    background: ${({ theme }) => theme.linkSelected};
+    background: ${({ theme }) => theme.input};
     border-radius: 50%;
-    color: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.inputColor};
     display: flex;
     font-size: 12px;
     flex-direction: column;
@@ -91,11 +94,12 @@ const Container = styled.section`
     }
   }
 
-  img {
-    width: 30px;
-  }
-
   input[type='radio']:checked + label {
     background: ${({ theme }) => theme.radioButtonsChecked};
+    color: ${({ theme }) => theme.body};
+
+    & g  {
+      fill: ${({ theme }) => theme.body};
+    }
   }
 `

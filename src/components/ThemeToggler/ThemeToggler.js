@@ -9,7 +9,7 @@ ThemeToggler.propTypes = {
 
 export default function ThemeToggler({ theme, toggleTheme }) {
   const isDarkMode = theme === 'dark' ? true : false
-  console.log({ isDarkMode })
+
   return (
     <>
       <ToggleWrapper>
