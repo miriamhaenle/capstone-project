@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import PasswordResetForm from '../../components/PasswordResetForm/PasswordResetForm'
 import * as ROUTES from '../../constants/routes'
-import triathlete from '../../images/triathlete.svg'
+import TriathleteIcon from '../../images/TriathleteIcon'
 
 export default function PasswordResetPage() {
   const [passwordResetted, setPasswordResetted] = useState(false)
@@ -13,7 +13,7 @@ export default function PasswordResetPage() {
         <span>Go back</span>
       </Link>
       <h2>Password reset</h2>
-      <img src={triathlete} alt="triathlete" />
+      <TriathleteIcon />
 
       {passwordResetted ? (
         <>
@@ -33,9 +33,9 @@ export default function PasswordResetPage() {
 
 const StyledMain = styled.main`
   padding: 30px 30px;
-  background: var(--sand);
+  background: ${({ theme }) => theme.backgroundProfileRelated};
   height: 100vh;
-  color: var(--woodland);
+  color: ${({ theme }) => theme.textProfileRelated};
 
   h2 {
     font-weight: 800;
@@ -47,6 +47,6 @@ const StyledMain = styled.main`
   }
 
   a {
-    color: var(--woodland);
+    color: ${({ theme }) => theme.radioButtonsText};
   }
 `

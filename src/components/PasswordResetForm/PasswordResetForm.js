@@ -44,7 +44,6 @@ export default function PasswordResetForm({ passwordReset }) {
 }
 
 const StyledForm = styled.form`
-  background: var(--sand);
   padding: 0 30px;
   display: flex;
   flex-direction: column;

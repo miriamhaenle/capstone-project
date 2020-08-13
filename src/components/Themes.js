@@ -16,7 +16,7 @@ export const lightTheme = {
   sumCarbonText: 'var(--sand)',
   historyBackground: 'var(--sand)',
   backgroundProfileRelated: 'var(--sand)',
-  profileInputs: '#F3C969',
+  profileInputs: 'var(--orange-yellow)',
   textProfileRelated: '#091A1A',
   textError: '#FF8C66',
 }
@@ -43,6 +43,7 @@ export const darkTheme = {
   backgroundProfileRelated: 'var(--primaryDark)',
   textProfileRelated: 'var(--textDark)',
   textError: 'var(--red)',
+  profileInputs: 'var(--yellowDark)',
 }
 
 /* 
