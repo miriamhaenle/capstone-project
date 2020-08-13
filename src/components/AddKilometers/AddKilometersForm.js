@@ -96,7 +96,7 @@ const StyledForm = styled.form`
   }
 
   label {
-    padding: 30px 0;
+    padding: 0;
   }
 `
 const KilometerInput = styled.input`

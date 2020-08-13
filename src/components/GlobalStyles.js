@@ -15,9 +15,12 @@ export default createGlobalStyle`
 --headlineFont: 'Playfair Display', serif;
 
 --primaryDark: #212121;
---secondaryBlue: #102A43;
+--secondaryBlue: #003545;
 --textDark: #627D90;
---seaGreen: #028FA3;
+--seaGreen: #00454a;
+--green: #3c6562;
+--yellowDark: #FFF083;
+--red: #ed6363;
 }
 
  

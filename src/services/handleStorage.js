@@ -3,6 +3,7 @@ import { db } from '../firebase/index'
 
 export async function saveToStorage(userId, key, dataSet) {
   const userDoc = db.collection(key).doc(userId)
+  console.log(userDoc)
 
   try {
     const docSnapshot = await userDoc.get()

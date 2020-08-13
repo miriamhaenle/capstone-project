@@ -106,7 +106,7 @@ const StyledP = styled.p`
   font-size: 0.4em;
   text-align: center;
   color: var(--woodland);
-  background-color: var(--orange-yellow);
-  border: solid 1px var(--orange-yellow);
+  background-color: ${({ theme }) => theme.yellowBackground};
+  border: ${({ theme }) => theme.yellowBackground};
   border-radius: 3px;
 `

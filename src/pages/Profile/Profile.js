@@ -99,6 +99,10 @@ const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
 
+  h2 {
+    color: ${({ theme }) => theme.textProfileRelated};
+  }
+
   a {
     color: var(--woodland);
   }
