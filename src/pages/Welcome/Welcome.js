@@ -36,7 +36,7 @@ const StyledMain = styled.main`
   color: ${({ theme }) => theme.textProfileRelated};
   height: 100vh;
   h1 {
-    color: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.logo};
   }
   p {
     font-size: 1.1rem;
@@ -55,7 +55,7 @@ const StyledMain = styled.main`
     animation: drive 2s cubic-bezier(0.23, 1, 0.23, 1);
 
     path {
-      fill: ${({ theme }) => theme.radioButtonsText};
+      fill: ${({ theme }) => theme.logo};
     }
   }
 

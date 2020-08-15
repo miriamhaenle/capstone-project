@@ -40,10 +40,34 @@ const StyledMain = styled.main`
   h2 {
     font-weight: 800;
   }
-  img {
+  svg {
     width: 76px;
     display: block;
-    margin: 60px auto;
+    padding: 0;
+    margin: 60px auto 0;
+    animation: drive 2s cubic-bezier(0.23, 1, 0.23, 1);
+
+    path {
+      fill: ${({ theme }) => theme.textProfileRelated};
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: rotate(2deg);
+    }
+    20% {
+      transform: rotate(2deg);
+    }
+    50% {
+      transform: rotate(2deg);
+    }
+    70% {
+      transform: rotate(-2deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
   }
 
   a {

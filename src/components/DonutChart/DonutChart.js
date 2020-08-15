@@ -44,7 +44,7 @@ DonutChart.propTypes = {
 
 const ChartContainer = styled.div`
   background: ${({ theme }) => theme.historyBackground};
-
+  color: ${({ theme }) => theme.donutChartLabels};
   height: 228px;
   margin: 0 auto;
   width: 228px;

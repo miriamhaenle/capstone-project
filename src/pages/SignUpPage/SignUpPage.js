@@ -35,7 +35,7 @@ const StyledMain = styled.main`
     animation: drive 2s cubic-bezier(0.23, 1, 0.23, 1);
 
     path {
-      fill: ${({ theme }) => theme.radioButtonsText};
+      fill: ${({ theme }) => theme.logo};
     }
   }
 

@@ -91,13 +91,13 @@ const StyledSumCarbonFootprint = styled.section`
 
   @keyframes grow {
     0% {
-      background: ${({ theme }) => theme.sumCarbon};
-      color: ${({ theme }) => theme.sumCarbon};
+      background: ${({ theme }) => theme.historyBackground};
+      color: ${({ theme }) => theme.historyBackground};
     }
 
     100% {
-      background: var(--sand);
-      color: var(--sand);
+      background: ${({ theme }) => theme.backgroundProfileRelated};
+      color: ${({ theme }) => theme.backgroundProfileRelated};
       transform: scale(15);
     }
   }
@@ -105,8 +105,8 @@ const StyledSumCarbonFootprint = styled.section`
 const StyledP = styled.p`
   font-size: 0.4em;
   text-align: center;
-  color: var(--woodland);
-  background-color: ${({ theme }) => theme.yellowBackground};
-  border: ${({ theme }) => theme.yellowBackground};
+  color: ${({ theme }) => theme.inputColor};
+  background-color: ${({ theme }) => theme.textHighlight};
+  border: ${({ theme }) => theme.textHighlight};
   border-radius: 3px;
 `

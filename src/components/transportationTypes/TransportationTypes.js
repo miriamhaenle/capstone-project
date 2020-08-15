@@ -114,10 +114,5 @@ const Container = styled.section`
 
   input[type='radio']:checked + label {
     background: ${({ theme }) => theme.radioButtonsChecked};
-    color: ${({ theme }) => theme.body};
-
-    & g  {
-      fill: ${({ theme }) => theme.body};
-    }
   }
 `

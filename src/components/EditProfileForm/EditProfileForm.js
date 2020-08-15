@@ -81,7 +81,7 @@ const StyledForm = styled.form`
     padding: 9px;
   }
   input:disabled {
-    background: ${({ theme }) => theme.profileInputs};
+    background: ${({ theme }) => theme.inputDisabled};
   }
 `
 

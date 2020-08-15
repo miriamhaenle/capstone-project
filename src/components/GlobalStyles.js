@@ -14,9 +14,18 @@ export default createGlobalStyle`
 --orange-yellow: #F3C969;
 --headlineFont: 'Playfair Display', serif;
 
+--primaryBackground: #000000;
+--secondaryBackground: #1C1C1E;
+--grey: #3A3A3C;
+--greyFillColor: #767680;
+--primaryText: #FFFFFF;
+--secondaryText: #EBEBF5;
+--primaryVibrant: #3700B3;
+
+
 --primaryDark: #212121;
---secondaryBlue: #003545;
---textDark: #627D90;
+--secondaryBlue: #03DAC6;
+
 --seaGreen: #00454a;
 --green: #3c6562;
 --yellowDark: #FFF083;
