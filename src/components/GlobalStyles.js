@@ -21,15 +21,8 @@ export default createGlobalStyle`
 --primaryText: #FFFFFF;
 --secondaryText: #EBEBF5;
 --primaryVibrant: #3700B3;
-
-
---primaryDark: #212121;
---secondaryBlue: #03DAC6;
-
---seaGreen: #00454a;
---green: #3c6562;
---yellowDark: #FFF083;
 --red: #ed6363;
+--green: #3c6562;
 }
 
  

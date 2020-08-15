@@ -122,6 +122,7 @@ const StyledForm = styled.form`
 
   p {
     font-size: 12px;
+    color: ${({ theme }) => theme.secondaryText};
   }
 `
 const StyledError = styled.p`

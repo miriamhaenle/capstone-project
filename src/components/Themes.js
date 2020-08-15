@@ -1,6 +1,8 @@
 export const lightTheme = {
   body: 'var(--woodland)',
   text: 'var(--sand)',
+  textSecondary: 'var(--sand)',
+
   background: 'var(--woodland)',
   input: 'var(--sand)',
   inputColor: 'var(--dusk)',
@@ -8,14 +10,11 @@ export const lightTheme = {
   inputDisabled: 'var(--sand)',
   textHighlight: 'var(--orange-yellow)',
   historyBackground: 'var(--sand)',
-  donutChartLabels: 'var(--dusk)',
-  logo: 'var(--woodland)',
-
-  yellowBackground: 'var(--orange-yellow)',
-  button: 'var(--sunset)',
-  radioButtons: 'var(--sand)',
   radioButtonsText: 'var(--woodland)',
   radioButtonsChecked: 'var(--sunset)',
+  donutChartLabels: 'var(--dusk)',
+  logo: 'var(--woodland)',
+  sectionHighlight: 'var(--orange-yellow)',
   headline: 'var(--sand)',
   link: 'var(--sand)',
   linkSelected: 'var(--seafoam)',
@@ -29,6 +28,7 @@ export const lightTheme = {
 export const darkTheme = {
   body: 'var(--primaryBackground)',
   text: 'var(--primaryText)',
+  textSecondary: 'var(--secondaryText)',
   background: 'var(--primaryBackground)',
   input: 'var(--greyFillColor)',
   inputColor: 'var(--secondaryText)',
@@ -37,17 +37,12 @@ export const darkTheme = {
   textHighlight: 'var(--primaryVibrant)',
   historyBackground: 'var(--primaryBackground)',
   radioButtonsChecked: 'var(--primaryVibrant)',
+  radioButtonsText: 'var(--textDark)',
   donutChartLabels: 'var(--dusk)',
   logo: 'var(--green)',
-
-  yellowBackground: 'var(--grey)',
-  button: '#03DAC6',
-  radioButtons: 'var(--secondaryBlue)',
-  radioButtonsText: 'var(--textDark)',
-
+  sectionHighlight: 'var(--green)',
   headline: 'var(--textDark)',
   link: 'var(--textDark)',
-
   linkSelected: '#749dd6',
   sumCarbon: 'var(--red)',
   sumCarbonText: '#121212',
@@ -55,20 +50,3 @@ export const darkTheme = {
   textProfileRelated: 'var(--primaryText)',
   textError: 'var(--red)',
 }
-
-/* 
-:root {
-  --woodland: #164036;
-  --seafoam: #A2D5D8;
-  --dusk: #091A1A;
-  --sunset: #FF8C66;
-  --sand: #F7EEDF;
-  --orange-yellow: #F3C969;
-
-  primary: #BB86FC
-  primaryVariant: #3700B3
-  secondary: #03DAC6
-  Background: #121212
-  error: #CF6679
-  }
- */

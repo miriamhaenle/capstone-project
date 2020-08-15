@@ -158,6 +158,7 @@ const StyledForm = styled.form`
 
   p {
     font-size: 12px;
+    color: ${({ theme }) => theme.textSecondary};
   }
 `
 

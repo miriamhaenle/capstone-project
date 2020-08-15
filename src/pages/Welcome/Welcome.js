@@ -70,7 +70,7 @@ const StyledMain = styled.main`
 `
 
 const HighlightSection = styled.section`
-  background: ${({ theme }) => theme.yellowBackground};
+  background: ${({ theme }) => theme.sectionHighlight};
   margin: -6px -30px;
   padding: 30px;
   text-align: end;
