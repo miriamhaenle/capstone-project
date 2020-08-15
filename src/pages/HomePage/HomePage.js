@@ -6,8 +6,8 @@ import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
 import useDeviceDetect from '../../services/useDeviceDetect'
 import * as ROUTES from '../../constants/routes'
-import settings from '../../images/settings.svg'
 import homeIcon from '../../images/sustainable.svg'
+import Header from '../../components/Header/Header'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
 import PropTypes from 'prop-types'
@@ -17,6 +17,8 @@ export default function HomePage({
   totalCarbonFootprint,
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
+  toggleTheme,
+  theme,
 }) {
   const { user } = useContext(AuthUserContext)
   const { isMobile } = useDeviceDetect()
@@ -29,11 +31,7 @@ export default function HomePage({
 
   return (
     <>
-      <StyledHeader>
-        <Link to={ROUTES.PROFILE}>
-          <StyledImage src={settings} alt="profile" />
-        </Link>
-      </StyledHeader>
+      <Header toggleTheme={toggleTheme} theme={theme} />
 
       <Link
         to=""
@@ -110,26 +108,7 @@ HomePage.propTypes = {
   updateFootprintPerTransportationType: PropTypes.func,
 }
 
-const StyledHeader = styled.header`
-  display: flex;
-  justify-content: flex-end;
-  height: 40px;
-  a {
-    padding: 20px;
-  }
-`
-const StyledImage = styled.img`
-  width: 30px;
-  :hover {
-    transform: rotate(90deg);
-  }
-  :active {
-    transform: rotate(180deg);
-  }
-`
-
 const StyledWelcomeMessage = styled.div`
-  color: var(--sand);
   padding: 0 30px;
   display: flex;
   flex-direction: column;

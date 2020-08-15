@@ -38,16 +38,18 @@ export default function FootprintHistoryPage({
 }
 
 const StyledSection = styled.main`
-  background: var(--sand);
+  background: ${({ theme }) => theme.historyBackground};
+  color: ${({ theme }) => theme.textProfileRelated};
   height: 100vh;
   padding: 30px;
 
   h2 {
     font-family: var(--headlineFont);
+    color: ${({ theme }) => theme.textProfileRelated};
   }
 
   a {
-    color: var(--woodland);
+    color: ${({ theme }) => theme.textProfileRelated};
   }
   p {
     padding-top: 30px;

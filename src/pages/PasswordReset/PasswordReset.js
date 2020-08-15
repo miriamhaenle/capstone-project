@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import PasswordResetForm from '../../components/PasswordResetForm/PasswordResetForm'
 import * as ROUTES from '../../constants/routes'
-import triathlete from '../../images/triathlete.svg'
+import TriathleteIcon from '../../images/TriathleteIcon'
 
 export default function PasswordResetPage() {
   const [passwordResetted, setPasswordResetted] = useState(false)
@@ -13,7 +13,7 @@ export default function PasswordResetPage() {
         <span>Go back</span>
       </Link>
       <h2>Password reset</h2>
-      <img src={triathlete} alt="triathlete" />
+      <TriathleteIcon />
 
       {passwordResetted ? (
         <>
@@ -33,20 +33,44 @@ export default function PasswordResetPage() {
 
 const StyledMain = styled.main`
   padding: 30px 30px;
-  background: var(--sand);
+  background: ${({ theme }) => theme.backgroundProfileRelated};
   height: 100vh;
-  color: var(--woodland);
+  color: ${({ theme }) => theme.textProfileRelated};
 
   h2 {
     font-weight: 800;
   }
-  img {
+  svg {
     width: 76px;
     display: block;
-    margin: 60px auto;
+    padding: 0;
+    margin: 60px auto 0;
+    animation: drive 2s cubic-bezier(0.23, 1, 0.23, 1);
+
+    path {
+      fill: ${({ theme }) => theme.textProfileRelated};
+    }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: rotate(2deg);
+    }
+    20% {
+      transform: rotate(2deg);
+    }
+    50% {
+      transform: rotate(2deg);
+    }
+    70% {
+      transform: rotate(-2deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
   }
 
   a {
-    color: var(--woodland);
+    color: ${({ theme }) => theme.radioButtonsText};
   }
 `

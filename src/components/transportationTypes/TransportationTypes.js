@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import car from '../../images/car.svg'
-import bus from '../../images/bus.svg'
-import train from '../../images/train.svg'
-import plane from '../../images/plane.svg'
+import CarIcon from '../../images/CarIcon'
+import BusIcon from '../../images/BusIcon'
+import TrainIcon from '../../images/TrainIcon'
+import PlaneIcon from '../../images/PlaneIcon'
 
 export default function TransportationType({
   updateTransportationType,
@@ -24,7 +24,7 @@ export default function TransportationType({
           checked={'anyCar' === transportationType}
         />
         <label htmlFor="car" name="transportation">
-          <img src={car} alt="car" id="carIcon" />
+          <CarIcon />
           Car
         </label>
         <input
@@ -36,7 +36,7 @@ export default function TransportationType({
           checked={'bus' === transportationType}
         />
         <label htmlFor="bus">
-          <img src={bus} alt="bus" id="busIcon" />
+          <BusIcon />
           Bus
         </label>
         <input
@@ -48,7 +48,7 @@ export default function TransportationType({
           checked={'transitRail' === transportationType}
         />
         <label htmlFor="train">
-          <img src={train} alt="train" id="trainIcon" />
+          <TrainIcon />
           Train
         </label>
         <input
@@ -60,8 +60,7 @@ export default function TransportationType({
           checked={'anyFlight' === transportationType}
         />
         <label htmlFor="plane">
-          {' '}
-          <img src={plane} alt="plane" id="planeIcon" />
+          <PlaneIcon />
           Plane
         </label>
       </div>
@@ -90,14 +89,17 @@ const Container = styled.section`
     margin: 0;
   }
 
-  img {
-    width: 30px;
+  svg {
+    margin-top: 5px;
+    g {
+      fill: ${({ theme }) => theme.inputColor};
+    }
   }
 
   label {
-    background: var(--sand);
+    background: ${({ theme }) => theme.input};
     border-radius: 50%;
-    color: var(--woodland);
+    color: ${({ theme }) => theme.inputColor};
     display: flex;
     font-size: 12px;
     flex-direction: column;
@@ -111,17 +113,6 @@ const Container = styled.section`
   }
 
   input[type='radio']:checked + label {
-    background: var(--sunset);
-  }
-
-  #carIcon {
-    margin-bottom: -5px;
-  }
-
-  #busIcon {
-    margin-bottom: -5px;
-  }
-  #trainIcon {
-    margin-bottom: -2px;
+    background: ${({ theme }) => theme.radioButtonsChecked};
   }
 `

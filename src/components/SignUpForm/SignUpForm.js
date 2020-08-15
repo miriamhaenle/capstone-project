@@ -126,7 +126,6 @@ export function SignUpForm() {
 }
 
 const StyledForm = styled.form`
-  background: var(--sand);
   padding: 0 30px;
   display: flex;
   flex-direction: column;
@@ -138,8 +137,8 @@ const StyledForm = styled.form`
     border-radius: 3px;
     width: 315px;
     height: 30px;
-    background: var(--orange-yellow);
-    color: var(--dusk);
+    background: ${({ theme }) => theme.profileInputs};
+    color: ${({ theme }) => theme.text};
     margin: 20px 0;
     padding: 9px;
     font-size: 16px;
@@ -159,11 +158,12 @@ const StyledForm = styled.form`
 
   p {
     font-size: 12px;
+    color: ${({ theme }) => theme.textSecondary};
   }
 `
 
 const StyledError = styled.p`
   font-size: 14px;
-  color: var(--sunset);
+  color: ${({ theme }) => theme.textError};
   margin: 0 0 20px;
 `

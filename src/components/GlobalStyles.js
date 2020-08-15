@@ -13,10 +13,23 @@ export default createGlobalStyle`
 --sand: #F7EEDF;
 --orange-yellow: #F3C969;
 --headlineFont: 'Playfair Display', serif;
+
+--primaryBackground: #000000;
+--secondaryBackground: #1C1C1E;
+--grey: #3A3A3C;
+--greyFillColor: #767680;
+--primaryText: #FFFFFF;
+--secondaryText: #EBEBF5;
+--primaryVibrant: #3700B3;
+--red: #ed6363;
+--green: #3c6562;
 }
 
+ 
 body {
-  background: var(--woodland);
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+  transition: all 0.50s linear;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   margin: 0 auto;
@@ -25,6 +38,17 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(----headlineFont);
+  font-family: var(--headlineFont);
+  color: ${({ theme }) => theme.headline};
+}
+
+input {
+  background: ${({ theme }) => theme.input};
+  color: ${({ theme }) => theme.inputColor};
+}
+
+a {
+  color: ${({ theme }) => theme.link};
+
 }
 `

@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import swim from '../../images/swim.svg'
-import bike from '../../images/bike.svg'
-import run from '../../images/run.svg'
+import SwimIcon from '../../images/SwimIcon.js'
+import BikeIcon from '../../images/BikeIcon.js'
+import RunIcon from '../../images/RunIcon.js'
 
 export default function SportTypes({ updateSportsType, sportsType }) {
   return (
@@ -20,7 +20,7 @@ export default function SportTypes({ updateSportsType, sportsType }) {
           checked={'swim' === sportsType}
         />
         <label htmlFor="swim" name="sports">
-          <img src={swim} alt="swim" />
+          <SwimIcon />
           Swim
         </label>
         <input
@@ -32,7 +32,7 @@ export default function SportTypes({ updateSportsType, sportsType }) {
           checked={'bike' === sportsType}
         />
         <label htmlFor="bike" name="sports">
-          <img src={bike} alt="bike" />
+          <BikeIcon />
           Bike
         </label>
         <input
@@ -45,7 +45,7 @@ export default function SportTypes({ updateSportsType, sportsType }) {
         />
 
         <label htmlFor="run" name="sports">
-          <img src={run} alt="run" />
+          <RunIcon />
           Run
         </label>
       </div>
@@ -72,10 +72,16 @@ const Container = styled.section`
     margin: 0;
   }
 
+  svg {
+    g {
+      fill: ${({ theme }) => theme.inputColor};
+    }
+  }
+
   label {
-    background: var(--sand);
+    background: ${({ theme }) => theme.input};
     border-radius: 50%;
-    color: var(--woodland);
+    color: ${({ theme }) => theme.inputColor};
     display: flex;
     font-size: 12px;
     flex-direction: column;
@@ -88,11 +94,7 @@ const Container = styled.section`
     }
   }
 
-  img {
-    width: 30px;
-  }
-
   input[type='radio']:checked + label {
-    background: var(--sunset);
+    background: ${({ theme }) => theme.radioButtonsChecked};
   }
 `

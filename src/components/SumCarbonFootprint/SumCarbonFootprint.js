@@ -42,10 +42,11 @@ SumCarbonFootprint.propTypes = {
 
 const StyledSumCarbonFootprint = styled.section`
   align-items: center;
-  background: var(--sunset);
+  background: ${({ theme }) => theme.sumCarbon};
   border: none;
   border-radius: 50%;
-  color: var(--sand);
+  color: ${({ theme }) => theme.sumCarbonText};
+
   display: flex;
   flex-direction: column;
   font-family: var(--headlineFont);
@@ -90,13 +91,13 @@ const StyledSumCarbonFootprint = styled.section`
 
   @keyframes grow {
     0% {
-      background: var(--sunset);
-      color: var(--sunset);
+      background: ${({ theme }) => theme.historyBackground};
+      color: ${({ theme }) => theme.historyBackground};
     }
 
     100% {
-      background: var(--sand);
-      color: var(--sand);
+      background: ${({ theme }) => theme.backgroundProfileRelated};
+      color: ${({ theme }) => theme.backgroundProfileRelated};
       transform: scale(15);
     }
   }
@@ -104,8 +105,8 @@ const StyledSumCarbonFootprint = styled.section`
 const StyledP = styled.p`
   font-size: 0.4em;
   text-align: center;
-  color: var(--woodland);
-  background-color: var(--orange-yellow);
-  border: solid 1px var(--orange-yellow);
+  color: ${({ theme }) => theme.inputColor};
+  background-color: ${({ theme }) => theme.textHighlight};
+  border: ${({ theme }) => theme.textHighlight};
   border-radius: 3px;
 `

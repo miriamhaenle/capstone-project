@@ -44,7 +44,6 @@ export default function PasswordResetForm({ passwordReset }) {
 }
 
 const StyledForm = styled.form`
-  background: var(--sand);
   padding: 0 30px;
   display: flex;
   flex-direction: column;
@@ -56,7 +55,7 @@ const StyledForm = styled.form`
     border-radius: 3px;
     width: 315px;
     height: 30px;
-    background: var(--orange-yellow);
+    background: ${({ theme }) => theme.profileInputs};
     color: var(--dusk);
     margin: 20px 0;
     padding: 9px;

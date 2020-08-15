@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import SignInForm from '../../components/SignInForm/SignInForm'
 import * as ROUTES from '../../constants/routes'
-import triathlete from '../../images/triathlete.svg'
+import TriathleteIcon from '../../images/TriathleteIcon'
 
 export default function SignInPage() {
   return (
@@ -12,7 +12,7 @@ export default function SignInPage() {
         <span>Go back</span>
       </Link>
       <h2>Login</h2>
-      <img src={triathlete} alt="triathlete" />
+      <TriathleteIcon />
       <SignInForm />
     </StyledMain>
   )
@@ -20,18 +20,23 @@ export default function SignInPage() {
 
 const StyledMain = styled.main`
   padding: 30px 30px;
-  background: var(--sand);
+  background: ${({ theme }) => theme.backgroundProfileRelated};
   height: 100vh;
-  color: var(--woodland);
+  color: ${({ theme }) => theme.textProfileRelated};
 
   h2 {
     font-weight: 800;
   }
-  img {
+  svg {
     width: 76px;
     display: block;
-    margin: 50px auto;
-    animation: shake 0.2s cubic-bezier(0.23, 1, 0.23, 1);
+    padding: 0;
+    margin: 60px auto 0;
+    animation: drive 2s cubic-bezier(0.23, 1, 0.23, 1);
+
+    path {
+      fill: ${({ theme }) => theme.logo};
+    }
   }
 
   @keyframes shake {
@@ -53,6 +58,6 @@ const StyledMain = styled.main`
   }
 
   a {
-    color: var(--woodland);
+    color: ${({ theme }) => theme.radioButtonsText};
   }
 `
