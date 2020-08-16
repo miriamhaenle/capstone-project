@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { ThemeProvider } from 'styled-components'
 import * as ROUTES from '../src/constants/routes'
 import firebaseApp from '../src/firebase'
 import AuthUserContext from './components/auth/AuthUserContext'
 import useAuth from './components/auth/useAuth'
+import GlobaleStyles from './components/GlobalStyles'
 import LoadingScreen from './components/LoadingScreen/LoadingScreen'
+import { darkTheme, lightTheme } from './components/Themes'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
 import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
@@ -17,10 +20,9 @@ import { calculateFootprintPerTransportionType } from './services/calculateFootp
 import { calculateTotalFootprintSum } from './services/calculateTotalFootprintSum'
 import { getFromStorage, saveToStorage } from './services/handleStorage'
 import { APP_STORAGE_KEYS } from './services/storageKeys'
-import { ThemeProvider } from 'styled-components'
-import GlobaleStyles from './components/GlobalStyles'
-import { darkTheme, lightTheme } from './components/Themes'
 import useDarkMode from './services/useDarkMode'
+import footprintReducer from './states/footprintReducer'
+import { ACTIONS } from './states/actions'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
@@ -38,6 +40,14 @@ export default function App() {
     footprintPerTransportationType,
     setFootprintPerTransportationType,
   ] = useState([])
+
+  const initialState = {
+    carbonFootprint: 0,
+    /*   totalCarbonFootprint: 0,
+    footprintPerTransportType: [], */
+  }
+
+  const [state, dispatch] = useReducer(footprintReducer, initialState)
 
   useEffect(() => {
     if (user) {
@@ -126,6 +136,7 @@ export default function App() {
     </ThemeProvider>
   )
   function updateCarbonFootprint(value) {
+    dispatch({ type: ACTIONS.UPDATE_FOOTPRINT })
     setCarbonFootprint([...carbonFootprint, value])
   }
   function updateFootprintPerTransportationType(
