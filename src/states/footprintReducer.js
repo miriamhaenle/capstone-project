@@ -14,6 +14,13 @@ export default function footprintReducer(state, action) {
         totalCarbonFootprint: action.payload,
       }
     }
+    case ACTIONS.UPDATE_PER_TRANSPORTATIONTYPE: {
+      console.log({ state })
+      return {
+        ...state,
+        footprintPerTransportationType: action.payload,
+      }
+    }
     default:
       return state
   }

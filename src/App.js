@@ -30,22 +30,22 @@ export default function App() {
   const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   const initialFootprintValue = 0
-  /*   const [totalCarbonFootprint, setTotalCarbonFootprint] = useState(
-    initialFootprintValue
-  ) */
-  const [
+
+  /*  const [
     footprintPerTransportationType,
     setFootprintPerTransportationType,
-  ] = useState([])
+  ] = useState([]) */
 
   const initialState = {
     carbonFootprint: [],
+    totalCarbonFootprint: [],
+    footprintPerTransportationType: [],
   }
 
-  const [{ carbonFootprint, totalCarbonFootprint }, dispatch] = useReducer(
-    footprintReducer,
-    initialState
-  )
+  const [
+    { carbonFootprint, totalCarbonFootprint, footprintPerTransportationType },
+    dispatch,
+  ] = useReducer(footprintReducer, initialState)
 
   useEffect(() => {
     if (user) {
@@ -144,12 +144,16 @@ export default function App() {
     transportationTypeToUpdate,
     footprintSum
   ) {
-    setFootprintPerTransportationType(
-      calculateFootprintPerTransportionType(footprintPerTransportationType, {
-        transportationTypeToUpdate,
-        footprintSum,
-      })
-    )
+    dispatch({
+      type: ACTIONS.UPDATE_PER_TRANSPORTATIONTYPE,
+      payload: calculateFootprintPerTransportionType(
+        footprintPerTransportationType,
+        {
+          transportationTypeToUpdate,
+          footprintSum,
+        }
+      ),
+    })
   }
 
   async function updateStateFromDB(userId, key) {
@@ -172,7 +176,10 @@ export default function App() {
       })
     }
     if (key === APP_STORAGE_KEYS.footprintPerTransportType) {
-      setFootprintPerTransportationType(dataFromDB)
+      dispatch({
+        type: ACTIONS.UPDATE_PER_TRANSPORTATIONTYPE,
+        payload: dataFromDB,
+      })
     }
   }
 }
