@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { ThemeProvider } from 'styled-components'
@@ -18,30 +18,25 @@ import SignUpPage from './pages/SignUpPage/SignUpPage'
 import WelcomePage from './pages/Welcome/Welcome'
 import { calculateFootprintPerTransportionType } from './services/calculateFootprintPerTransportationType'
 import { calculateTotalFootprintSum } from './services/calculateTotalFootprintSum'
-import { getFromStorage, saveToStorage } from './services/handleStorage'
+import { saveToStorage } from './services/handleStorage'
 import { APP_STORAGE_KEYS } from './services/storageKeys'
 import useDarkMode from './services/useDarkMode'
-import footprintReducer from './states/footprintReducer'
 import { ACTIONS } from './states/actions'
+import footprintReducer from './states/footprintReducer'
+import updateStateFromDB from './services/updateStateFromDB'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
+
   const [theme, toggleTheme, componentMounted] = useDarkMode()
   const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   const initialFootprintValue = 0
-
-  /*  const [
-    footprintPerTransportationType,
-    setFootprintPerTransportationType,
-  ] = useState([]) */
-
   const initialState = {
     carbonFootprint: [],
     totalCarbonFootprint: [],
     footprintPerTransportationType: [],
   }
-
   const [
     { carbonFootprint, totalCarbonFootprint, footprintPerTransportationType },
     dispatch,
@@ -49,9 +44,13 @@ export default function App() {
 
   useEffect(() => {
     if (user) {
-      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintHistory)
-      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintTotal)
-      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintPerTransportType)
+      updateStateFromDB(dispatch, user.uid, APP_STORAGE_KEYS.footprintTotal)
+      updateStateFromDB(dispatch, user.uid, APP_STORAGE_KEYS.footprintHistory)
+      updateStateFromDB(
+        dispatch,
+        user.uid,
+        APP_STORAGE_KEYS.footprintPerTransportType
+      )
     }
   }, [user])
 
@@ -137,9 +136,11 @@ export default function App() {
       </AuthUserContext.Provider>
     </ThemeProvider>
   )
+
   function updateCarbonFootprint(value) {
     dispatch({ type: ACTIONS.UPDATE_FOOTPRINT, payload: value })
   }
+
   function updateFootprintPerTransportationType(
     transportationTypeToUpdate,
     footprintSum
@@ -156,7 +157,7 @@ export default function App() {
     })
   }
 
-  async function updateStateFromDB(userId, key) {
+  /* async function updateStateFromDB(userId, key) {
     const dataFromDB = await getFromStorage(userId, key)
     if (!dataFromDB) {
       return
@@ -181,5 +182,5 @@ export default function App() {
         payload: dataFromDB,
       })
     }
-  }
+  } */
 }
