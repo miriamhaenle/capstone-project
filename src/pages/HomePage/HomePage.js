@@ -1,16 +1,16 @@
+import PropTypes from 'prop-types'
 import React, { useContext, useState } from 'react'
 import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import AuthUserContext from '../../components/auth/AuthUserContext'
+import Header from '../../components/Header/Header'
 import Navigation from '../../components/Navigation/Navigation'
 import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
-import useDeviceDetect from '../../services/useDeviceDetect'
 import * as ROUTES from '../../constants/routes'
 import homeIcon from '../../images/sustainable.svg'
-import Header from '../../components/Header/Header'
+import useDeviceDetect from '../../services/useDeviceDetect'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
-import PropTypes from 'prop-types'
 
 export default function HomePage({
   initialFootprintValue,
@@ -43,7 +43,11 @@ export default function HomePage({
         onMouseUp={endTransition}
       >
         <SumCarbonFootPrint
-          sumCarbonFootprint={totalCarbonFootprint.toFixed(2) || 0}
+          sumCarbonFootprint={
+            (typeof totalCarbonFootprint === 'number' &&
+              totalCarbonFootprint.toFixed(2)) ||
+            0
+          }
           bubbleStatus={bubbleStatus}
           isMobile={isMobile}
         />

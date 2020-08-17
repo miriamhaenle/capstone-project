@@ -30,24 +30,22 @@ export default function App() {
   const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   const initialFootprintValue = 0
-  const [carbonFootprint, setCarbonFootprint] = useState([
-    initialFootprintValue,
-  ])
-  const [totalCarbonFootprint, setTotalCarbonFootprint] = useState(
+  /*   const [totalCarbonFootprint, setTotalCarbonFootprint] = useState(
     initialFootprintValue
-  )
+  ) */
   const [
     footprintPerTransportationType,
     setFootprintPerTransportationType,
   ] = useState([])
 
   const initialState = {
-    carbonFootprint: 0,
-    /*   totalCarbonFootprint: 0,
-    footprintPerTransportType: [], */
+    carbonFootprint: [],
   }
 
-  const [state, dispatch] = useReducer(footprintReducer, initialState)
+  const [{ carbonFootprint, totalCarbonFootprint }, dispatch] = useReducer(
+    footprintReducer,
+    initialState
+  )
 
   useEffect(() => {
     if (user) {
@@ -77,7 +75,11 @@ export default function App() {
         footprintPerTransportationType
       )
     }
-    setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
+
+    dispatch({
+      type: ACTIONS.UPDATE_TOTAL_FOOTPRINT,
+      payload: calculateTotalFootprintSum(carbonFootprint),
+    })
   }, [
     carbonFootprint,
     totalCarbonFootprint,
@@ -136,8 +138,7 @@ export default function App() {
     </ThemeProvider>
   )
   function updateCarbonFootprint(value) {
-    dispatch({ type: ACTIONS.UPDATE_FOOTPRINT })
-    setCarbonFootprint([...carbonFootprint, value])
+    dispatch({ type: ACTIONS.UPDATE_FOOTPRINT, payload: value })
   }
   function updateFootprintPerTransportationType(
     transportationTypeToUpdate,
@@ -158,10 +159,17 @@ export default function App() {
     }
 
     if (key === APP_STORAGE_KEYS.footprintHistory) {
-      setCarbonFootprint(dataFromDB)
+      dispatch({
+        type: ACTIONS.UPDATE_FOOTPRINT,
+        payload: dataFromDB.reduce((acc, curr) => acc + curr, 0),
+      })
     }
     if (key === APP_STORAGE_KEYS.totalCarbonFootprint) {
-      setTotalCarbonFootprint(dataFromDB)
+      console.log({ dataFromDB })
+      dispatch({
+        type: ACTIONS.UPDATE_TOTAL_FOOTPRINT,
+        payload: dataFromDB,
+      })
     }
     if (key === APP_STORAGE_KEYS.footprintPerTransportType) {
       setFootprintPerTransportationType(dataFromDB)
