@@ -4,7 +4,6 @@ export default function TrainIcon() {
   return (
     <svg
       id="Capa_1"
-      enableBackground="new 0 0 512 512"
       height="43"
       viewBox="0 0 512 512"
       width="43"
