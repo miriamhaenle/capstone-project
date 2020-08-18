@@ -43,39 +43,41 @@ export default function App() {
     dispatch,
   ] = useReducer(footprintReducer, initialState)
 
+  function updateUserState() {
+    updateStateFromDB(dispatch, user.uid, [
+      APP_STORAGE_KEYS.footprintTotal,
+      APP_STORAGE_KEYS.footprintHistory,
+      APP_STORAGE_KEYS.footprintPerTransportType,
+    ])
+  }
+
+  function saveUserState() {
+    saveToStorage(user.uid, [
+      {
+        key: APP_STORAGE_KEYS.footprintHistory,
+        data: carbonFootprint,
+      },
+      {
+        key: APP_STORAGE_KEYS.footprintTotal,
+        data: totalCarbonFootprint,
+      },
+      {
+        key: APP_STORAGE_KEYS.footprintPerTransportType,
+        data: footprintPerTransportationType,
+      },
+    ])
+  }
+
   useEffect(() => {
     if (user) {
-      updateStateFromDB(dispatch, user.uid, APP_STORAGE_KEYS.footprintTotal)
-      updateStateFromDB(dispatch, user.uid, APP_STORAGE_KEYS.footprintHistory)
-      updateStateFromDB(
-        dispatch,
-        user.uid,
-        APP_STORAGE_KEYS.footprintPerTransportType
-      )
+      updateUserState()
     }
   }, [user])
 
   useEffect(() => {
     if (user) {
-      saveToStorage(
-        user.uid,
-        APP_STORAGE_KEYS.footprintHistory,
-        carbonFootprint
-      )
-
-      saveToStorage(
-        user.uid,
-        APP_STORAGE_KEYS.footprintTotal,
-        totalCarbonFootprint
-      )
-
-      saveToStorage(
-        user.uid,
-        APP_STORAGE_KEYS.footprintPerTransportType,
-        footprintPerTransportationType
-      )
+      saveUserState()
     }
-
     dispatch({
       type: ACTIONS.UPDATE_TOTAL_FOOTPRINT,
       payload: calculateTotalFootprintSum(carbonFootprint),
@@ -98,6 +100,8 @@ export default function App() {
         carbonFootprint,
         totalCarbonFootprint,
         footprintPerTransportationType,
+        updateCarbonFootprint,
+        updateFootprintPerTransportationType,
       }}
     >
       <ThemeProvider theme={themeMode}>
@@ -113,10 +117,6 @@ export default function App() {
               <Route path={ROUTES.HOME}>
                 <HomePage
                   initialFootprintValue={initialFootprintValue}
-                  updateCarbonFootprint={updateCarbonFootprint}
-                  updateFootprintPerTransportationType={
-                    updateFootprintPerTransportationType
-                  }
                   toggleTheme={toggleTheme}
                   theme={theme}
                 />

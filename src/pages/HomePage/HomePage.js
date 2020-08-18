@@ -13,12 +13,7 @@ import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
 import StateContext from '../../states/StateContext'
 
-export default function HomePage({
-  updateCarbonFootprint,
-  updateFootprintPerTransportationType,
-  toggleTheme,
-  theme,
-}) {
+export default function HomePage({ toggleTheme, theme }) {
   const { user } = useContext(AuthUserContext)
   const { totalCarbonFootprint } = useContext(StateContext)
 
@@ -68,12 +63,7 @@ export default function HomePage({
       ) : null}
       <Switch>
         <Route path={ROUTES.ADD_TRIP}>
-          <TripsPage
-            updateCarbonFootprint={updateCarbonFootprint}
-            updateFootprintPerTransportationType={
-              updateFootprintPerTransportationType
-            }
-          />
+          <TripsPage />
         </Route>
         <Route path={ROUTES.ADD_ACTIVITY}>
           <SportsActivitiesPage />
