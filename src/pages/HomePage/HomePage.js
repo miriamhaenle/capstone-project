@@ -11,16 +11,17 @@ import homeIcon from '../../images/sustainable.svg'
 import useDeviceDetect from '../../services/useDeviceDetect'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
+import StateContext from '../../states/StateContext'
 
 export default function HomePage({
-  initialFootprintValue,
-  totalCarbonFootprint,
   updateCarbonFootprint,
   updateFootprintPerTransportationType,
   toggleTheme,
   theme,
 }) {
   const { user } = useContext(AuthUserContext)
+  const { totalCarbonFootprint } = useContext(StateContext)
+
   const { isMobile } = useDeviceDetect()
   const [bubbleStatus, setBubbleStatus] = useState({
     active: false,
@@ -75,12 +76,7 @@ export default function HomePage({
           />
         </Route>
         <Route path={ROUTES.ADD_ACTIVITY}>
-          <SportsActivitiesPage
-            totalCarbonFootprint={totalCarbonFootprint}
-            initialFootprintValue={initialFootprintValue}
-            bubbleStatus
-            isMobile
-          />
+          <SportsActivitiesPage />
         </Route>
       </Switch>
     </>
