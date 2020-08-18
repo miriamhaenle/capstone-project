@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { ThemeProvider } from 'styled-components'
 import * as ROUTES from '../src/constants/routes'
 import firebaseApp from '../src/firebase'
 import AuthUserContext from './components/auth/AuthUserContext'
 import useAuth from './components/auth/useAuth'
+import GlobaleStyles from './components/GlobalStyles'
 import LoadingScreen from './components/LoadingScreen/LoadingScreen'
+import { darkTheme, lightTheme } from './components/Themes'
 import FootprintHistoryPage from './pages/FootprintHistoryPage/FootprintHistoryPage'
 import HomePage from './pages/HomePage/HomePage'
 import ResetPasswordPage from './pages/PasswordReset/PasswordReset'
@@ -15,35 +18,39 @@ import SignUpPage from './pages/SignUpPage/SignUpPage'
 import WelcomePage from './pages/Welcome/Welcome'
 import { calculateFootprintPerTransportionType } from './services/calculateFootprintPerTransportationType'
 import { calculateTotalFootprintSum } from './services/calculateTotalFootprintSum'
-import { getFromStorage, saveToStorage } from './services/handleStorage'
+import { saveToStorage } from './services/handleStorage'
 import { APP_STORAGE_KEYS } from './services/storageKeys'
-import { ThemeProvider } from 'styled-components'
-import GlobaleStyles from './components/GlobalStyles'
-import { darkTheme, lightTheme } from './components/Themes'
 import useDarkMode from './services/useDarkMode'
+import { ACTIONS } from './states/actions'
+import footprintReducer from './states/footprintReducer'
+import updateStateFromDB from './services/updateStateFromDB'
 
 export default function App() {
   const [user, authCompleted] = useAuth()
+
   const [theme, toggleTheme, componentMounted] = useDarkMode()
   const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   const initialFootprintValue = 0
-  const [carbonFootprint, setCarbonFootprint] = useState([
-    initialFootprintValue,
-  ])
-  const [totalCarbonFootprint, setTotalCarbonFootprint] = useState(
-    initialFootprintValue
-  )
+  const initialState = {
+    carbonFootprint: [],
+    totalCarbonFootprint: [],
+    footprintPerTransportationType: [],
+  }
   const [
-    footprintPerTransportationType,
-    setFootprintPerTransportationType,
-  ] = useState([])
+    { carbonFootprint, totalCarbonFootprint, footprintPerTransportationType },
+    dispatch,
+  ] = useReducer(footprintReducer, initialState)
 
   useEffect(() => {
     if (user) {
-      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintHistory)
-      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintTotal)
-      updateStateFromDB(user.uid, APP_STORAGE_KEYS.footprintPerTransportType)
+      updateStateFromDB(dispatch, user.uid, APP_STORAGE_KEYS.footprintTotal)
+      updateStateFromDB(dispatch, user.uid, APP_STORAGE_KEYS.footprintHistory)
+      updateStateFromDB(
+        dispatch,
+        user.uid,
+        APP_STORAGE_KEYS.footprintPerTransportType
+      )
     }
   }, [user])
 
@@ -67,7 +74,11 @@ export default function App() {
         footprintPerTransportationType
       )
     }
-    setTotalCarbonFootprint(calculateTotalFootprintSum(carbonFootprint))
+
+    dispatch({
+      type: ACTIONS.UPDATE_TOTAL_FOOTPRINT,
+      payload: calculateTotalFootprintSum(carbonFootprint),
+    })
   }, [
     carbonFootprint,
     totalCarbonFootprint,
@@ -125,35 +136,24 @@ export default function App() {
       </AuthUserContext.Provider>
     </ThemeProvider>
   )
+
   function updateCarbonFootprint(value) {
-    setCarbonFootprint([...carbonFootprint, value])
+    dispatch({ type: ACTIONS.UPDATE_FOOTPRINT, payload: value })
   }
+
   function updateFootprintPerTransportationType(
     transportationTypeToUpdate,
     footprintSum
   ) {
-    setFootprintPerTransportationType(
-      calculateFootprintPerTransportionType(footprintPerTransportationType, {
-        transportationTypeToUpdate,
-        footprintSum,
-      })
-    )
-  }
-
-  async function updateStateFromDB(userId, key) {
-    const dataFromDB = await getFromStorage(userId, key)
-    if (!dataFromDB) {
-      return
-    }
-
-    if (key === APP_STORAGE_KEYS.footprintHistory) {
-      setCarbonFootprint(dataFromDB)
-    }
-    if (key === APP_STORAGE_KEYS.totalCarbonFootprint) {
-      setTotalCarbonFootprint(dataFromDB)
-    }
-    if (key === APP_STORAGE_KEYS.footprintPerTransportType) {
-      setFootprintPerTransportationType(dataFromDB)
-    }
+    dispatch({
+      type: ACTIONS.UPDATE_PER_TRANSPORTATIONTYPE,
+      payload: calculateFootprintPerTransportionType(
+        footprintPerTransportationType,
+        {
+          transportationTypeToUpdate,
+          footprintSum,
+        }
+      ),
+    })
   }
 }

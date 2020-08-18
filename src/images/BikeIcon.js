@@ -4,7 +4,6 @@ export default function BikeIcon() {
   return (
     <svg
       id="Capa_1"
-      enable-background="new 0 0 511.996 511.996"
       height="40"
       viewBox="0 0 511.996 511.996"
       width="40"
