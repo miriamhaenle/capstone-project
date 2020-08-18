@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer, useCallback } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { ThemeProvider } from 'styled-components'
@@ -43,41 +43,46 @@ export default function App() {
     dispatch,
   ] = useReducer(footprintReducer, initialState)
 
-  function updateUserState() {
-    updateStateFromDB(dispatch, user.uid, [
-      APP_STORAGE_KEYS.footprintTotal,
-      APP_STORAGE_KEYS.footprintHistory,
-      APP_STORAGE_KEYS.footprintPerTransportType,
-    ])
-  }
-
-  function saveUserState() {
-    saveToStorage(user.uid, [
-      {
-        key: APP_STORAGE_KEYS.footprintHistory,
-        data: carbonFootprint,
-      },
-      {
-        key: APP_STORAGE_KEYS.footprintTotal,
-        data: totalCarbonFootprint,
-      },
-      {
-        key: APP_STORAGE_KEYS.footprintPerTransportType,
-        data: footprintPerTransportationType,
-      },
-    ])
-  }
-
-  useEffect(() => {
+  const updateUserState = useCallback(() => {
     if (user) {
-      updateUserState()
+      updateStateFromDB(dispatch, user.uid, [
+        APP_STORAGE_KEYS.footprintTotal,
+        APP_STORAGE_KEYS.footprintHistory,
+        APP_STORAGE_KEYS.footprintPerTransportType,
+      ])
     }
   }, [user])
 
+  const saveUserState = useCallback(() => {
+    user &&
+      saveToStorage(user.uid, [
+        {
+          key: APP_STORAGE_KEYS.footprintHistory,
+          data: carbonFootprint,
+        },
+        {
+          key: APP_STORAGE_KEYS.footprintTotal,
+          data: totalCarbonFootprint,
+        },
+        {
+          key: APP_STORAGE_KEYS.footprintPerTransportType,
+          data: footprintPerTransportationType,
+        },
+      ])
+  }, [
+    user,
+    carbonFootprint,
+    totalCarbonFootprint,
+    footprintPerTransportationType,
+  ])
+
   useEffect(() => {
-    if (user) {
-      saveUserState()
-    }
+    updateUserState()
+  }, [updateUserState])
+
+  useEffect(() => {
+    saveUserState()
+
     dispatch({
       type: ACTIONS.UPDATE_TOTAL_FOOTPRINT,
       payload: calculateTotalFootprintSum(carbonFootprint),
@@ -86,7 +91,7 @@ export default function App() {
     carbonFootprint,
     totalCarbonFootprint,
     footprintPerTransportationType,
-    user,
+    saveUserState,
   ])
 
   if (!authCompleted) {
