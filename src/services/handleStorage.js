@@ -22,7 +22,7 @@ export async function saveToStorage(userId, userData) {
       }
     })
   } catch (error) {
-    console.log('Error saving the document' + error)
+    console.error('Error saving the document' + error)
   }
 }
 
@@ -34,6 +34,6 @@ export async function getFromStorage(userId, key) {
     const storedData = doc.exists ? await doc.data().key : null
     return storedData
   } catch (error) {
-    console.log('Error getting document:', error)
+    console.error('Error getting document:', error)
   }
 }
