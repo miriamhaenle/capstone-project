@@ -1,6 +1,6 @@
 import { getFromStorage } from './handleStorage'
 import { APP_STORAGE_KEYS } from './storageKeys'
-import { ACTIONS } from '../states/actions'
+import { ACTIONS } from 'states/actions'
 
 export default function updateStateFromDB(dispatch, userId, keys) {
   keys.forEach(async (key) => {
