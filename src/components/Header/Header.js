@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ThemeToggler from '../../components/ThemeToggler/ThemeToggler'
-import * as ROUTES from '../../constants/routes'
-import settings from '../../images/settings.svg'
+import ThemeToggler from 'components/ThemeToggler/ThemeToggler'
+import * as ROUTES from 'constants/routes'
+import settings from 'images/settings.svg'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 

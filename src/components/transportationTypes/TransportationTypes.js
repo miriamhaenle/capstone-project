@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import CarIcon from '../../images/CarIcon'
-import BusIcon from '../../images/BusIcon'
-import TrainIcon from '../../images/TrainIcon'
-import PlaneIcon from '../../images/PlaneIcon'
+import CarIcon from 'images/CarIcon'
+import BusIcon from 'images/BusIcon'
+import TrainIcon from 'images/TrainIcon'
+import PlaneIcon from 'images/PlaneIcon'
 
 export default function TransportationType({
   updateTransportationType,
