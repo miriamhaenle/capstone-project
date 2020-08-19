@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import styled from 'styled-components'
-import AddKilometersForm from '../../components/AddKilometers/AddKilometersForm'
-import { calculateCarbonEmission } from '../../services/calculateCarbonEmission'
+import AddKilometersForm from 'components/AddKilometers/AddKilometersForm'
+import { calculateCarbonEmission } from 'services/calculateCarbonEmission'
 
 export default function SportsActivitiesPage() {
   const [sportsType, setSportsType] = useState('swim')

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { useState, useContext } from 'react'
-import AddKilometersForm from '../../components/AddKilometers/AddKilometersForm'
-import { calculateCarbonEmission } from '../../services/calculateCarbonEmission'
-import StateContext from '../../states/StateContext'
+import AddKilometersForm from 'components/AddKilometers/AddKilometersForm'
+import { calculateCarbonEmission } from 'services/calculateCarbonEmission'
+import StateContext from 'states/StateContext'
 
 export default function TripsPage() {
   const [transportationType, setTransportationType] = useState('anyCar')

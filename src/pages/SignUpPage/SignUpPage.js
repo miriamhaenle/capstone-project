@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { SignUpForm } from '../../components/SignUpForm'
-import * as ROUTES from '../../constants/routes'
-import TriathleteIcon from '../../images/TriathleteIcon'
+import { SignUpForm } from 'components/SignUpForm'
+import * as ROUTES from 'constants/routes'
+import TriathleteIcon from 'images/TriathleteIcon'
 
 export default function SignUpPage() {
   return (
