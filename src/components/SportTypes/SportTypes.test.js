@@ -12,21 +12,16 @@ describe('Sports Types selection', () => {
 
   it('should render the swim button', () => {
     render(<SportTypes />)
-    expect(screen.getAllByRole('img', 'swim')).toBeTruthy()
+    expect(screen.queryAllByLabelText('swim')).toBeTruthy()
   })
 
   it('should render the bike button', () => {
     render(<SportTypes />)
-    expect(screen.getAllByRole('img', 'bike')).toBeTruthy()
+    expect(screen.queryAllByLabelText('bike')).toBeTruthy()
   })
 
   it('should render the run button', () => {
     render(<SportTypes />)
-    expect(screen.getAllByRole('img', 'run')).toBeTruthy()
-  })
-
-  it('should render all 3 buttons', () => {
-    render(<SportTypes />)
-    expect(screen.getAllByRole('img').length).toBe(3)
+    expect(screen.queryAllByLabelText('run')).toBeTruthy()
   })
 })

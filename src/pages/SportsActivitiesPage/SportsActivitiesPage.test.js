@@ -13,9 +13,4 @@ describe('Sports Activities page', () => {
     render(<SportsActivitiesPage />)
     expect(screen.getByText('Select sports type')).toBeInTheDocument()
   })
-
-  it('should render 3 selection buttons', () => {
-    render(<SportsActivitiesPage />)
-    expect(screen.getAllByRole('img').length).toBe(3)
-  })
 })

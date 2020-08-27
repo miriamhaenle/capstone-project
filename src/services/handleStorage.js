@@ -2,6 +2,8 @@ import firebase from 'firebase'
 import { db } from '../firebase/index'
 
 export async function saveToStorage(userId, userData) {
+  console.log({ userData: userData })
+  console.log({ array: userData[0] })
   try {
     const userDocs = await Promise.all(
       userData.map(({ key }) => db.collection(key).doc(userId))

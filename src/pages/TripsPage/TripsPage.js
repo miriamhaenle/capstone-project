@@ -10,6 +10,7 @@ export default function TripsPage() {
     updateCarbonFootprint,
     updateFootprintPerTransportationType,
   } = useContext(StateContext)
+
   return (
     <AddKilometersForm
       headline="Add new trip"
