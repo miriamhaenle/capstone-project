@@ -10,11 +10,7 @@
 
 Triathletes like to travel for their sports: They participate in events around the world. The app should allow them to have their carbon footprint profile visualized. Additionally, their sports activities will be added to their carbon account so that they can work to better their carbon footprint balance.
 
-![login](src/images/readme/login.png)
-![home](src/images/readme/home.png)
-![activity](src/images/readme/activity.png)
-![history](src/images/readme/history.png)
-![darkTheme](src/images/readme/darktheme.png)
+![Screenshots](src/images/readme/screenshots.png)
 
 ### `Demo`
 
