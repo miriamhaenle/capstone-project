@@ -11,23 +11,18 @@ describe('Transportation Types selection', () => {
   })
   it('should render the car button', () => {
     render(<TransportationTypes />)
-    expect(screen.getAllByRole('img', 'car')).toBeTruthy()
+    expect(screen.queryAllByLabelText('car')).toBeTruthy()
   })
   it('should render the bus button', () => {
     render(<TransportationTypes />)
-    expect(screen.getAllByRole('img', 'bus')).toBeTruthy()
+    expect(screen.queryAllByLabelText('bus')).toBeTruthy()
   })
   it('should render the train button', () => {
     render(<TransportationTypes />)
-    expect(screen.getAllByRole('img', 'train')).toBeTruthy()
+    expect(screen.queryAllByLabelText('train')).toBeTruthy()
   })
   it('should render the plane button', () => {
     render(<TransportationTypes />)
-    expect(screen.getAllByRole('img', 'plane')).toBeTruthy()
-  })
-
-  it('should render all 4 buttons', () => {
-    render(<TransportationTypes />)
-    expect(screen.getAllByRole('img').length).toBe(4)
+    expect(screen.queryAllByLabelText('plane')).toBeTruthy()
   })
 })

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import PasswordResetForm from '../../components/PasswordResetForm/PasswordResetForm'
-import * as ROUTES from '../../constants/routes'
-import TriathleteIcon from '../../images/TriathleteIcon'
+import PasswordResetForm from 'components/PasswordResetForm/PasswordResetForm'
+import * as ROUTES from 'constants/routes'
+import TriathleteIcon from 'images/TriathleteIcon'
 
 export default function PasswordResetPage() {
   const [passwordResetted, setPasswordResetted] = useState(false)

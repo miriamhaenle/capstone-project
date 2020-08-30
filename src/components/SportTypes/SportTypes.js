@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import SwimIcon from '../../images/SwimIcon.js'
-import BikeIcon from '../../images/BikeIcon.js'
-import RunIcon from '../../images/RunIcon.js'
+import SwimIcon from 'images/SwimIcon.js'
+import BikeIcon from 'images/BikeIcon.js'
+import RunIcon from 'images/RunIcon.js'
 
 export default function SportTypes({ updateSportsType, sportsType }) {
   return (

@@ -1,5 +1,5 @@
 import firebaseApp from '../../firebase'
-import * as ROUTES from '../../constants/routes'
+import * as ROUTES from 'constants/routes'
 
 export default async function registerToFirebase(
   history,

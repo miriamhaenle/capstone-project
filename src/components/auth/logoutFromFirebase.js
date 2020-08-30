@@ -1,4 +1,4 @@
-import * as ROUTES from '../../constants/routes'
+import * as ROUTES from 'constants/routes'
 
 export default async function logoutFromFirebase(
   history,

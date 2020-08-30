@@ -1,23 +1,28 @@
 import firebase from 'firebase'
 import { db } from '../firebase/index'
 
-export async function saveToStorage(userId, key, dataSet) {
-  const userDoc = db.collection(key).doc(userId)
-
+export async function saveToStorage(userId, userData) {
   try {
-    const docSnapshot = await userDoc.get()
+    const userDocs = await Promise.all(
+      userData.map(({ key }) => db.collection(key).doc(userId))
+    )
+    const docSnapshots = await Promise.all(
+      userDocs.map((result) => result.get())
+    )
 
-    if (docSnapshot.exist) {
-      await userDoc.update({
-        key: firebase.firestore.update(dataSet),
-      })
-    } else {
-      await userDoc.set({
-        key: dataSet,
-      })
-    }
+    docSnapshots.forEach(async (docSnapshot, index) => {
+      if (docSnapshot.exist) {
+        await userDocs[index].update({
+          key: firebase.firestore.update(userData[index].data),
+        })
+      } else {
+        await userDocs[index].set({
+          key: userData[index].data,
+        })
+      }
+    })
   } catch (error) {
-    console.log('Error saving the document' + error)
+    console.error('Error saving the document' + error)
   }
 }
 
@@ -29,6 +34,6 @@ export async function getFromStorage(userId, key) {
     const storedData = doc.exists ? await doc.data().key : null
     return storedData
   } catch (error) {
-    console.log('Error getting document:', error)
+    console.error('Error getting document:', error)
   }
 }

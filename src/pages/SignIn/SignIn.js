@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import SignInForm from '../../components/SignInForm/SignInForm'
-import * as ROUTES from '../../constants/routes'
-import TriathleteIcon from '../../images/TriathleteIcon'
+import SignInForm from 'components/SignInForm/SignInForm'
+import * as ROUTES from 'constants/routes'
+import TriathleteIcon from 'images/TriathleteIcon'
 
 export default function SignInPage() {
   return (

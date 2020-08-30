@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import DonutChart from '../../components/DonutChart/DonutChart'
-import { mapFootprintPerTransportTypeToDonutChartData } from '../../components/DonutChart/mapFootprintPerTransportTypeToDonutChartData'
-import * as ROUTES from '../../constants/routes'
+import DonutChart from 'components/DonutChart/DonutChart'
+import { mapFootprintPerTransportTypeToDonutChartData } from 'components/DonutChart/mapFootprintPerTransportTypeToDonutChartData'
+import * as ROUTES from 'constants/routes'
 
 FootprintHistoryPage.propTypes = {
   footprintPerTransportationType: PropTypes.array,

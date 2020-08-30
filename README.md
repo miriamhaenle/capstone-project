@@ -1,68 +1,58 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Carbon & Lactate
 
-## Available Scripts
+> Digitales Gesellenstück as final project for neuefische web dev bootcamp
 
-In the project directory, you can run:
+![hero](src/images/readme/carbon&lactate.png)
 
-### `npm start`
+## `Description`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### An app for the sustainable triathlete / athlete
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Triathletes like to travel for their sports: They participate in events around the world. The app should allow them to have their carbon footprint profile visualized. Additionally, their sports activities will be added to their carbon account so that they can work to better their carbon footprint balance.
 
-### `npm test`
+![app images](src/images/readme/Screenshots.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Demo`
 
-### `npm run build`
+You can find the hosted version on firebase:
+[Demo Version](https://capstone-project-c74dc.web.app/)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## `Tech Stack`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- React
+- React Hooks
+- React Router
+- Express
+- Axios
+- Firebase
+  - Authentication
+  - Database
+  - Hosting
+  - Cloud Functions
+- PropTypes
+- Styled Components
+- react-spring
+- Storybook
+- React Testing Library
+- Jest
+- Cypress Tests
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## `Project setup`
 
-### `npm run eject`
+1. Clone this repository.
+2. Install all npm dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   `npm install`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+3. To run the app in development mode npm start, then open http://localhost:3000 to view it in the browser
+4. To run Storybook
+   `npm run storybook`
+5. To run unit and component tests
+   `npm test`
+6. To run Cypress tests
+   `npm run cypress`
+7. Create a build ready for deployment to firebase
+   `npm run build`
+8. Install firebase (this app uses firebase for authentication and backend functions)
+   `npm install -g firebase-tools`
+   Next initialized firebase to use and deploy the firebase project.

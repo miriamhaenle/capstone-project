@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-import * as ROUTES from '../../constants/routes'
-import eyeIcon from '../../images/eye.svg'
-import eyeIconHide from '../../images/eyeIconHide.svg'
+import * as ROUTES from 'constants/routes'
+import eyeIcon from 'images/eye.svg'
+import eyeIconHide from 'images/eyeIconHide.svg'
 import Button from '../Button/Button'
 import loginWithFirebase from '../auth/loginWithFirebase'
 

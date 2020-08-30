@@ -2,25 +2,21 @@ import PropTypes from 'prop-types'
 import React, { useContext, useState } from 'react'
 import { Link, Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import AuthUserContext from '../../components/auth/AuthUserContext'
-import Header from '../../components/Header/Header'
-import Navigation from '../../components/Navigation/Navigation'
-import SumCarbonFootPrint from '../../components/SumCarbonFootprint/SumCarbonFootprint'
-import * as ROUTES from '../../constants/routes'
-import homeIcon from '../../images/sustainable.svg'
-import useDeviceDetect from '../../services/useDeviceDetect'
+import AuthUserContext from 'components/auth/AuthUserContext'
+import Header from 'components/Header/Header'
+import Navigation from 'components/Navigation/Navigation'
+import SumCarbonFootPrint from 'components/SumCarbonFootprint/SumCarbonFootprint'
+import * as ROUTES from 'constants/routes'
+import homeIcon from 'images/sustainable.svg'
+import useDeviceDetect from 'services/useDeviceDetect'
 import SportsActivitiesPage from '../SportsActivitiesPage/SportsActivitiesPage'
 import TripsPage from '../TripsPage/TripsPage'
+import StateContext from 'states/StateContext'
 
-export default function HomePage({
-  initialFootprintValue,
-  totalCarbonFootprint,
-  updateCarbonFootprint,
-  updateFootprintPerTransportationType,
-  toggleTheme,
-  theme,
-}) {
+export default function HomePage({ toggleTheme, theme }) {
   const { user } = useContext(AuthUserContext)
+  const { totalCarbonFootprint } = useContext(StateContext)
+
   const { isMobile } = useDeviceDetect()
   const [bubbleStatus, setBubbleStatus] = useState({
     active: false,
@@ -67,20 +63,10 @@ export default function HomePage({
       ) : null}
       <Switch>
         <Route path={ROUTES.ADD_TRIP}>
-          <TripsPage
-            updateCarbonFootprint={updateCarbonFootprint}
-            updateFootprintPerTransportationType={
-              updateFootprintPerTransportationType
-            }
-          />
+          <TripsPage />
         </Route>
         <Route path={ROUTES.ADD_ACTIVITY}>
-          <SportsActivitiesPage
-            totalCarbonFootprint={totalCarbonFootprint}
-            initialFootprintValue={initialFootprintValue}
-            bubbleStatus
-            isMobile
-          />
+          <SportsActivitiesPage />
         </Route>
       </Switch>
     </>

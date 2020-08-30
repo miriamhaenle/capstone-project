@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import * as ROUTES from '../../constants/routes'
+import * as ROUTES from 'constants/routes'
 import firebaseApp from '../../firebase'
 
 export default function useAuth() {
